@@ -232,4 +232,10 @@ class MallModel extends BaseModel {
 			return TRUE;
 		}
 	}
+
+	public function get_coupon($uid){
+	    $this->db->where('status <> ',2);
+        $this->db->join('shop_order','shop_order.id = shop_coupon.coupon_id','inner');
+        return $this->db->get('shop_coupon')->result_array();
+    }
 }

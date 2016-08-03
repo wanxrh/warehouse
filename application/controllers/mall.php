@@ -6,9 +6,9 @@ class Mall extends BaseController {
 	public function __construct()
 	{ 	
 	    parent::__construct();
-	   	/* $_SESSION['lao337']['MALL']['uid'] = 'o1teys8ZQeB8kfP7UQe3NHTI-d6w';
+	   	$_SESSION['lao337']['MALL']['uid'] = 'o1teys8ZQeB8kfP7UQe3NHTI-d6w';
 		$_SESSION['lao337']['MALL']['nickname'] = '（●—●）';
-		$_SESSION['lao337']['MALL']['headimgurl'] = 'http://wx.qlogo.cn/mmopen/2ibiauvDg7obiaUSCH7X1EzGJpllf4jpksWloKUFm1AGnA5D8hGrTLGaNXKspQuwHFHZaQ1UYppaWdl5bY1Bzj5xYXVN59bSHn2/0'; */
+		$_SESSION['lao337']['MALL']['headimgurl'] = 'http://wx.qlogo.cn/mmopen/2ibiauvDg7obiaUSCH7X1EzGJpllf4jpksWloKUFm1AGnA5D8hGrTLGaNXKspQuwHFHZaQ1UYppaWdl5bY1Bzj5xYXVN59bSHn2/0';
 	    $this->ifLogin(__CLASS__);
 	    $this->load->model('MallModel');
 	        
@@ -278,7 +278,7 @@ class Mall extends BaseController {
 		$paytype = intval( $this->input->get('paytype',TRUE) );
 		$order_id = intval( $this->input->get('order_id',TRUE) );
 		
-		if($paytype != 0 && $paytype != 10){
+		if($paytype != 0 && $paytype != 11){
 			return FALSE;
 		}
 		$data ['pay_type'] = $paytype;
@@ -286,10 +286,10 @@ class Mall extends BaseController {
 		$map ['id'] = $order_id;
 		
 		$this->MallModel->updateOrderPay($map,$data);
-		if($paytype == 10){
+		/*if($paytype == 10){
 			$this->successJump('下单成功！','/mall/myorder');
 			return;
-		}
+		}*/
 		$map['uid'] = $user_id;
 		$map['id'] = $order_id;
 		$order_info = $this->MallModel->getOrderInfo($map);
@@ -468,6 +468,15 @@ class Mall extends BaseController {
 		$data['list'] = $this->MallModel->searchGoodsLists($data['search_key'],$data['cate'],$order_key,$order_type);
 		$this->load->view('mall/goods_lists',$data);
 	}
+	public function coupon(){
+        $user_id = $this->_uid;
+        $data['cart_count'] = $this->_getMyCart($user_id);
+        $data['list'] = $this->MallModel->get_coupon($user_id);
+        foreach ($data['list'] as &$v){
+            $v['status'] = $this->coupon_type($v['status']);
+        }
+        $this->load->view('mall/coupon_list',$data);
+    }
 	private function _getCategory(){
 		return $this->MallModel->getCategory();
 	}
