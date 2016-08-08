@@ -234,8 +234,13 @@ class MallModel extends BaseModel {
 	}
 
 	public function get_coupon($uid){
-	    $this->db->where('status <> ',2);
-        $this->db->join('shop_order','shop_order.id = shop_coupon.coupon_id','inner');
+	    $this->db->where('owner_id',$uid);
+        $this->db->join('shop_order','shop_order.id = shop_coupon.order_id','inner');
         return $this->db->get('shop_coupon')->result_array();
+    }
+
+    public function coupon_view($condition)
+    {
+        return $this->getRow('shop_coupon',$condition);
     }
 }

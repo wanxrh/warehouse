@@ -8,7 +8,7 @@
         </div>
     	<div class="choose_pay_type">
             <a href="#" data-paytype='0'><em class="wxpay">&nbsp;</em>微信支付</a>
-			<a href="#" data-paytype='11'><em class="wxpay">&nbsp;</em>站点自提</a>
+			<a href="#" data-paytype='11'><em class="wxpay">&nbsp;</em>现金券自提</a>
         	<!-- <a href="#" data-paytype='1'><em class="alipay">&nbsp;</em>支付宝</a>
             <a href="#" data-paytype='2'><em class="tenpay">&nbsp;</em>财付通</a>
             <a href="#" data-paytype='4'><em class="cardpay">&nbsp;</em>银行卡支付</a>

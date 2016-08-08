@@ -177,7 +177,7 @@ class BaseController extends CI_Controller {
             1 => '已使用',
             2 => '已赠好友'
         );
-        return $status_code [$code];
+        return $status_code [intval($code)];
     }
 	protected function soapCall($url,$data = NULL){
 		try {

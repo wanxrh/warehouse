@@ -473,9 +473,37 @@ class Mall extends BaseController {
         $data['cart_count'] = $this->_getMyCart($user_id);
         $data['list'] = $this->MallModel->get_coupon($user_id);
         foreach ($data['list'] as &$v){
+            $v['goods_datas'] = json_decode($v['goods_datas'],true);
             $v['status'] = $this->coupon_type($v['status']);
         }
         $this->load->view('mall/coupon_list',$data);
+    }
+    public function couponView($coupon_id = 0){
+        if(!$coupon_id){
+            return false;
+        }
+        $user_id = $this->_uid;
+        $data['cart_count'] = $this->_getMyCart($user_id);
+        $coupon = $this->MallModel->coupon_view(array('owner_id'=>$user_id,'coupon_id'=>$coupon_id));
+        if(!$coupon)
+            return false;
+        $data['coupon'] = $coupon;
+        if($coupon['status'] == 0){
+            $time = time();
+            $data['confirm_coupon_url'] = 'http://pan.baidu.com/share/qrcode?w=200&h=200&url='.$this->config->base_url().'mall/confirmCoupon?id='.$coupon['coupon_id'].'&time='.$time.'&sign='.md5($coupon['sign'].$time);
+        }
+        $order_id = $coupon['order_id'];
+        $data['order_info'] = $this->MallModel->getOrderInfo(array('id'=>$order_id,'uid'=>$user_id));
+        if( !$data['order_info'] ) return FALSE;
+        $data['order_info']['send_code_name'] = $this->_send_code_name($data['order_info']['send_code']);
+        $data['address_info'] = $this->MallModel->getAddressInfo($user_id,$data['order_info']['address_id']);
+
+        $data['goods_datas'] = json_decode($data['order_info']['goods_datas'],TRUE);
+        $this->load->view('mall/coupon_view',$data);
+    }
+    public function confirmCoupon(){
+        $user_id = $this->_uid;
+
     }
 	private function _getCategory(){
 		return $this->MallModel->getCategory();

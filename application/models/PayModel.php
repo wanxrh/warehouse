@@ -20,8 +20,8 @@ class PayModel extends BaseModel {
 		$this->setStatusCode($order['id'],1);
         if($order['pay_type'] == 11){
             $coupon = array(
-                'open_id'=>$order['uid'],
-                'sign'=>md5($order['id'].$order['order_number'].$order['cTime'].$order['uid']),
+                'owner_id'=>$order['uid'],
+                'sign'=>md5($order['id'].$order['order_number'].$order['cTime'].$order['uid'].$order['uid']),
                 'order_id'=>$order['id'],
                 'get_time'=>time()
             );

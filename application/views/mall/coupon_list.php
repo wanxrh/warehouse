@@ -12,9 +12,9 @@
         	<ul>
             	<?php foreach ($list as $value){ ?>
                 <li>
-                	<a style="display:block" href="/mall/coupondetail/<?php echo $value['coupon_id']; ?>">
+                	<a style="display:block" href="/mall/couponview/<?php echo $value['coupon_id']; ?>">
                 	<p class="top">
-                    <span class="c">代金券状态：<span class="blue"><?php echo $value['status']; ?></span></span>
+                    <span class="c">兑换券状态：<span class="blue"><?php echo $value['status']; ?></span></span>
                     </p>
                     
                     <?php foreach ($value['goods_datas'] as $goods){ ?>
