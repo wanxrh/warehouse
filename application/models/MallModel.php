@@ -144,6 +144,7 @@ class MallModel extends BaseModel {
 		return $this->db->affected_rows();
 	}
 	public function getOrderList($condition){
+	    $this->db->where('pay_type <> ',11);
 		$this->db->order_by('id','desc');
 		$result = $this->getRows('shop_order',$condition);
 		

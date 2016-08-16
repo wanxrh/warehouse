@@ -488,6 +488,7 @@ class Mall extends BaseController {
         if(!$coupon)
             return false;
         $data['coupon'] = $coupon;
+        $data['now'] = time();
         if($coupon['status'] == 0){
             $time = time();
             $data['confirm_coupon_url'] = 'http://pan.baidu.com/share/qrcode?w=200&h=200&url='.$this->config->base_url().'mall/confirmCoupon?id='.$coupon['coupon_id'].'&time='.$time.'&sign='.md5($coupon['sign'].$time);
@@ -495,16 +496,12 @@ class Mall extends BaseController {
         $order_id = $coupon['order_id'];
         $data['order_info'] = $this->MallModel->getOrderInfo(array('id'=>$order_id,'uid'=>$user_id));
         if( !$data['order_info'] ) return FALSE;
-        $data['order_info']['send_code_name'] = $this->_send_code_name($data['order_info']['send_code']);
         $data['address_info'] = $this->MallModel->getAddressInfo($user_id,$data['order_info']['address_id']);
 
         $data['goods_datas'] = json_decode($data['order_info']['goods_datas'],TRUE);
         $this->load->view('mall/coupon_view',$data);
     }
-    public function confirmCoupon(){
-        $user_id = $this->_uid;
 
-    }
 	private function _getCategory(){
 		return $this->MallModel->getCategory();
 	}
