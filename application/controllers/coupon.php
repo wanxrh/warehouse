@@ -9,9 +9,9 @@ class Coupon extends BaseController
     {
         parent::__construct();
         $this->load->model('CouponModel');
-        $_SESSION['lao337']['AGENT']['uid'] = 'o1teys--QgpSDXlTwHqBcEWKJTfY';
+        /*$_SESSION['lao337']['AGENT']['uid'] = 'o1teys--QgpSDXlTwHqBcEWKJTfY';
         $_SESSION['lao337']['AGENT']['nickname'] = '（●—●）';
-        $_SESSION['lao337']['AGENT']['headimgurl'] = 'http://wx.qlogo.cn/mmopen/2ibiauvDg7obiaUSCH7X1EzGJpllf4jpksWloKUFm1AGnA5D8hGrTLGaNXKspQuwHFHZaQ1UYppaWdl5bY1Bzj5xYXVN59bSHn2/0';
+        $_SESSION['lao337']['AGENT']['headimgurl'] = 'http://wx.qlogo.cn/mmopen/2ibiauvDg7obiaUSCH7X1EzGJpllf4jpksWloKUFm1AGnA5D8hGrTLGaNXKspQuwHFHZaQ1UYppaWdl5bY1Bzj5xYXVN59bSHn2/0';*/
         if (isset($_SESSION['lao337']['AGENT']['uid'])) {
             $this->_openid = $_SESSION['lao337']['AGENT']['uid'];
         } else {
@@ -69,7 +69,7 @@ class Coupon extends BaseController
         $coupon_id = intval($this->input->get('id', true));
         $time = trim($this->input->get('time', true));
         $sign = trim($this->input->get('sign', true));
-
+        $data['form'] = get_defined_vars();
         if (!$coupon_id || !$time || !$sign) {
             exit('无效请求！');
         }
@@ -77,7 +77,7 @@ class Coupon extends BaseController
         if (!$coupon) {
             exit('无效请求！');
         }
-        if ($sign != md5($coupon['sign'] . $time)) {
+        if ($sign != md5($coupon_id . $coupon['sign'] . $time)) {
             exit('无效请求！');
         }
         $order_id = $coupon['order_id'];
@@ -87,6 +87,78 @@ class Coupon extends BaseController
         $data['goods_datas'] = json_decode($data['order_info']['goods_datas'], TRUE);
         $data['coupon'] = $coupon;
         $data['user_id'] = $user_id;
+        if(IS_POST){
+            $coupon_id = intval($this->input->post('id', true));
+            $time = trim($this->input->post('time', true));
+            $sign = trim($this->input->post('sign', true));
+
+            if (!$coupon_id || !$time || !$sign) {
+                return false;
+            }
+            $coupon = $this->CouponModel->getRow('shop_coupon', array('coupon_id' => $coupon_id));
+            if (!$coupon) {
+                return false;
+            }
+            $order = $this->CouponModel->getRow('shop_order', array('id' => $order_id));
+            if (!$order){
+                return false;
+            }
+            if($coupon['owner_id'] == $user_id){
+                return false;
+            }
+            if($coupon['status'] != 0){
+                return false;
+            }
+
+            $this->CouponModel->update('shop_coupon',array('coupon_id'=>$coupon_id),array('status'=>2));
+            $insert = array(
+                'owner_id'=>$user_id,
+                'sign'=>md5($order['id'].$order['order_number'].$order['cTime'].$order['uid'].$user_id),
+                'from'=>$coupon['coupon_id'],
+                'order_id'=>$coupon['order_id'],
+                'get_time'=>time()
+            );
+            $this->CouponModel->insert('shop_coupon',$insert);
+            $this->successJump('领取成功','/mall/coupon');
+        }
         $this->load->view('coupon/index', $data);
+    }
+
+    public function share()
+    {
+        $id = $this->input->get('id', true);
+        $time = $this->input->get('time', true);
+        $sign = $this->input->get('sign', true);
+
+        if (!$id || !$time || !$sign) {
+            return false;
+        }
+        $coupon = $this->CouponModel->getRow('shop_coupon', array('coupon_id' => $id));
+        if (!$coupon) {
+            exit('无效请求！');
+        }
+        if ($sign != md5($coupon['sign'] . $coupon['coupon_id'] . $time)) {
+            exit('无效请求！');
+        }
+        $this->load->library('package');
+        $SignPackage = $this->package->getSignPackage();
+        $data['signPackage'] = $SignPackage;
+
+        $order_info = $this->CouponModel->getRow('shop_order', array('id' => $coupon['order_id']));
+        if (!$order_info) return FALSE;
+
+        $goods_data = json_decode($order_info['goods_datas'], TRUE);
+        $PicUrl = array_column($goods_data,'cover');
+        $now = time();
+        $news = array(
+            "Title" => "老山圈兑换券领取",
+            "Description" => implode(',',array_column($goods_data,'title')),
+            "PicUrl" => imgUrl($PicUrl[0]),
+            "Url" => $this->config->base_url().'coupon?id='.$id.'&time='.$now.'&sign='.md5($id.$coupon['sign'].$now)
+        );
+        $data['news'] = $news;
+
+        $data['goods_datas'] = $goods_data;
+        $this->load->view('coupon/share', $data);
     }
 }

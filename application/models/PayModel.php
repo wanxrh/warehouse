@@ -11,14 +11,14 @@ class PayModel extends BaseModel {
 		//开启事务
 		$this->db->trans_start();
 		
-		$order = $this->getRow('shop_order',array('order_number'=>$order_number),'id,goods_datas');
+		$order = $this->getRow('shop_order',array('order_number'=>$order_number),'id,goods_datas,coupon,order_number,cTime,uid');
 		$this->update('payment_order', array('single_orderid'=>$order_number), array('status'=>1));
 		$this->update('shop_order', array('id'=>$order['id']), array('pay_status'=>1));
 		foreach (json_decode($order['goods_datas'],TRUE) as $v){
 			$this->db->where('id',$v['id'])->set('sale_count','sale_count+'.$v['num'],FALSE)->update('shop_goods');
 		}
 		$this->setStatusCode($order['id'],1);
-        if($order['pay_type'] == 11){
+        if($order['coupon'] == 1){
             $coupon = array(
                 'owner_id'=>$order['uid'],
                 'sign'=>md5($order['id'].$order['order_number'].$order['cTime'].$order['uid'].$order['uid']),

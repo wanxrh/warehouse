@@ -32,7 +32,7 @@
                     <div class="m_15">
                         <img src="<?php echo $confirm_coupon_url; ?>"/>
                     </div>
-                    <a href="<?php echo $this->config->base_url().'coupon/share?id='.$coupon['coupon_id'].'&time='.$now.'&sign='.md5($coupon['sign'].$now); ?>" class="btn">赠送好友</a>
+                    <a href="<?php echo $this->config->base_url().'coupon/share?id='.$coupon['coupon_id'].'&time='.$now.'&sign='.md5($coupon['sign'].$coupon['coupon_id'].$now); ?>" class="btn">赠送好友</a>
                 <?php }elseif ($coupon['status'] == 1){ ?>
                      <h3 class="mb_10">兑换券已经使用</h3>
                 <?php }elseif ($coupon['status'] == 2){ ?>

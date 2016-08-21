@@ -25,7 +25,12 @@
                 <?php if($coupon['status'] == 0){ ?>
                     <h3 class="mb_10">兑换券未领取</h3>
                     <p class="wait_pay"></p>
-                    <a href="" class="btn">领取</a>
+                    <form id="form" action="" method="post">
+                        <input name="id" type="hidden" value="<?php echo $form['coupon_id'] ?>">
+                        <input name="time" type="hidden" value="<?php echo $form['time'] ?>">
+                        <input name="sign" type="hidden" value="<?php echo $form['sign'] ?>">
+                    </form>
+                    <a href="javascript:;" onclick="$('#form').submit();" class="btn">领取</a>
                 <?php }elseif ($coupon['status'] == 1){ ?>
                     <h3 class="mb_10">兑换券已经使用</h3>
                 <?php }elseif ($coupon['status'] == 2){ ?>

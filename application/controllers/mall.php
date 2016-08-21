@@ -6,9 +6,9 @@ class Mall extends BaseController {
 	public function __construct()
 	{ 	
 	    parent::__construct();
-	   	$_SESSION['lao337']['MALL']['uid'] = 'o1teys8ZQeB8kfP7UQe3NHTI-d6w';
+	   	/*$_SESSION['lao337']['MALL']['uid'] = 'o1teys8ZQeB8kfP7UQe3NHTI-d6w';
 		$_SESSION['lao337']['MALL']['nickname'] = '（●—●）';
-		$_SESSION['lao337']['MALL']['headimgurl'] = 'http://wx.qlogo.cn/mmopen/2ibiauvDg7obiaUSCH7X1EzGJpllf4jpksWloKUFm1AGnA5D8hGrTLGaNXKspQuwHFHZaQ1UYppaWdl5bY1Bzj5xYXVN59bSHn2/0';
+		$_SESSION['lao337']['MALL']['headimgurl'] = 'http://wx.qlogo.cn/mmopen/2ibiauvDg7obiaUSCH7X1EzGJpllf4jpksWloKUFm1AGnA5D8hGrTLGaNXKspQuwHFHZaQ1UYppaWdl5bY1Bzj5xYXVN59bSHn2/0';*/
 	    $this->ifLogin(__CLASS__);
 	    $this->load->model('MallModel');
 	        
@@ -281,8 +281,13 @@ class Mall extends BaseController {
 		if($paytype != 0 && $paytype != 11){
 			return FALSE;
 		}
-		$data ['pay_type'] = $paytype;
-		$data ['status_code'] = $paytype == 10 ? 1 : 0;
+		if($paytype == 11){
+            $data ['pay_type'] = 0;
+            $data ['coupon'] = 1;
+        }else{
+            $data ['pay_type'] = $paytype;
+        }
+        $data ['status_code'] = $paytype == 10 ? 1 : 0;
 		$map ['id'] = $order_id;
 		
 		$this->MallModel->updateOrderPay($map,$data);
