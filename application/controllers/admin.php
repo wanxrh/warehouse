@@ -119,7 +119,8 @@ class Admin extends BaseController {
 	public function category(){
 		$keyword = trim( $this->input->get('keyword',TRUE) );
 		$data = $this->AdminModel->categoryList($keyword,$this->per_page, $this->offset);
-		$url_format = "/admin/category/%d?" . str_replace('%', '%%', urldecode($_SERVER['QUERY_STRING']));
+		$url_format = "/admin/c
+		ategory/%d?" . str_replace('%', '%%', urldecode($_SERVER['QUERY_STRING']));
 		$data['page'] = page($this->cur_page, ceil($data['total'] / $this->per_page), $url_format, 5, TRUE, TRUE,$data['total']);
 		$data['cur_page'] = $this->cur_page;
 		$data['keyword'] = $keyword;
@@ -588,4 +589,81 @@ class Admin extends BaseController {
 	public function welcome(){
 		
 	}
+	public function product(){
+        $data = $this->AdminModel->productList($this->per_page, $this->offset);
+        $url_format = "/admin/product/%d?" . str_replace('%', '%%', urldecode($_SERVER['QUERY_STRING']));
+        $data['page'] = page($this->cur_page, ceil($data['total'] / $this->per_page), $url_format, 5, TRUE, TRUE,$data['total']);
+        $data['cur_page'] = $this->cur_page;
+        $this->load->view('admin/product_list',$data);
+    }
+    public function addProduct(){
+        if(IS_POST){
+            $parm = $this->input->post(NULL,TRUE);
+            if(!$parm['title']){
+                ajaxError('标题不能为空！');
+            }
+            if(!$parm['type']){
+                ajaxError('请选择分类！');
+            }
+            $parm['createtime']= time();
+            $parm['modifytime']= time();
+            $row = $this->AdminModel->insert('shop_product',$parm);
+            if(!$row){
+                ajaxError('添加失败！');
+            }
+            ajaxSuccess('操作成功',array('url'=>'/admin/product'));
+        }
+        $this->load->view('admin/product_add');
+    }
+    public function editProduct(){
+        if(IS_POST){
+            $param = $this->input->post(NULL,TRUE);
+            $id = $param['id'];
+            unset($param['id']);
+            if(!$id){
+                ajaxError('数据不存在！');
+            }
+            if(!$param['title']){
+                ajaxError('名称不能为空！');
+            }
+            $row = $this->AdminModel->update('shop_product',array('id'=>$id),$param);
+            if(!$row){
+                ajaxError('操作失败！');
+            }
+            ajaxSuccess('操作成功',array('url'=>'/admin/product'));
+        }
+        $cate_id = intval( $this->uri->segment(3) );
+        if(!$cate_id){
+            return FALSE;
+        }
+        $data['info'] = $this->AdminModel->getRow('shop_product',array('id'=>$cate_id));
+        $this->load->view('/admin/product_edit',$data);
+    }
+    public function delProduct(){
+        $id = intval($this->uri->segment(3));
+        if(!$id){
+            $this->errorJump('非法操作');
+            return;
+        }
+        $result = $this->AdminModel->delete('shop_product',array('id'=>$id));
+        if(!$result){
+            $this->errorJump('非法操作');
+            return;
+        }
+        $this->successJump('操作成功','/admin/product');
+    }
+    public function delMoreProduct(){
+        if(!IS_POST){
+            return FALSE;
+        }
+        $ids = $this->input->post('ids',TRUE);
+        if( empty($ids) ){
+            ajaxError('请选择操作数据');
+        }
+        $result = $this->AdminModel->delProduct($ids);
+        if(!$result){
+            ajaxError('请选择操作数据');
+        }
+        ajaxSuccess('删除成功！',array('url'=>'/admin/product'));
+    }
 } 

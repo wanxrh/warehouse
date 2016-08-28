@@ -219,4 +219,13 @@ class AdminModel extends BaseModel {
 		$this->update('shop_cash',$consfiton,$data);
 		return $this->db->affected_rows();
 	}
+	public function productList($per_page,$offset){
+        $result['list'] = $this->db->limit($per_page, $offset)->order_by('sort','asc')->get('shop_product')->result_array();
+        $result['total'] = $this->db->count_all_results('shop_product');
+        return $result;
+    }
+    public function delProduct($ids){
+        $this->db->where_in('id',$ids)->delete('shop_product');
+        return $this->db->affected_rows();
+    }
 }
