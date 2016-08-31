@@ -124,6 +124,16 @@ class Coupon extends BaseController
         $this->load->view('coupon/index', $data);
     }
 
+    //兑换
+    public function exchange(){
+
+    }
+
+    //赠送
+    public function present(){
+
+    }
+
     public function share()
     {
         $id = $this->input->get('id', true);

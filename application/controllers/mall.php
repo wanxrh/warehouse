@@ -464,7 +464,7 @@ class Mall extends BaseController {
 		$user_id = $this->_uid;
 		$data['cart_count'] = $this->_getMyCart($user_id);
 		$data['category'] =$this-> _getCategory();
-		
+
 		$data['search_key'] = trim( $this->input->get('search_key',TRUE) );
 		$order_key = trim( $this->input->get('order_key',TRUE) );
 		$order_type = trim( $this->input->get('order_type',TRUE) );
@@ -496,7 +496,7 @@ class Mall extends BaseController {
         $data['now'] = time();
         if($coupon['status'] == 0){
             $time = time();
-            $data['confirm_coupon_url'] = 'http://pan.baidu.com/share/qrcode?w=200&h=200&url='.$this->config->base_url().'mall/confirmCoupon?id='.$coupon['coupon_id'].'&time='.$time.'&sign='.md5($coupon['sign'].$time);
+            $data['confirm_coupon_url'] = 'http://pan.baidu.com/share/qrcode?w=200&h=200&url='.$this->config->base_url().'coupon/exchange?id='.$coupon['coupon_id'].'&time='.$time.'&sign='.md5($coupon['sign'].$time);
         }
         $order_id = $coupon['order_id'];
         $data['order_info'] = $this->MallModel->getOrderInfo(array('id'=>$order_id,'uid'=>$user_id));
@@ -532,4 +532,12 @@ class Mall extends BaseController {
 		$lastStr     = mb_substr($user_name, -1, 1, 'utf-8');
 		return $strlen == 2 ? $firstStr . str_repeat('*', mb_strlen($user_name, 'utf-8') - 1) : $firstStr . str_repeat("*", $strlen - 2) . $lastStr;
 	}
+	public function reserve(){
+        $user_id = $this->_uid;
+        $search_key = trim( $this->input->get('search_key',TRUE) );
+        $data['search_key'] = $search_key;
+        $data['cart_count'] = $this->_getMyCart($user_id);
+        $data['list'] = $this->MallModel->reserveList($search_key);
+        $this->load->view('mall/reserve',$data);
+    }
 }

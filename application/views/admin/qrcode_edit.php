@@ -42,6 +42,41 @@
 							<input type="text" class="text input-large" name="remark" value="<?php echo $info['remark']; ?>">
 						</div>
 					</div>
+					<div class="form-item cf toggle-is_show">
+						<label class="item-label">
+							代售点
+							<span class="check-tips"> </span>
+						</label>
+						<div class="controls">
+							<div class="check-item">
+								<!--[if !IE]><!-->
+								<input type="radio" class="regular-radio toggle-data" value="0"
+									   id="super_0" name="super" toggle-data="" <?php if($info['super'] ==0){ echo 'checked'; } ?>/>
+								<label for="super_0"></label>
+								否
+								<!--<![endif]-->
+								<!--[if IE]>
+								<input type="radio" value="0"
+									   id="super_0" name="super" class="toggle-data" toggle-data=""
+								<?php if($info['super'] ==0){ echo 'checked="true"'; } ?>/>
+								<label for="super_0"></label>否                               <![endif]-->
+							</div>
+							<div class="check-item">
+								<!--[if !IE]><!-->
+								<input type="radio" class="regular-radio toggle-data" value="1"
+									   id="super_1" name="super" toggle-data="" <?php if($info['super'] ==1){ echo 'checked'; } ?>/>
+								<label for="super_1"></label>
+								是
+								<!--<![endif]-->
+								<!--[if IE]>
+								<input type="radio" value="1"
+									   id="is_show_1" name="super" class="toggle-data" toggle-data=""
+								<?php if($info['super'] ==1){ echo 'checked="true"'; } ?>
+								/>
+								<label for="super_1"></label>是                               <![endif]-->
+							</div>
+						</div>
+					</div>
 					<div class="form-item cf toggle-title">
 						<label class="item-label">
 							激活二维码
