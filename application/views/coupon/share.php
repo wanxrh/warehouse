@@ -38,9 +38,33 @@
             // alert(JSON.stringify(res));
         }
     });
-
 </script>
+<style>
+    #shareit {
+        -webkit-user-select: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        text-align: center;
+        top: 0;
+        left: 0;
+        z-index: 105;
+    }
+    #shareit img {
+        max-width: 100%;
+    }
+    .arrow {
+        position: absolute;
+        right: 10%;
+        top: 5%;
+    }
+</style>
 <body class="withFoot">
+<div id="shareit" >
+    <img class="arrow" src="http://dev.vxtong.com/cases/nuannan/imgs/share-it.png">
+</div>
+
 <div class="container">
     <div class="order_detail">
 

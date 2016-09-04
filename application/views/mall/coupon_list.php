@@ -14,7 +14,10 @@
                 <li>
                 	<a style="display:block" href="/mall/couponview/<?php echo $value['coupon_id']; ?>">
                 	<p class="top">
-                    <span class="c">兑换券状态：<span class="blue"><?php echo $value['status']; ?></span></span>
+                    <span class="c">兑换券状态：<span class="blue"><?php echo $value['status']; ?></span></span><br/>
+                    <?php if($value['reserve']){ ?>
+                        <span class="t" style="color: red;"><?php echo '兑换时间为：'.date('Y-m-d',$value['reserve_time']); ?></span>
+                    <?php }; ?>
                     </p>
                     
                     <?php foreach ($value['goods_datas'] as $goods){ ?>
