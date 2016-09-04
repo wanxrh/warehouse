@@ -58,7 +58,7 @@
         <div class="order_action">
             关注公众号，就可使用兑换券!
             <div class="m_15">
-                <img src="http://pan.baidu.com/share/qrcode?w=200&h=200&url=http://www.lao337.com/mall/confirmCoupon?id=1&time=1471358718&sign=dfae229e72e4e3207adefbbff88bfd29"/>
+                <img src="<?php echo imgUrl('public/lsqqr.jpg'); ?>"/>
             </div>
         </div>
 

@@ -8,4 +8,9 @@ class CouponModel extends BaseModel {
 		parent::__construct();
 	}
 
+	public function daili_store_goods($conditon,$number){
+	    $this->db->where($conditon);
+        $this->db->where('number >= ',$number);
+        $this->db->set('number','number - '.$number,false)->update('shop_daili_store_goods');
+    }
 }

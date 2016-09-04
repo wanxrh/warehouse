@@ -179,6 +179,14 @@ class BaseController extends CI_Controller {
         );
         return $status_code [intval($code)];
     }
+    function gift_type($code) {
+        $status_code = array (
+            0 => '未使用',
+            1 => '未使用',
+            2 => '已使用'
+        );
+        return $status_code [intval($code)];
+    }
 	protected function soapCall($url,$data = NULL){
 		try {
 			$ch = curl_init() ;

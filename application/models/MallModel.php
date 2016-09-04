@@ -130,7 +130,7 @@ class MallModel extends BaseModel {
 		return $this->getRow('shop_address',array('uid'=>$user_id));
 	}
 	public function confirmOrderGood($goods_id){
-		return $this->getRows('shop_goods',array('id'=>$goods_id),'id,cover,title,price,commission');
+		return $this->getRows('shop_goods',array('id'=>$goods_id),'id,cover,title,price,commission,reserve,reserve_time');
 	}
 	public function confirmOrderGoods($goods_ids){
 		return $this->db->select('id,cover,title,price,commission')->where_in('id',$goods_ids)->get('shop_goods')->result_array();
@@ -250,6 +250,17 @@ class MallModel extends BaseModel {
             $this->db->like('title',$search_key);
         }
         $this->db->order_by('sort','ASC');
-        return $this->db->select('id,title,price,cover')->where(array('is_show'=>1,'reserve'=>1))->get('shop_goods')->result_array();
+        return $this->db->select('id,title,price,cover,reserve_time')->where(array('is_show'=>1,'reserve'=>1))->get('shop_goods')->result_array();
+    }
+
+    public function get_gift($user_id){
+        $this->db->where('owner_id',$user_id);
+        $this->db->select('shop_voucherinfo.*,shop_goods.cover,shop_goods.title,shop_goods.price')->join('shop_goods','shop_goods.id = shop_voucherinfo.goods_id','inner');
+        return $this->db->get('shop_voucherinfo')->result_array();
+    }
+    public function gift_view($condition){
+        $this->db->where($condition);
+        $this->db->select('shop_voucherinfo.*,shop_goods.cover,shop_goods.title,shop_goods.price')->join('shop_goods','shop_goods.id = shop_voucherinfo.goods_id','inner');
+        return $this->db->get('shop_voucherinfo')->row_array();
     }
 }

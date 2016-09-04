@@ -6,9 +6,9 @@ class Mall extends BaseController {
 	public function __construct()
 	{ 	
 	    parent::__construct();
-	   	/*$_SESSION['lao337']['MALL']['uid'] = 'o1teys8ZQeB8kfP7UQe3NHTI-d6w';
+	   	$_SESSION['lao337']['MALL']['uid'] = 'o1teys8ZQeB8kfP7UQe3NHTI-d6w';
 		$_SESSION['lao337']['MALL']['nickname'] = '（●—●）';
-		$_SESSION['lao337']['MALL']['headimgurl'] = 'http://wx.qlogo.cn/mmopen/2ibiauvDg7obiaUSCH7X1EzGJpllf4jpksWloKUFm1AGnA5D8hGrTLGaNXKspQuwHFHZaQ1UYppaWdl5bY1Bzj5xYXVN59bSHn2/0';*/
+		$_SESSION['lao337']['MALL']['headimgurl'] = 'http://wx.qlogo.cn/mmopen/2ibiauvDg7obiaUSCH7X1EzGJpllf4jpksWloKUFm1AGnA5D8hGrTLGaNXKspQuwHFHZaQ1UYppaWdl5bY1Bzj5xYXVN59bSHn2/0';
 	    $this->ifLogin(__CLASS__);
 	    $this->load->model('MallModel');
 	        
@@ -224,10 +224,13 @@ class Mall extends BaseController {
 					$v['num'] = $buycount;
 					$total_price += $v['price']*$buycount;
 					$wages += bcmul($total_price,($v['commission']*0.01),2);
+                    $data['reserve'] = $v['reserve'];
+                    $data['reserve_time'] = $v['reserve_time'];
 				}				
 			}
 			$data['total_price'] = $total_price;
 			$data['wages'] = $wages;
+
 			$_SESSION['confirm_order'] = $data;
 		}else{
 			$data = $_SESSION['confirm_order'];
@@ -255,7 +258,10 @@ class Mall extends BaseController {
 		$data ['total_price'] = $info ['total_price'];
 		$data ['wages'] = $info ['wages'];
 		$data ['goods_datas'] = json_encode ( $info ['list'] );
-		
+        if($info['reserve']){
+            $data['reserve'] = $info['reserve'];
+            $data['reserve_time'] = $info['reserve_time'];
+        }
 		$oid = $this->MallModel->createOrder($data);
 		if(!$oid){
 			echo 0;
@@ -539,5 +545,35 @@ class Mall extends BaseController {
         $data['cart_count'] = $this->_getMyCart($user_id);
         $data['list'] = $this->MallModel->reserveList($search_key);
         $this->load->view('mall/reserve',$data);
+    }
+    public function gift()
+    {
+        $user_id = $this->_uid;
+        $data['cart_count'] = $this->_getMyCart($user_id);
+        $data['list'] = $this->MallModel->get_gift($user_id);
+        foreach ($data['list'] as &$v){
+            $v['status'] = $this->gift_type($v['status']);
+        }
+        $this->load->view('mall/gift_list',$data);
+    }
+
+    public function giftView($id = 0){
+        if(!$id){
+            return false;
+        }
+        $user_id = $this->_uid;
+        $data['cart_count'] = $this->_getMyCart($user_id);
+        $gift = $this->MallModel->gift_view(array('owner_id'=>$user_id,'shop_voucherinfo.id'=>$id));
+        if(!$gift)
+            return false;
+        $data['gift'] = $gift;
+        $data['now'] = time();
+        if($gift['status'] == 1){
+            $time = time();
+            $data['confirm_gift_url'] = 'http://pan.baidu.com/share/qrcode?w=200&h=200&url='.$this->config->base_url().'coupon/present?id='.$gift['id'].'&time='.$time.'&sign='.md5($gift['sign'].$time);
+        }
+
+        $data['gift'] = $gift;
+        $this->load->view('mall/gift_view',$data);
     }
 }

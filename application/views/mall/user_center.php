@@ -14,6 +14,7 @@
         </div>
         <div class="block">
             <a class="block_a" href="/mall/coupon">兑换券<em class="arrow_right">&nbsp;</em></a>
+            <a class="block_a" href="/mall/gift">礼品<em class="arrow_right">&nbsp;</em></a>
         	<a class="block_a" href="/mall/cart">我的购物车<em class="arrow_right">&nbsp;</em></a>
             <a class="block_a" href="/mall/mycollect">我的收藏<em class="arrow_right">&nbsp;</em></a>
             <a class="block_a block_last" href="/mall/myaddress">我的收货地址<em class="arrow_right">&nbsp;</em></a>

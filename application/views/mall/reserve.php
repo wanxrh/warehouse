@@ -18,6 +18,7 @@
                             <div class="desc">
                             	<p class="name"><?php echo $v['title']; ?></p>
                             	<p class="price">￥<?php echo $v['price']; ?></p>
+                                <p class="name" style="color: red;"><?php echo '于 '.date('Y-m-d',$v['reserve_time']).' 发货' ?></p>
                             </div>
                         </a>                    
                 </li>
