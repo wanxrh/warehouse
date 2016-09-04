@@ -12,7 +12,7 @@ class Product extends BaseController {
 	//产品追溯详情
 	public function index(){
         $id = intval($this->uri->segment(3));
-        $data['list'] = $this->AdminModel->getRow('shop_product',array('id'=>$id));
+        $data['list'] = $this->AdminModel->getRow('shop_source',array('id'=>$id));
 		$this->load->view('product/index',$data);
 	}
 

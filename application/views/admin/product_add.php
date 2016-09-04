@@ -1,9 +1,71 @@
 <?php $this->load->view('admin/header'); ?>
+<style>
+.input-span{
+    width: 552px;
+    height: 34px;
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+.uneditable-span{
+    float: left;
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    cursor: text;
+    padding: 6px 12px;
+    min-width: 206px;
+    font-size: 14px;
+    font-weight: normal;
+    height: 20px;
+    color: #333333;
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.default{
+    float: left;
+    display: block;
+    background-color: #e5e5e5;
+    width: 55px;
+    height: 34px;
+    cursor: pointer;
+}
+.fileupload-new{
+    line-height: 34px;
+}
+.fileupload-exists{
+	margin-left: 5px;
+	line-height: 34px;
+    display: none;
+}
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.btn-file > input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  font-size: 23px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transform: translate(-300px, 0) scale(4);
+  direction: ltr;
+}
+
+</style>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/kindeditor/kindeditor.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/kindeditor/lang/zh_CN.js"></script>
 	<link href="<?php echo $this->config->base_url(); ?>static/webuploader/webuploader.css" rel="stylesheet"/>
 	<link href="<?php echo $this->config->base_url(); ?>static/webuploader/style.css" rel="stylesheet"/>
 	<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/webuploader/webuploader.js"></script>
+	<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/js/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/webuploader/upload.js"></script>
 	<div class="main_body">
 
@@ -18,62 +80,186 @@
 					<div class="form-item cf toggle-title">
 						<label class="item-label">
 							<span class="need_flag">*</span>
-							标题
-							<span class="check-tips"> </span>
-						</label>
-						<div class="controls">
-							<input type="text" class="text input-large" name="title" value="">
-						</div>
-					</div>
-					<div class="form-item cf toggle-category_id">
-						<label class="item-label">
-							分类
-							<span class="check-tips"> </span>
-						</label>
-						<div class="controls">
-							<select name="type">
-								<option value="">请选择</option>
-								<option value="产品介绍">产品介绍</option>
-								<option value="生长过程">生长过程</option>
-								<option value="农人感言">农人感言</option>
-								<option value="检测报告">检测报告</option>
-								<option value="图文混编推荐吃法">图文混编推荐吃法</option>
-
-							</select>
-						</div>
-					</div>
-					<div class="form-item cf toggle-sort">
-						<label class="item-label">
-							排序号
-							<span class="check-tips"> （数值越小越靠前） </span>
-						</label>
-						<div class="controls">
-							<input type="number" class="text" name="sort" value="0">
-						</div>
-					</div>
-					<div class="form-item cf toggle-content">
-						<label class="item-label">
-							内容
+							种苗及来源
 							<span class="check-tips"> </span>
 						</label>
 						<div class="controls">
 							<label class="textarea">
-								<textarea name="content" id="description" style="width: 405px; height: 200px;"></textarea>
+								<textarea name="product_cource" class="" style="width: 405px; height: 70px;"></textarea>
+							</label>
+						</div>
+					</div>
+					<div class="form-item cf toggle-title">
+						<label class="item-label">
+							<span class="need_flag">*</span>
+							产品特点
+							<span class="check-tips"> </span>
+						</label>
+						<div class="controls">
+							<label class="textarea">
+								<textarea name="product_trait" class="" style="width: 405px; height: 70px;"></textarea>
+							</label>
+						</div>
+					</div>
+					<div class="form-item cf toggle-title">
+						<label class="item-label">
+							<span class="need_flag">*</span>
+							养殖场介绍
+							<span class="check-tips"> </span>
+						</label>
+						<div class="controls">
+							<label class="textarea">
+								<textarea name="farm" class="" style="width: 405px; height: 70px;"></textarea>
+							</label>
+						</div>
+					</div>
+					<div class="form-item cf toggle-title">
+						<label class="item-label">
+							<span class="need_flag">*</span>
+							用药防疫记录
+							<span class="check-tips"> </span>
+						</label>
+						<div class="controls">
+							<label class="textarea">
+								<textarea name="record" class="" style="width: 405px; height: 70px;"></textarea>
+							</label>
+						</div>
+					</div>
+					<div class="form-item cf toggle-title">
+						<label class="item-label">
+							<span class="need_flag">*</span>
+							关键节点
+							<span class="check-tips"> </span>
+						</label>
+						<div class="controls">
+							<label class="textarea">
+								<textarea name="node" class="" style="width: 405px; height: 70px;"></textarea>
+							</label>
+						</div>
+					</div>
+					<div class="form-item cf toggle-title">
+						<label class="item-label">
+							<span class="need_flag">*</span>
+							重要事件
+							<span class="check-tips"> </span>
+						</label>
+						<div class="controls">
+							<label class="textarea">
+								<textarea name="importance" class="" style="width: 405px; height: 70px;"></textarea>
+							</label>
+						</div>
+					</div>
+					<div class="form-item cf toggle-title">
+						<label class="item-label">
+							农夫视频
+							<span class="check-tips"> </span>
+						</label>
+						<div class="input-span fileupload">
+                                <span class="uneditable-span">
+
+                                </span>
+                                <span class="default btn-file">
+                                    <span class="fileupload-new">
+                                        &nbsp;&nbsp;&nbsp;浏览
+                                    </span>
+                                    <span class="fileupload-exists">
+                                        &nbsp;&nbsp;&nbsp;更换
+                                    </span>
+                                    <input type="file" class="default" id="p_farmer_movie" name="p_farmer_movie" onchange="return ajaxFileUpload(this)" />
+                                </span>
+                                <input type="hidden" value="" name="farmer_movie" class="hidden_value form-control" />
+                                <a href="javascript:;" class="btn red fileupload-exists" data-dismiss="fileupload">
+                                    <i class="icon icon-trash"></i> 删除
+                                </a>
+						    </div>
+					</div>
+					<div class="form-item cf toggle-imgs">
+						<label class="item-label">
+							照片
+							<span class="check-tips"> （可以上传多个图片） </span>
+						</label>
+						<div id="uploader">
+							<div class="queueList">
+								<div id="dndArea" class="">
+									<img id="big_goods_image" src="" width="200" height="200" alt="" />
+									<!-- <div id="filePicker"></div> -->
+								</div>
+								<div id="filePicker" ></div>
+							</div>
+							<div class="statusBar">
+
+								<div class="uploadBtn">开始上传</div>
+
+							</div>
+						</div>
+						<input id="uploadimg" type="hidden" value="" name="farmer_picture">
+					</div>
+					<div class="form-item cf toggle-title">
+						<label class="item-label">
+							<span class="need_flag">*</span>
+							农夫文字信息
+							<span class="check-tips"> </span>
+						</label>
+						<div class="controls">
+							<label class="textarea">
+								<textarea name="farmer_info" class="" style="width: 405px; height: 70px;"></textarea>
+							</label>
+						</div>
+					</div>
+					<!--<div class="form-item cf toggle-title">
+						<label class="item-label">
+							报告扫描件
+							<span class="check-tips"> </span>
+						</label>
+						<div class="controls">
+							<input type="file" name="farmer_movie">
+						</div>
+					</div>-->
+					<div class="form-item cf toggle-title">
+                            <label class="item-label">报告扫描件</label>
+                            <div class="input-span fileupload">
+                                <span class="uneditable-span">
+                                	
+                                </span>
+                                <span class="default btn-file">
+                                    <span class="fileupload-new">
+                                        &nbsp;&nbsp;&nbsp;浏览
+                                    </span>
+                                    <span class="fileupload-exists">
+                                        &nbsp;&nbsp;&nbsp;更换
+                                    </span>
+                                    <input type="file" class="default" id="p_report" name="p_report" onchange="return ajaxFileUpload(this)" />
+                                </span>
+                                <input type="hidden" value="" name="report" class="hidden_value form-control" />
+                                <a href="javascript:;" class="btn red fileupload-exists" data-dismiss="fileupload">
+                                    <i class="icon icon-trash"></i> 删除
+                                </a>
+						    </div>
+                    </div>
+					<div class="form-item cf toggle-title">
+						<label class="item-label">
+							<span class="need_flag">*</span>
+							图文推荐吃法
+							<span class="check-tips"> </span>
+						</label>
+						<div class="controls">
+							<label class="textarea">
+								<textarea name="cook" class="description" style="width: 405px; height: 100px;"></textarea>
 							</label>
 						</div>
 					</div>
 <script>
    KindEditor.ready(function(K) {
-        var editor1 = K.create('#description', {
+        var editor1 = K.create('.description', {
             allowImageUpload: true,
             uploadJson: "/admin/editorupload", //图片上传后的处理地址
 			afterBlur: function(){this.sync();},
 			items: [
-        'source', '|', 'undo', 'redo', '|', 'preview', 'code', 'cut', 'copy', 'paste',
+        'source', '|', 'undo', 'redo', '|',
         'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
         'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
         'superscript', '|', 'clearhtml', 'quickformat', 'selectall', 'fullscreen' ,
-        'formatblock', 'fontname', 'fontsize', '|', '/',  'forecolor', 'hilitecolor', 'bold',
+        'formatblock',  'fontsize','bold',
         'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'table', 'hr', 'emoticons', 'pagebreak',
         'link', 'unlink' ]
         });
@@ -96,4 +282,71 @@
 
 </div>
 </div>
+<script type="text/javascript">
+	//上传附件
+    function ajaxFileUpload(obj) {
+        var fileName = $(obj).attr('id');
+        var uploadInfo = $(obj).parent();
+        var file = $(obj).val();
+        var fileType = file.substring(file.lastIndexOf(".")+1);
+        fileType = fileType.toLowerCase();
+        var allows = ['png','jpg','jpeg','bmp','pdf','avi','flv','swf','mp4'];
+        if($.inArray(fileType,allows)==-1){
+            alert('上传格式不允许','');
+            return;
+        }
+        var fileInput = $("#"+fileName)[0];
+        if (fileInput.files && fileInput.files[0]) {
+            var size = fileInput.files[0].fileSize;
+            if(size>1024*1024*2 || size<6*1024){
+                alert('File size is required between 5K-2M.','');
+                return false;
+            }
+        }
+        $.ajaxFileUpload
+        (
+            {
+                url: '/admin/upload2',
+                secureuri: false,
+                fileElementId: fileName,
+                dataType: 'json',
+                data: {
+                    'file_name': fileName,
+                    'type':'bmp,jpeg,jpg,png,pdf,avi,mp4,swf',
+                    'minsize':5
+                },
+                success: function (data, status) {
+                    if (typeof(data.error) != 'undefined' && data.error != '') {
+                        alert(data.error);
+                    } else {
+                        alert(data.success);
+                        /***给隐藏域赋值***/
+                        uploadInfo.siblings('.hidden_value').val(data.path);
+
+                        /***输入框显示文件名***/
+                        //uploadInfo.siblings('.uneditable-span').find('.icon-file').removeClass('fileupload-exists');
+                        uploadInfo.siblings('.uneditable-span').html(data.name);
+                        /****remove change 替换***/
+                        uploadInfo.find('.fileupload-new').hide();
+                        uploadInfo.find('.fileupload-exists').show();
+                        uploadInfo.siblings('.fileupload-exists').show();
+
+                    }
+                },
+                error: function (data, status, e) {
+                    alert('上传失败，请稍后重试','');
+                }
+            }
+        );
+        return false;
+    }
+    //附件删除
+    $('.fileupload').on('click','.red',function(e){
+        $(this).siblings('.hidden_value').val('');
+        $(this).siblings('.btn-file').find('.fileupload-new').show();
+        $(this).siblings('.btn-file').find('.fileupload-exists').hide();
+        $(this).siblings('.uneditable-span').html('');
+        $(this).hide();
+    });
+</script>
 <?php $this->load->view('admin/footer'); ?>

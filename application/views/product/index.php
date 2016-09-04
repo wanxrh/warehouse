@@ -1,6 +1,7 @@
 <?php $this->load->view('mall/mobile_head'); ?>
 <link href="<?php echo $this->config->base_url(); ?>static/mobile/common.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/mobile/shop.js"></script>
+
 <body class="withFoot">
     <div class="container">
 
@@ -12,15 +13,47 @@
         	<ul>
 
                 <li>
-                	<a style="display:block" href="/product/index/<?php echo $list['id']; ?>">
+                	<a style="display:block" href="admin/product/<?php echo $list['id']; ?>">
                 	<p class="top">
-                    <span class="c"><?php echo $list['type']; ?>-><span class="blue"><?php echo $list['title']; ?></span></span>
+                    <span class="c"></span><a href="">种苗及来源:</a> <?php echo $list['product_cource'];?></span>
                     </p>
 
                     </a>
+                    <p class="top">
+                        <span class="c"></span><a href="">产品特点:</a> <?php echo $list['product_trait'];?></span>
+                    </p>
+                    <p class="top">
+                        <span class="c"></span><a href="">养殖场介绍:</a> <?php echo $list['farm'];?></span>
+                    </p>
+                    <p class="top">
+                        <span class="c"></span><a href="">用药防疫记录:</a> <?php echo $list['record'];?></span>
+                    </p>
+                    <p class="top">
+                        <span class="c"></span><a href="">关键节点:</a> <?php echo $list['node'];?></span>
+                    </p>
+                    <p class="top">
+                        <span class="c"></span><a href="">重要事件:</a> <?php echo $list['importance'];?></span>
+                    </p>
+                    <p class="top">
+                        <span class="c"></span><a href="">小视频:</a>
+                        <video width="340" height="380" controls="controls" style="">
+                            <source src="<?php echo '/'.$list['farmer_movie'];?>" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        </span>
+                    </p>
+                    <p class="top">
+                        <span class="c"></span><a href="">照片:</a> <img src="<?php echo imgUrl($list['farmer_picture']) ;?>"></span>
+                    </p>
+                    <p class="top">
+                        <span class="c"></span><a href="">农夫文字信息:</a> <?php echo $list['farmer_info'];?></span>
+                    </p>
+                    <p class="top">
+                        <span class="c"></span><a href="">报告扫描件:</a> <img src="<?php echo '/'.$list['report'] ;?>"></span>
+                    </p>
                     <div class="goods_item">
                         <div class="info">
-                            <?php echo $list['content'];?>
+
                         </div>
                     </div>
                     <p class="property">

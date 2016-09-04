@@ -1,4 +1,10 @@
 <?php $this->load->view('admin/header'); ?>
+<style>
+ table tr td{
+
+
+ }
+</style>
 <div class="main_body">
 	<div class="span9 page_message">
 		<section id="contents">
@@ -28,25 +34,25 @@
 										class="check-all regular-checkbox">
 									<label for="checkAll"></label>
 								</th>
-								<th>标题</th>
-								<th>分类</th>
-								<th>排序</th>
+								<th>种苗及来源</th>
+								<th>产品特点</th>
+								<th>养殖场介绍</th>
 								<th>二维码</th>
 								<th>操作</th>
 							</tr>
 						</thead>
 						<?php foreach ($list as $v){ ?>
 							<tr>
-								<td>
+								<td width="10%">
 									<input class="ids regular-checkbox" type="checkbox" value="<?php echo $v['id']; ?>"
 										   name="ids[]" id="check_<?php echo $v['id']; ?>">
 									<label for="check_<?php echo $v['id']; ?>"></label>
 								</td>
-								<td><?php echo $v['title']; ?></td>
-								<td><?php echo $v['type']; ?></td>
-								<td><?php echo $v['sort']; ?></td>
-								<td><img src="http://pan.baidu.com/share/qrcode?w=100&h=100&url=<?php echo base_url().'product/index?id='.$v['id'];?>" height="100"></td>
-								<td>
+								<td width="20%"><?php echo $v['product_cource']; ?></td>
+								<td width="20%"><?php echo $v['product_trait']; ?></td>
+								<td width="20%"><?php echo $v['farm']; ?></td>
+								<td width="15%"><img src="http://pan.baidu.com/share/qrcode?w=100&h=100&url=<?php echo base_url().'product/index?id='.$v['id'];?>" height="100"></td>
+								<td width="10%">
 									<a target="_self" href="/product/index/<?php echo $v['id']; ?>">详情</a>
 									<a target="_self" href="/admin/editproduct/<?php echo $v['id']; ?>">编辑</a>
 									<a class="confirm" href="/admin/delproduct/<?php echo $v['id']; ?>">删除</a>

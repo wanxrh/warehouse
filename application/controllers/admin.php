@@ -192,25 +192,101 @@ class Admin extends BaseController {
 		$this->load->view('admin/category_edit',$data);
 	}
 	public function upload() {
-		$this->load->library('Uploader');
-		$file = $_FILES['file'];
-		//上传文件不能为空
-		$Y = date("Y", time());
-		$m = date("m", time());
-		$d = date("d", time());
-		if ($file['error'] == UPLOAD_ERR_OK && $file != '') {
-			$this->uploader->allowed_size(4096000);
-			$this->uploader->addFile($file);
-			if ($this->uploader->file_info() === false) {
-				show_error($this->uploader->get_error());
-				return false;
-			}
-			$ret = $this->uploader->save('goods/' . $Y . '/' . $m . '/' . $d);
-		}
-		ajaxSuccess('goods/' . $Y . '/' . $m . '/' . $d . '/' . basename($ret));
-		//ajax_success($ret);
-		//ajax_success('goods/' . $Y . '/' . $m . '/' . $d . '/' . basename($ret));		
-	}
+    $this->load->library('Uploader');
+    $file = $_FILES['file'];
+    //上传文件不能为空
+    $Y = date("Y", time());
+    $m = date("m", time());
+    $d = date("d", time());
+    if ($file['error'] == UPLOAD_ERR_OK && $file != '') {
+        $this->uploader->allowed_size(4096000);
+        $this->uploader->addFile($file);
+        if ($this->uploader->file_info() === false) {
+            show_error($this->uploader->get_error());
+            return false;
+        }
+        $ret = $this->uploader->save('goods/' . $Y . '/' . $m . '/' . $d);
+    }
+    ajaxSuccess('goods/' . $Y . '/' . $m . '/' . $d . '/' . basename($ret));
+    //ajax_success($ret);
+    //ajax_success('goods/' . $Y . '/' . $m . '/' . $d . '/' . basename($ret));
+    }
+    //上传图片或者视频
+    public function upload2() {
+        //最小几K
+        $minsize    = isset($_POST['minsize']) ? $_POST['minsize']:0;
+        //最大几M
+        $size 		= isset($_POST['size']) ? $_POST['size'] : 50;
+        if($minsize>0){
+            $size = 5;
+        }
+        $Y = date("Y", time());
+        $m = date("m", time());
+        $d = date("d", time());
+        $type 		= isset($_POST['type']) ? $_POST['type'] : 'zip,rar,doc,docx,xls,xlsx,png,jpg,jpeg,gif,bmp,pdf';
+        $fileTypes 	= explode(',', $type);
+        $fileElementName = isset($_POST['file_name']) ? $_POST['file_name'] : 'fileupload';
+        $error = '';
+
+        if(!empty($_FILES[$fileElementName]['error']))
+        {
+            switch($_FILES[$fileElementName]['error'])
+            {
+                case '1':
+                    $error = 'The uploaded file exceeds the upload_max_filesize directive in php.ini';
+                    break;
+                case '2':
+                    $error = 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form';
+                    break;
+                case '3':
+                    $error = 'The uploaded file was only partially uploaded';
+                    break;
+                case '4':
+                    $error = "没有选择上传文件";
+                    break;
+                case '6':
+                    $error = 'Missing a temporary folder';
+                    break;
+                case '7':
+                    $error = 'Failed to write file to disk';
+                    break;
+                case '8':
+                    $error = 'File upload stopped by extension';
+                    break;
+                default:
+                    $error = 'No error code avaiable';
+            }
+        }elseif(empty($_FILES[$fileElementName]['tmp_name']) || $_FILES[$fileElementName]['tmp_name'] == 'none')
+        {
+            $error = "没有选择上传文件";
+        }else{
+            if (!empty($_FILES)) {
+                $fileParts = pathinfo($_FILES[$fileElementName]['name']);
+                if (isset($fileParts['extension']) && in_array(strtolower($fileParts['extension']),$fileTypes)) {
+                    $tempSize = $_FILES[$fileElementName]['size'];
+                    if ($tempSize < 1024*1024*$size && $tempSize > 1024*$minsize)
+                    {
+                        $upload_dir = 'imgs/product/' . $Y . '/' . $m . '/' . $d;
+                        !file_exists($upload_dir) ? mkdir($upload_dir,'0755',true) : '';
+                        $tempFile 			= $_FILES[$fileElementName]['tmp_name'];
+                        $targetPath 		= $upload_dir;
+                        $guid = date("YmdHis", time()) . rand(1000, 10000);
+                        !file_exists($targetPath) ? mkdir($targetPath,'0755',true) : '';
+                        if('jpeg'==strtolower($fileParts['extension'])){
+                            $fileParts['extension'] = 'jpg';
+                        }
+                        $temptargetfile 	= explode('.',$_FILES[$fileElementName]['name']);
+                        $temptargetfile 	= $Y.$m.$d.$guid . '.' . $fileParts['extension'];
+                        $targetFile 		= rtrim($targetPath,'/') . '/'. $temptargetfile;
+                        move_uploaded_file($tempFile,$targetFile);
+                        echo json_encode(array('success'=>'上传成功','path'=>$targetFile,'name'=>$temptargetfile));exit;
+                    }
+                }
+            }
+        }
+        echo json_encode(array('error'=>$error));exit;
+    }
+
 	public function editorUpload() {
 		$this->load->library('Uploader');
 		$file = $_FILES['imgFile'];
@@ -599,15 +675,31 @@ class Admin extends BaseController {
     public function addProduct(){
         if(IS_POST){
             $parm = $this->input->post(NULL,TRUE);
-            if(!$parm['title']){
-                ajaxError('标题不能为空！');
+            if(!$parm['product_cource']){
+                ajaxError('种苗及来源不能为空！');
             }
-            if(!$parm['type']){
-                ajaxError('请选择分类！');
+            if(!$parm['product_trait']){
+                ajaxError('请填写产品特点！');
             }
-            $parm['createtime']= time();
-            $parm['modifytime']= time();
-            $row = $this->AdminModel->insert('shop_product',$parm);
+            if(!$parm['farm']){
+                ajaxError('请填写养殖场介绍！');
+            }
+            if(!$parm['record']){
+                ajaxError('请填写用药防疫记录！');
+            }
+            if(!$parm['node']){
+                ajaxError('请填写关键节点！');
+            }
+            if(!$parm['importance']){
+                ajaxError('请填写重要事件！');
+            }
+            if(!$parm['farmer_info']){
+                ajaxError('请填写农夫文字信息！');
+            }
+            if(!$parm['cook']){
+                ajaxError('请填写图文推荐吃法 ！');
+            }
+            $row = $this->AdminModel->insert('shop_source',$parm);
             if(!$row){
                 ajaxError('添加失败！');
             }
@@ -636,7 +728,7 @@ class Admin extends BaseController {
         if(!$cate_id){
             return FALSE;
         }
-        $data['info'] = $this->AdminModel->getRow('shop_product',array('id'=>$cate_id));
+        $data['info'] = $this->AdminModel->getRow('shop_source',array('id'=>$cate_id));
         $this->load->view('/admin/product_edit',$data);
     }
     public function delProduct(){
@@ -645,7 +737,7 @@ class Admin extends BaseController {
             $this->errorJump('非法操作');
             return;
         }
-        $result = $this->AdminModel->delete('shop_product',array('id'=>$id));
+        $result = $this->AdminModel->delete('shop_source',array('id'=>$id));
         if(!$result){
             $this->errorJump('非法操作');
             return;
@@ -666,4 +758,82 @@ class Admin extends BaseController {
         }
         ajaxSuccess('删除成功！',array('url'=>'/admin/product'));
     }
-} 
+    //商品兑换卷
+    public function voucher(){
+        $keyword = trim( $this->input->get('keyword',TRUE) );
+        $data = $this->AdminModel->shop_voucher($keyword,$this->per_page, $this->offset);
+        $url_format = "/admin/voucher/%d?" . str_replace('%', '%%', urldecode($_SERVER['QUERY_STRING']));
+        $data['page'] = page($this->cur_page, ceil($data['total'] / $this->per_page), $url_format, 5, TRUE, TRUE,$data['total']);
+        $data['cur_page'] = $this->cur_page;
+        $data['keyword'] = $keyword;
+        $this->load->view('admin/voucher',$data);
+    }
+    //商品兑换卷
+    public function addVoucher(){
+        if(IS_POST){
+            $time = time();
+            $post = $this->input->post(NULL,TRUE);
+            if(!$post['goods_id']){
+                ajaxError('商品ID不能为空！');
+            }
+            if(!$post['number']){
+                ajaxError('数量不能为空！');
+            }
+            if(!$post['owner_id']){
+                ajaxError('电子券拥有者微信ID不能为空！');
+            }
+            if(!$post['get_time']){
+                ajaxError('转电子券时间不能为空！');
+            }
+            if(!$post['use_time']){
+                ajaxError('使用时间不能为空！');
+            }
+            //去查有没有这个商品
+            $row = $this->AdminModel->getRow('shop_goods',array('id'=>$post['goods_id']));
+            if(!$row){
+                ajaxError('该商品ID不存在');
+            }
+            //去检查有没有这个微信ID
+            $row2 = $this->AdminModel->getRow('shop_qrcode',array('openid'=>$post['owner_id']));
+            if(!$row2){
+                ajaxError('该微信ID不存在');
+            }
+            $post['use_time'] = strtotime($post['use_time']);
+            $post['get_time'] = strtotime($post['get_time']);
+            $post['sign'] = md5($time.$post['goods_id']);
+            $post['addtime'] = $time;
+            $result = $this->AdminModel->insert('shop_voucherinfo',$post);
+            if($result){
+                ajaxSuccess('添加成功！',array('url'=>'/admin/voucher'));
+            }
+        }
+        $this->load->view('admin/voucher_add');
+    }
+    public function delVoucher(){
+        $id = intval($this->uri->segment(3));
+        if(!$id){
+            $this->errorJump('非法操作');
+            return;
+        }
+        $result = $this->AdminModel->delete('shop_voucherinfo',array('id'=>$id));
+        if(!$result){
+            $this->errorJump('非法操作');
+            return;
+        }
+        $this->successJump('操作成功','/admin/voucher');
+    }
+    public function delMoreVoucher(){
+        if(!IS_POST){
+            return FALSE;
+        }
+        $ids = $this->input->post('ids',TRUE);
+        if( empty($ids) ){
+            ajaxError('请选择操作数据');
+        }
+        $result = $this->AdminModel->delVouchert($ids);
+        if(!$result){
+            ajaxError('请选择操作数据');
+        }
+        ajaxSuccess('删除成功！',array('url'=>'/admin/voucher'));
+    }
+}

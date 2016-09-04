@@ -220,12 +220,32 @@ class AdminModel extends BaseModel {
 		return $this->db->affected_rows();
 	}
 	public function productList($per_page,$offset){
-        $result['list'] = $this->db->limit($per_page, $offset)->order_by('sort','asc')->get('shop_product')->result_array();
-        $result['total'] = $this->db->count_all_results('shop_product');
+        $result['list'] = $this->db->limit($per_page, $offset)->order_by('id','desc')->get('shop_source')->result_array();
+        $result['total'] = $this->db->count_all_results('shop_source');
         return $result;
     }
     public function delProduct($ids){
         $this->db->where_in('id',$ids)->delete('shop_product');
+        return $this->db->affected_rows();
+    }
+    //商品兑换卷
+    public function shop_voucher($keyword,$per_page, $offset){
+        if($keyword){
+            if(is_numeric($keyword)){
+                $this->db->where('goods_id',$keyword);
+            }
+        }
+        $clone = clone($this->db);
+
+        $this->db->select('*');
+        $result['list'] = $this->db->limit($per_page, $offset)->order_by('id','desc')->get('shop_voucherinfo')->result_array();
+        $this->db = $clone;
+        $result['total'] = $this->db->count_all_results('shop_voucherinfo');
+        return $result;
+    }
+    //批量删除
+    public function delVouchert($ids){
+        $this->db->where_in('id',$ids)->delete('shop_voucherinfo');
         return $this->db->affected_rows();
     }
 }
