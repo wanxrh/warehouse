@@ -248,4 +248,15 @@ class AdminModel extends BaseModel {
         $this->db->where_in('id',$ids)->delete('shop_voucherinfo');
         return $this->db->affected_rows();
     }
+    public function shop_daili_store($openid,$per_page,$offset){
+        if($openid){
+            $this->db->where('open_id',$openid);
+        }
+        $this->db->join('shop_order','shop_order.id = shop_commission_log.order_id','inner');
+        $clone = clone($this->db);
+        $result['list'] = $this->db->select('shop_order.id,order_number,goods_datas,total_price,wages,pay_type,username')->where('agent_openid',$openid)->order_by('time','DESC')->limit($per_page, $offset)->get('shop_commission_log')->result_array();
+        $this->db = $clone;
+        $result['total'] = $this->db->count_all_results('shop_commission_log');
+        return $result;
+    }
 }

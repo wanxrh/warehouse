@@ -762,7 +762,7 @@ class Admin extends BaseController {
     }
     //商品兑换卷
     public function voucher(){
-        $keyword = trim( $this->input->get('keyword',TRUE) );
+        $keyword = trim( $this->input->get('keyword','') );
         $data = $this->AdminModel->shop_voucher($keyword,$this->per_page, $this->offset);
         $url_format = "/admin/voucher/%d?" . str_replace('%', '%%', urldecode($_SERVER['QUERY_STRING']));
         $data['page'] = page($this->cur_page, ceil($data['total'] / $this->per_page), $url_format, 5, TRUE, TRUE,$data['total']);
@@ -781,27 +781,18 @@ class Admin extends BaseController {
             if(!$post['number']){
                 ajaxError('数量不能为空！');
             }
-            if(!$post['owner_id']){
-                ajaxError('电子券拥有者微信ID不能为空！');
-            }
-            if(!$post['get_time']){
-                ajaxError('转电子券时间不能为空！');
-            }
-            if(!$post['use_time']){
-                ajaxError('使用时间不能为空！');
-            }
             //去查有没有这个商品
             $row = $this->AdminModel->getRow('shop_goods',array('id'=>$post['goods_id']));
             if(!$row){
                 ajaxError('该商品ID不存在');
             }
             //去检查有没有这个微信ID
-            $row2 = $this->AdminModel->getRow('shop_qrcode',array('openid'=>$post['owner_id']));
+            /*$row2 = $this->AdminModel->getRow('shop_qrcode',array('openid'=>$post['owner_id']));
             if(!$row2){
                 ajaxError('该微信ID不存在');
             }
             $post['use_time'] = strtotime($post['use_time']);
-            $post['get_time'] = strtotime($post['get_time']);
+            $post['get_time'] = strtotime($post['get_time']);*/
             $post['sign'] = md5($time.$post['goods_id']);
             $post['addtime'] = $time;
             $result = $this->AdminModel->insert('shop_voucherinfo',$post);
@@ -837,5 +828,25 @@ class Admin extends BaseController {
             ajaxError('请选择操作数据');
         }
         ajaxSuccess('删除成功！',array('url'=>'/admin/voucher'));
+    }
+    //代理商地点信息列表
+    public function agentPlace(){
+        $keyword = trim( $this->input->get('keyword',TRUE) );
+        $data = $this->AdminModel->shop_daili_store($keyword,$this->per_page, $this->offset);
+        $url_format = "/admin/agentPlace/%d?" . str_replace('%', '%%', urldecode($_SERVER['QUERY_STRING']));
+        $data['page'] = page($this->cur_page, ceil($data['total'] / $this->per_page), $url_format, 5, TRUE, TRUE,$data['total']);
+        $data['cur_page'] = $this->cur_page;
+        $data['keyword'] = $keyword;
+        $this->load->view('admin/agent_place',$data);
+    }
+    //代理商地点信息列表
+    public function addPlace(){
+        $keyword = trim( $this->input->get('keyword',TRUE) );
+        $data = $this->AdminModel->shop_voucher($keyword,$this->per_page, $this->offset);
+        $url_format = "/admin/voucher/%d?" . str_replace('%', '%%', urldecode($_SERVER['QUERY_STRING']));
+        $data['page'] = page($this->cur_page, ceil($data['total'] / $this->per_page), $url_format, 5, TRUE, TRUE,$data['total']);
+        $data['cur_page'] = $this->cur_page;
+        $data['keyword'] = $keyword;
+        $this->load->view('admin/add_place',$data);
     }
 }

@@ -9,14 +9,14 @@
 			<div class="table-bar">
 				<div class="fl">
                     <div class="tools">
-						<a class="btn" href="/admin/addVoucher">新增</a>
-						<button class="btn ajax-post confirm" target-form="ids" url="/admin/delMoreVoucher">删除</button>
+						<a class="btn" href="/admin/addPlace">新增</a>
+						<button class="btn ajax-post confirm" target-form="ids" url="/admin/delMorePlace">删除</button>
 					</div>
 				</div>
 				<!-- 高级搜索 -->
 				<div class="search-form fr cf">
 					<div class="sleft">
-						<input type="text" name="keyword" class="search-input" value="<?php echo $keyword; ?>" placeholder="请输入商品ID">
+						<input type="text" name="keyword" class="search-input" value="<?php echo $keyword; ?>" placeholder="请输入代理人微信ID">
 						<a class="sch-btn" href="javascript:;" id="search" url="/admin/voucher/<?php echo $cur_page; ?>">
 							<i class="btn-search"></i>
 						</a>
@@ -61,8 +61,8 @@
 								<td><?php echo $v['goods_id']; ?></td>
 								<td><?php echo $v['number']; ?></td>
 								<td><?php echo $v['owner_id']; ?></td>
-								<td><?php if($v['get_time']){?> <?php echo date("Y-m-d H:i:s",$v['get_time']);?><?php }else{?>未转电子券<?php };?></td>
-								<td><?php if($v['use_time']){?> <?php echo date("Y-m-d H:i:s",$v['use_time']); ?><?php }?></td>
+								<td><?php echo date("Y-m-d H:i:s",$v['get_time']); ?></td>
+								<td><?php echo date("Y-m-d H:i:s",$v['use_time']); ?></td>
 								<td><?php if($v['status']==0){echo '未使用';}elseif($v['status']==1){echo '转电子券';}else{echo '已使用';}; ?></td>
 								<td><?php echo date("Y-m-d H:i:s",$v['addtime']); ?></td>
 								<td>

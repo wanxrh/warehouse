@@ -36,64 +36,15 @@
 							</label>
 						</div>
 					    </div>
-					    <div class="form-item cf toggle-title">
-						<label class="item-label">
-							<span class="need_flag">*</span>
-							电子券拥有者微信ID：
-							<span class="check-tips"> </span>
-						</label>
-						<div class="controls">
-							<label class="textarea">
-								<input type="text" name="owner_id"></input>
-							</label>
-						</div>
-					    </div>
-					     <div class="form-item cf toggle-title">
-						<label class="item-label">
-							<span class="need_flag">*</span>
-							转电子券时间：
-							<span class="check-tips"> </span>
-						</label>
-						<div class="controls">
-							<label class="textarea">
-								<input type="text" style="cursor: pointer" name="get_time"  id="J-xl" readonly value=""></input>
-							</label>
-						</div>
-					    </div>
-                         <div class="form-item cf toggle-title">
-						<label class="item-label">
-							<span class="need_flag">*</span>
-							使用时间：
-							<span class="check-tips"> </span>
-						</label>
-						<div class="controls">
-							<label class="textarea">
-								<input type="text" style="cursor: pointer" readonly name="use_time" id="J-x2"></input>
-							</label>
-						</div>
-					    </div>
-					    <div class="form-item cf toggle-title">
-						<label class="item-label">
-							<span class="need_flag">*</span>
-							状态：
-							<span class="check-tips"> </span>
-						</label>
-						<div class="controls">
-							<label class="textarea">
-							    <select name="status">
-							        <option value="0">未使用</option>
-							        <option value="1">转电子卷</option>
-							        <option value="2">已使用</option>
-                                </select>
-							</label>
-						</div>
+
 					    </div>
 
 					</div>
-			</div>
 			<div class="form-item form_bh">
 				<button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
 			</div>
+			</div>
+
 			</form>
 	
 	</div>
