@@ -19,13 +19,13 @@
          <div class="order_action">
         	
         		<?php if($gift['status'] == 1){ ?>
-                    <h3 class="mb_10">兑换券未使用...</h3>
+                    <h3 class="mb_10">礼品券未使用...</h3>
                 	<p class="wait_pay"></p>
                     <div class="m_15">
                         <img src="<?php echo $confirm_gift_url; ?>"/>
                     </div>
                 <?php }else{ ?>
-                     <h3 class="mb_10">兑换券已经使用</h3>
+                     <h3 class="mb_10">礼品券已经使用</h3>
                 <?php }; ?>
             
         </div>

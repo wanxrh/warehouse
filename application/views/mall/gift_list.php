@@ -14,7 +14,7 @@
                 <li>
                 	<a style="display:block" href="/mall/giftview/<?php echo $value['id']; ?>">
                 	<p class="top">
-                    <span class="c">兑换券状态：<span class="blue"><?php echo $value['status']; ?></span></span>
+                    <span class="c">礼品券状态：<span class="blue"><?php echo $value['status']; ?></span></span>
                     </p>
                     
 
