@@ -21,7 +21,10 @@
                 	<a style="display:block" href="/mall/orderdetail/<?php echo $order['id']; ?>">
                 	<p class="top">
                     <span class="t">订单编号：<?php echo $order['order_number']; ?></span><br/>
-                    <span class="c">订单状态：<span class="blue"><?php echo $order['status_code_name']; ?></span></span>
+                    <span class="c">订单状态：<span class="blue"><?php echo $order['status_code_name']; ?></span></span><br/>
+                    <?php if($order['reserve']){ ?>
+                    <span class="t" style="color: red;"><?php echo '此订单为预付订单，商品于'.date('Y-m-d',$order['reserve_time']).'后发货或自提' ?></span>
+                    <?php }; ?>
                     </p>
                     
                     <?php foreach ($order['goods_datas'] as $goods){ ?>

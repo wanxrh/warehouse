@@ -10,8 +10,8 @@
         	<img src="<?php echo imgUrl($v['cover']); ?>"/>
             <p class="info">
             	<?php echo $v['title']; ?>
-                <br/>购买数量：<?php echo $v['num']; ?>
-                <br/>价格:<?php echo $v['price']; ?>元
+                <br/>数量：<?php echo $v['num']; ?>
+                <br/>价值:<?php echo $v['price']*$v['num']; ?>元
             </p>
             <br />
             <?php }; ?>

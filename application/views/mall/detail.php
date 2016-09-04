@@ -57,6 +57,7 @@
                 </div>
             </div>
         </div>
+		<?php if(!$goods_info['reserve']) { ?>
         <div class="detail_comment">
         	<a href="/mall/evaluation/<?php echo $goods_info['id']; ?>">
         	<span class="t">评价：</span>
@@ -66,6 +67,11 @@
             <span class="t comment_count">&nbsp;&nbsp;&nbsp;(<?php echo $evaluation_num; ?>人)</span>
             <a href="/mall/evaluation/<?php echo $goods_info['id']; ?>"><em style="float:right;" class="arrow_right">&nbsp;</em></a>        
         </div>
+		<?php }else{ ?>
+		<div class="detail_comment">
+			<span class="t"><?php echo '注意：此商品于'.date('Y-m-d',$goods_info['reserve_time']).'后发货或自提' ?></span>
+		</div>
+		<?php } ?>
         <!-- 商品介绍 -->
         <div class="detail_content">
         	<h6 class="t">商品介绍</h6>
@@ -80,11 +86,15 @@
     
     <!-- 底部加入购物车等 -->
     <div class="detail_bottom">
-    	<a class="add_favorite" href="javascript:;" onClick="addToFavorite()">收藏</a>
-        <a class="add_cart" href="javascript:;" onClick="addToCart()">加入购物车</a>
-        <a class="buy_now" href="javascript:;" onClick="buyNow()">立即购买</a>
-        <a class="my_cart" href="/mall/cart">购物车<span class="count" id="cartCount"><?php echo $cart_count?$cart_count:''; ?></span></a>
-    </div>
+		<?php if(!$goods_info['reserve']) { ?>
+			<a class="add_favorite" href = "javascript:;" onClick = "addToFavorite()" > 收藏</a >
+        	<a class="add_cart" href = "javascript:;" onClick = "addToCart()" > 加入购物车</a >
+			<a class="buy_now" href="javascript:;" onClick="buyNow()">立即购买</a>
+			<a class="my_cart" href="/mall/cart">购物车<span class="count" id="cartCount"><?php echo $cart_count?$cart_count:''; ?></span></a>
+		<?php }else{ ?>
+			<a class="buy_now" href="javascript:;" onClick="buyNow()">立即领养</a>
+		<?php };?>
+	</div>
   <?php }; ?>
 	<p class="copyright">版本由圆梦云科技有限公司所有</p>
 <script type="text/javascript">

@@ -77,6 +77,7 @@ class Admin extends BaseController {
 			}
 			$ims = explode(',', $parm['imgs']);
 			$parm['cover'] = $ims[0];
+            $parm['reserve_time'] = strtotime($parm['reserve_time']);
 			$row = $this->AdminModel->addGoods($parm);
 			if(!$row){
 				ajaxError('添加失败！');
@@ -102,6 +103,7 @@ class Admin extends BaseController {
 			}
 			$ims = explode(',', $parm['imgs']);
 			$parm['cover'] = $ims[0];
+            $parm['reserve_time'] = strtotime($parm['reserve_time']);
 			$row = $this->AdminModel->updateGoodsInfo($id,$parm);
 			if(!$row){
 				ajaxError('操作失败！');

@@ -25,10 +25,10 @@
             </span>
         </div>
         <div class="index_nav">
-        	<!--<a href="">全部商品</a>
+        	<a href="/mall/lists">全部商品</a>
             <span class="line"></span>
-            <a href="javascript:;" onClick="showPopCategory()">商品分类</a>
-            <span class="line"></span>
+            <a href="/mall/reserve">领养圈</a>
+            <!--<span class="line"></span>
             <a href="">店铺简介</a>
             <span class="line"></span>
             <a href="">联系卖家</a>-->

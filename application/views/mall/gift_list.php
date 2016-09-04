@@ -12,30 +12,26 @@
         	<ul>
             	<?php foreach ($list as $value){ ?>
                 <li>
-                	<a style="display:block" href="/mall/couponview/<?php echo $value['coupon_id']; ?>">
+                	<a style="display:block" href="/mall/giftview/<?php echo $value['id']; ?>">
                 	<p class="top">
-                    <span class="c">兑换券状态：<span class="blue"><?php echo $value['status']; ?></span></span><br/>
-                    <?php if($value['reserve']){ ?>
-                        <span class="t" style="color: red;"><?php echo '兑换时间为：'.date('Y-m-d',$value['reserve_time']); ?></span>
-                    <?php }; ?>
+                    <span class="c">兑换券状态：<span class="blue"><?php echo $value['status']; ?></span></span>
                     </p>
                     
-                    <?php foreach ($value['goods_datas'] as $goods){ ?>
+
                     <div class="goods_item">
-                        <img src="<?php echo imgUrl($goods['cover']); ?>"/>
+                        <img src="<?php echo imgUrl($value['cover']); ?>"/>
                         <div class="info">
-                            <P class="name"><?php echo $goods['title']; ?></P>
+                            <P class="name"><?php echo $value['title']; ?></P>
                             <p class="property">
                                 <span class="colorless">价格</span>
-                                <span class="orange">￥<?php echo $goods['price']; ?>元</span>                              
+                                <span class="orange">￥<?php echo $value['price']; ?>元</span>
                             </p>
                             <p class="property">
                                 <span class="colorless">数量</span>
-                                <span><?php echo $goods['num']; ?></span>
+                                <span><?php echo $value['number']; ?></span>
                             </p>
                         </div>
                     </div>
-                    <?php }; ?>
                     </a>
 
                 </li>
