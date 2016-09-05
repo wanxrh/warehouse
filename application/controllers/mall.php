@@ -502,7 +502,7 @@ class Mall extends BaseController {
         $data['now'] = time();
         if($coupon['status'] == 0){
             $time = time();
-            $data['confirm_coupon_url'] = 'http://pan.baidu.com/share/qrcode?w=200&h=200&url='.$this->config->base_url().'coupon/exchange?id='.$coupon['coupon_id'].'&time='.$time.'&sign='.md5($coupon['sign'].$time);
+            $data['confirm_coupon_url'] = 'http://bshare.optimix.asia/barCode?site=weixin&url='.$this->config->base_url().'coupon/exchange?id='.$coupon['coupon_id'].'&time='.$time.'&sign='.md5($coupon['sign'].$time);
         }
         $order_id = $coupon['order_id'];
         $data['order_info'] = $this->MallModel->getOrderInfo(array('id'=>$order_id,'uid'=>$user_id));
@@ -570,7 +570,7 @@ class Mall extends BaseController {
         $data['now'] = time();
         if($gift['status'] == 1){
             $time = time();
-            $data['confirm_gift_url'] = 'http://pan.baidu.com/share/qrcode?w=200&h=200&url='.$this->config->base_url().'coupon/present?id='.$gift['id'].'&time='.$time.'&sign='.md5($gift['sign'].$time);
+            $data['confirm_gift_url'] = 'http://bshare.optimix.asia/barCode?site=weixin&url='.$this->config->base_url().'coupon/present?id='.$gift['id'].'&time='.$time.'&sign='.md5($gift['sign'].$time);
         }
 
         $data['gift'] = $gift;

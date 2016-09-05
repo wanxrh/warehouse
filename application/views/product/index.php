@@ -59,7 +59,7 @@
                     <p class="property">
                         <span class="colorless">二维码：</span>
                     </p>
-                    <img src="http://pan.baidu.com/share/qrcode?w=100&h=100&url=<?php echo base_url().'product/index/'.$list['id'];?>" height="100">
+                    <img src="http://bshare.optimix.asia/barCode?site=weixin&url=<?php echo base_url().'product/index/'.$list['id'];?>" height="100">
                 </li>
 
                 

@@ -538,7 +538,7 @@ class Admin extends BaseController {
 		}
 		$focus_url = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket='.$out['ticket'];
 		$ActivatCode = $this->_getActivatCode();
-		$agent_url = 'http://pan.baidu.com/share/qrcode?w=430&h=430&url='.$this->config->base_url().'agent/activat/'.$id.'/'.$ActivatCode;
+		$agent_url = 'http://bshare.optimix.asia/barCode?site=weixin&url='.$this->config->base_url().'agent/activat/'.$id.'/'.$ActivatCode;
 		$row = $this->AdminModel->updateQrcodeInfo($id,array('focus_url'=>$focus_url,'agent_url'=>$agent_url,'activatcode'=>$ActivatCode,'ticket'=>$out['ticket']));
 		if(!$row){
 			$this->errorJump('添加失败！');
