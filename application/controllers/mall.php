@@ -576,4 +576,22 @@ class Mall extends BaseController {
         $data['gift'] = $gift;
         $this->load->view('mall/gift_view',$data);
     }
+    public function service(){
+        $user_id = $this->_uid;
+        $data['cart_count'] = $this->_getMyCart($user_id);
+        $data['list'] = $this->MallModel->get_store($user_id);
+        $this->load->view('mall/service_point',$data);
+    }
+    public function serviceInfo(){
+        $id = intval($this->uri->segment(3));
+        $user_id = $this->_uid;
+        $data['cart_count'] = $this->_getMyCart($user_id);
+        $data['list'] = $this->MallModel->get_store_info($id);
+        if(!$data['list']){
+            $this->errorJump('获取信息失败！');
+            return;
+        }
+        $data['store_goods'] = $this->MallModel->get_store_goods($data['list']['id']);
+        $this->load->view('mall/service_point_info',$data);
+    }
 }

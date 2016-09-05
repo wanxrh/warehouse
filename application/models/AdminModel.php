@@ -252,11 +252,25 @@ class AdminModel extends BaseModel {
         if($openid){
             $this->db->where('open_id',$openid);
         }
-        $this->db->join('shop_order','shop_order.id = shop_commission_log.order_id','inner');
+       // $this->db->join('shop_order','shop_order.id = shop_commission_log.order_id','inner');
         $clone = clone($this->db);
-        $result['list'] = $this->db->select('shop_order.id,order_number,goods_datas,total_price,wages,pay_type,username')->where('agent_openid',$openid)->order_by('time','DESC')->limit($per_page, $offset)->get('shop_commission_log')->result_array();
+        $result['list'] = $this->db->select('*')->order_by('id','DESC')->limit($per_page, $offset)->get('shop_daili_store')->result_array();
         $this->db = $clone;
-        $result['total'] = $this->db->count_all_results('shop_commission_log');
+        $result['total'] = $this->db->count_all_results('shop_daili_store');
         return $result;
+    }
+    public function addStore($data){
+        $this->insert('shop_daili_store', $data);
+        $goods_id = $this->db->insert_id();
+        return $goods_id;
+    }
+    public function editStore($data,$where){
+        return $this->update('shop_daili_store', $where, $data);
+    }
+
+    public function delPlace($ids){
+        $this->db->where_in('id',$ids)->delete('shop_daili_store');
+        $this->db->where_in('daili_id',$ids)->delete('shop_daili_store_goods');
+        return $this->db->affected_rows();
     }
 }

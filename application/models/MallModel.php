@@ -263,4 +263,19 @@ class MallModel extends BaseModel {
         $this->db->select('shop_voucherinfo.*,shop_goods.cover,shop_goods.title,shop_goods.price')->join('shop_goods','shop_goods.id = shop_voucherinfo.goods_id','inner');
         return $this->db->get('shop_voucherinfo')->row_array();
     }
+    public function get_store($user_id){
+        $this->db->where('open_id',$user_id);
+        $this->db->select('*');
+        return $this->db->get('shop_daili_store')->result_array();
+    }
+    public function get_store_info($user_id){
+        $this->db->where('id',$user_id);
+        $this->db->select('*');
+        return $this->db->get('shop_daili_store')->row_array();
+    }
+    public function get_store_goods($id){
+        $this->db->where('daili_id',$id);
+        $this->db->select('shop_daili_store_goods.*,shop_goods.title')->join('shop_goods','shop_goods.id = shop_daili_store_goods.goods_id','inner');
+        return $this->db->get('shop_daili_store_goods')->result_array();
+    }
 }

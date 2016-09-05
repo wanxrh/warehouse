@@ -839,14 +839,137 @@ class Admin extends BaseController {
         $data['keyword'] = $keyword;
         $this->load->view('admin/agent_place',$data);
     }
-    //代理商地点信息列表
+    //代理商地点信息添加
     public function addPlace(){
-        $keyword = trim( $this->input->get('keyword',TRUE) );
-        $data = $this->AdminModel->shop_voucher($keyword,$this->per_page, $this->offset);
-        $url_format = "/admin/voucher/%d?" . str_replace('%', '%%', urldecode($_SERVER['QUERY_STRING']));
-        $data['page'] = page($this->cur_page, ceil($data['total'] / $this->per_page), $url_format, 5, TRUE, TRUE,$data['total']);
-        $data['cur_page'] = $this->cur_page;
-        $data['keyword'] = $keyword;
-        $this->load->view('admin/add_place',$data);
+        if(IS_POST){
+            $store = array();
+            $store_goods = array();
+
+            $post = $this->input->post();
+            $store['open_id'] = $post['open_id'];
+            $store['provinces'] = $post['provinces']?$post['provinces']:'';
+            $store['city'] = $post['city']?$post['city']:'';
+            $store['county'] = $post['county']?$post['county']:'';
+            $store['address'] = $post['address'];
+            $store['latitude'] = $post['latitude'];
+            if(!$store['provinces']){
+                ajaxError('省份不能为空！');
+            }
+            if(!$store['city']){
+                ajaxError('城市不能为空！');
+            }
+            if(empty($store['open_id'])){
+                ajaxError('代理人微信ID不能为空！');
+            }
+            if($post['number'][0]==null){
+                ajaxError('商品数量不能为空！');
+            }
+            if(!$store['latitude']){
+                ajaxError('地图经纬度不能为空！');
+            }
+            $res = $this->AdminModel->addStore($store);
+            if($res){
+                $store_goods['daili_id'] = $res;
+                foreach ($post['goods_id'] as $key=>$item){
+                    $store_goods['goods_id'] = $item;
+                    $store_goods['number'] = $post['number'][$key];
+                    $row = $this->AdminModel->insert('shop_daili_store_goods',$store_goods);
+                }
+                if($row){
+                    ajaxSuccess('添加成功！',array('url'=>'/admin/agentplace'));
+                }
+            }
+        }
+        //查出所有微信ID
+        $data['qrcode'] = $this->AdminModel->getRows('shop_qrcode',array('super'=>1),'openid,remark');
+        //查所有上架商品
+        $data['goods'] = $this->AdminModel->getRows('shop_goods',array('is_show'=>1),'id,title');
+        $this->load->view('admin/place_add',$data);
+    }
+
+    public function editPlace(){
+        $id = intval($this->uri->segment(3));
+        if(!$id){
+            $this->errorJump('非法请求','/admin/agentplace');
+            return;
+        }
+        if(IS_POST){
+            $store = array();
+            $store_goods = array();
+
+            $post = $this->input->post(NULL,TRUE);
+            $store['open_id'] = $post['open_id']?$post['open_id']:'';
+            $store['provinces'] = $post['provinces']?$post['provinces']:'';
+            $store['city'] = $post['city']?$post['city']:'';
+            $store['county'] = $post['county']?$post['county']:'';
+            $store['address'] = $post['address'];
+            $store['latitude'] = $post['latitude'];
+            if(!$store['provinces']){
+                ajaxError('省份不能为空！');
+            }
+            if(!$store['city']){
+                ajaxError('城市不能为空！');
+            }
+            if(!$store['open_id']){
+                ajaxError('代理人微信ID不能为空！');
+            }
+            if($post['number'][0]==null){
+                ajaxError('商品数量不能为空！');
+            }
+            if(!$store['latitude']){
+                ajaxError('地图经纬度不能为空！');
+            }
+            $res = $this->AdminModel->editStore($store,array('id'=>$post['id']));
+            if($res){
+                //全部删掉
+                $this->AdminModel->delete('shop_daili_store_goods',array('daili_id'=>$post['id']));
+
+                $store_goods['daili_id'] = $post['id'];
+                foreach ($post['goods_id'] as $key=>$item){
+                    $store_goods['goods_id'] = $item;
+                    $store_goods['number'] = $post['number'][$key];
+                    $row = $this->AdminModel->insert('shop_daili_store_goods',$store_goods);
+                }
+                if($row){
+                    ajaxSuccess('编辑成功！',array('url'=>'/admin/agentplace'));
+                }
+            }
+        }
+        $data['store'] = $this->AdminModel->getRow('shop_daili_store',array('id'=>$id));
+        $data['store_goods'] = $this->AdminModel->getRows('shop_daili_store_goods',array('daili_id'=>$data['store']['id']));
+        //print_r($data);exit;
+        //查出所有微信ID
+        $data['qrcode'] = $this->AdminModel->getRows('shop_qrcode',array('super'=>1),'openid,remark');
+        //查所有上架商品
+        $data['goods'] = $this->AdminModel->getRows('shop_goods',array('is_show'=>1),'id,title');
+        $this->load->view('admin/place_edit',$data);
+    }
+    public function delPlace(){
+        $id = intval($this->uri->segment(3));
+        if(!$id){
+            $this->errorJump('非法操作');
+            return;
+        }
+        $result = $this->AdminModel->delete('shop_daili_store',array('id'=>$id));
+        $result = $this->AdminModel->delete('shop_daili_store_goods',array('daili_id'=>$id));
+        if(!$result){
+            $this->errorJump('非法操作');
+            return;
+        }
+        $this->successJump('操作成功','/admin/agentplace');
+    }
+    public function delMorePlace(){
+        if(!IS_POST){
+            return FALSE;
+        }
+        $ids = $this->input->post('ids',TRUE);
+        if( empty($ids) ){
+            ajaxError('请选择操作数据');
+        }
+        $result = $this->AdminModel->delPlace($ids);
+        if(!$result){
+            ajaxError('请选择操作数据');
+        }
+        ajaxSuccess('删除成功！',array('url'=>'/admin/agentplace'));
     }
 }

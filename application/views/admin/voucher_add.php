@@ -19,7 +19,7 @@
 						</label>
 						<div class="controls">
 							<label class="textarea">
-								<input type="text" name="goods_id"></input>
+								<input type="text" name="goods_id">
 							</label>
 						</div>
 
@@ -32,7 +32,7 @@
 						</label>
 						<div class="controls">
 							<label class="textarea">
-								<input type="text" name="number"></input>
+								<input type="text" name="number">
 							</label>
 						</div>
 					    </div>

@@ -17,7 +17,7 @@
 				<div class="search-form fr cf">
 					<div class="sleft">
 						<input type="text" name="keyword" class="search-input" value="<?php echo $keyword; ?>" placeholder="请输入代理人微信ID">
-						<a class="sch-btn" href="javascript:;" id="search" url="/admin/voucher/<?php echo $cur_page; ?>">
+						<a class="sch-btn" href="javascript:;" id="search" url="/admin/agentplace/<?php echo $cur_page; ?>">
 							<i class="btn-search"></i>
 						</a>
 					</div>
@@ -37,13 +37,11 @@
 									<label for="checkAll"></label>
 								</th>
 								<th>编号</th>
-								<th>商品ID</th>
-								<th>数量</th>
-								<th>电子券拥有者微信ID</th>
-								<th>转电子券时间</th>
-								<th>使用时间</th>
-								<th>状态</th>
-								<th>添加时间</th>
+								<th>代理人微信ID</th>
+								<th>省份</th>
+								<th>城市</th>
+								<th>区/县</th>
+								<th>详细地址</th>
 								<th>操作</th>
 							</tr>
 						</thead>
@@ -58,15 +56,14 @@
 									<label for="check_<?php echo $v['id']; ?>"></label>
 								</td>
 								<td><?php echo $v['id']; ?></td>
-								<td><?php echo $v['goods_id']; ?></td>
-								<td><?php echo $v['number']; ?></td>
-								<td><?php echo $v['owner_id']; ?></td>
-								<td><?php echo date("Y-m-d H:i:s",$v['get_time']); ?></td>
-								<td><?php echo date("Y-m-d H:i:s",$v['use_time']); ?></td>
-								<td><?php if($v['status']==0){echo '未使用';}elseif($v['status']==1){echo '转电子券';}else{echo '已使用';}; ?></td>
-								<td><?php echo date("Y-m-d H:i:s",$v['addtime']); ?></td>
+								<td><?php echo $v['open_id']; ?></td>
+								<td><?php echo $v['provinces']; ?></td>
+								<td><?php echo $v['city']; ?></td>
+								<td><?php echo $v['county']; ?></td>
+								<td><?php echo $v['address']; ?></td>
 								<td>
-									<a class="confirm" href="/admin/delVoucher/<?php echo $v['id']; ?>">删除</a>
+                                    <a target="_self" href="/admin/editplace/<?php echo $v['id']; ?>">编辑</a>
+									<a class="confirm" href="/admin/delPlace/<?php echo $v['id']; ?>">删除</a>
 								</td>
 							</tr>
 							<?php }; ?>
