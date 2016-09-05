@@ -28,7 +28,7 @@
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/js/admin_common.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/js/admin_image.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/masonry/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/js/jquery.dragsort-0.5.2.min.js"></script> 
+<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/js/jquery.dragsort-0.5.2.min.js"></script>
 <!-- 页面header钩子，一般用于加载插件CSS文件和代码 -->
 
 </head>
@@ -67,7 +67,7 @@
                 <li ><a href="/admin/category"> 商品分类 </a><b class="active_arrow"></b></li>
                 <li ><a href="/admin/order"> 订单管理 </a><b class="active_arrow"></b></li>
                 <li ><a href="/admin/product"> 产品溯源 </a><b class="active_arrow"></b></li>
-                <li ><a href="/admin/voucher"> 商品兑换卷 </a><b class="active_arrow"></b></li>
+                <li ><a href="/admin/voucher"> 礼品卷 </a><b class="active_arrow"></b></li>
                 <li ><a href="/admin/agentplace"> 代理地点信息 </a><b class="active_arrow"></b></li>
                 <li><a href="/admin/slideshow"> 首页幻灯片 </a><b class="active_arrow"></b></li>
                 <li><a href="/admin/qrcode"> 代理管理 </a><b class="active_arrow"></b></li>
