@@ -579,7 +579,7 @@ class Mall extends BaseController {
     public function service(){
         $user_id = $this->_uid;
         $data['cart_count'] = $this->_getMyCart($user_id);
-        $data['list'] = $this->MallModel->get_store($user_id);
+        $data['list'] = $this->MallModel->get_store();
         $this->load->view('mall/service_point',$data);
     }
     public function serviceInfo(){
