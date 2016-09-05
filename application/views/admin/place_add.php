@@ -145,7 +145,7 @@
 		map.setDefaultCursor("crosshair");//设置地图默认的鼠标指针样式
 		map.enableScrollWheelZoom();//启用滚轮放大缩小，默认禁用。
 		//创建点坐标
-		var point = new BMap.Point(108.384838, 22.892839);
+		var point = new BMap.Point(108.3280880000,22.8250290000);
 		//初始化地图，设置中心点坐标和地图级别
 		map.centerAndZoom(point, 13);
         //panTo()方法 等待两秒钟后-让地图平滑移动至新中心点
@@ -228,10 +228,10 @@
 		// 将图层添加到地图上
 		map.addTileLayer(traffic);
 
-		function iploac(result){//根据IP设置地图中心
-			var cityName = result.name;
-			map.setCenter(cityName);
-		}
+//		function iploac(result){//根据IP设置地图中心
+//			var cityName = result.name;
+//			map.setCenter(cityName);
+//		}
 		var myCity = new BMap.LocalCity();
 		myCity.get(iploac);
 		function sear(result){//地图搜索
