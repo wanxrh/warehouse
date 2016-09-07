@@ -51,7 +51,7 @@
 								<td width="20%"><?php echo $v['product_cource']; ?></td>
 								<td width="20%"><?php echo $v['product_trait']; ?></td>
 								<td width="20%"><?php echo $v['farm']; ?></td>
-								<td width="15%"><img src="http://bshare.optimix.asia/barCode?site=weixin&url=<?php echo base_url().'product/index/'.$v['id'];?>" height="100"></td>
+								<td width="15%"><img src="http://pan.baidu.com/share/qrcode?url=<?php echo base_url().'product/index/'.$v['id'];?>" height="100"></td>
 								<td width="10%">
 									<a target="_self" href="/product/index/<?php echo $v['id']; ?>">详情</a>
 									<a target="_self" href="/admin/editproduct/<?php echo $v['id']; ?>">编辑</a>

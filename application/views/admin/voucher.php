@@ -51,6 +51,7 @@
 
 						<!-- 列表 -->
 						<tbody>
+
 							<?php foreach ($list as $v){ ?>
 							<tr>
                                 <td width="5%">
@@ -65,7 +66,7 @@
 								<td><?php if($v['get_time']){?> <?php echo date("Y-m-d H:i:s",$v['get_time']);?><?php }else{?>未转电子券<?php };?></td>
 								<td><?php if($v['use_time']){?> <?php echo date("Y-m-d H:i:s",$v['use_time']); ?><?php }?></td>
 								<td><?php if($v['status']==0){echo '未使用';}elseif($v['status']==1){echo '转电子券';}else{echo '已使用';}; ?></td>
-								<td width="15%"><img src="http://bshare.optimix.asia/barCode?site=weixin&url=<?php echo 'http://lao337.zinongweb.com/'.'coupon/present?id='.$v['id'].'&time='.($time = time()).'&sign='.md5($v['sign'].$time);?>" height="100"></td>
+								<td width="15%"><img src="http://pan.baidu.com/share/qrcode?url=<?php echo base_url().'coupon/present?id='.$v['id'].'%26time='.($time = time()).'%26sign='.md5($v['sign'].$time);?>" height="100"></td>
 								<td><?php echo date("Y-m-d H:i:s",$v['addtime']); ?></td>
 								<td>
 									<a class="confirm" href="/admin/delVoucher/<?php echo $v['id']; ?>">删除</a>
