@@ -1,0 +1,1 @@
+define("protocol",["jquery"],function(require,exports,module){var $=require("jquery");exports.init=function(){function o(){var o=$("#checkbox").prop("checked");if(1==o){var t=$(this).attr("data-url");window.location.href=t}else alert("请先阅读并同意《众宝贝商家服务协议》");return!1}$(".btn").on("click",o)},exports.init()}),seajs.use("protocol");

@@ -1,0 +1,1 @@
+!function($){$.fn.topFixed=function(t){if(!-[1]&&!window.XMLHttpRequest)return!1;var i=$.extend({topRange:300},t),n=$(this);$(window).on("scroll resize",function(){i.topRange<$(this).scrollTop()?n.css("position","fixed"):n.css("position","static")})}}(jQuery);

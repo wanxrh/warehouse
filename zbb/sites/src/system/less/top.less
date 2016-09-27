@@ -1,0 +1,124 @@
+@import url("../../common/less/function.less"); 
+/*顶部top.html*/
+.body-topbar{
+ background:url(../images/topbg.gif) repeat-x;
+  .font-yh();
+  font-size: 9pt;
+  height: 100%;
+}
+.g-topleft{
+  height:88px;
+  background:url(../images/topleft.jpg) no-repeat;
+  float:left; 
+  width:300px;
+  img{
+    margin-top:12px;
+    margin-left:10px;
+  }
+}
+.g-nav{
+  float:left;
+  li{
+    float:left;
+    width:87px;
+    height:88px; 
+    text-align:center;
+  }
+  a{
+    display:block;
+    width:87px;
+    height:88px;
+    -moz-transition: none; 
+    transition: background-color 0.3s linear; 
+    -moz-transition: background-color 0.3s linear; 
+    -webkit-transition: background-color 0.3s linear; 
+    -o-transition: background-color 0.3s linear; 
+    &:hover{
+      background:#000;
+      color:#fff;
+      background: none repeat scroll 0% 0% rgb(43, 127, 181);
+      h2{
+        color:#fff;
+      }
+    }
+  }
+  a.selected{
+    background:url(../images/navbg.png) no-repeat;
+  }
+  img{
+    margin-top:10px;
+  }
+  h2{
+    font-size:14px;
+    color:#d6e8f1;
+  }
+}
+.g-topright{
+  height:88px;
+  background:url(../images/topright.jpg) no-repeat right;
+  float:right;
+  ul{
+    padding-top:15px; 
+    float:right; 
+    padding-right:12px;
+  }
+  li{
+    float:left; 
+    padding-left:9px; 
+    padding-right:9px; 
+    background:url(../images/line.gif) no-repeat right;
+  }
+  li:last-child{
+    background:none;
+  }
+  a{
+    font-size:13px; 
+    color:#e9f2f7;
+    &:hover{
+      color:#fff;
+    }
+  }
+}
+.m-user{
+  height:30px;
+  background:url(../images/ub1.png) repeat-x;
+  clear:both;
+  margin-top:10px;
+  float:right; 
+  margin-right:12px;
+  border-radius:30px; 
+  behavior:url(js/pie.htc); 
+  white-space:nowrap;
+  position:relative;
+  span{
+    display:inline-block;
+    padding-right:10px; 
+    background:url(../images/user.png) no-repeat 15px 10px; 
+    line-height:30px; 
+    font-size:14px;
+    color:#b8ceda; 
+    padding-left:20px; 
+    padding-left:35px;
+  }
+  b{
+    display:inline-block;
+    width:20px;
+    height:18px; 
+    background:url(../images/msg.png);
+    text-align:center; 
+    font-weight:normal; 
+    color:#fff;
+    font-size:14px;
+    margin-right:13px; 
+    margin-top:7px; 
+    line-height:18px;
+  }
+  i{
+    display:inline-block;
+    margin-right:5px;
+    font-style:normal;
+    line-height:30px; 
+    font-size:14px;
+    color:#b8ceda;
+  }
+}

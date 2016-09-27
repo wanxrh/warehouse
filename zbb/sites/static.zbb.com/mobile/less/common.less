@@ -1,0 +1,240 @@
+@import url("../../common/less/function.less");
+body{
+    overflow-x:hidden;
+}
+
+//清除浮动
+.clearfix { *zoom: 1; }
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+
+.hidn{
+    display:none;
+}
+
+//栅格大小
+.wsc-page{
+    margin:auto;
+    position:relative;
+}
+
+.searchBar{
+    background-color: #f7123d;
+    width:96%;
+    h1{
+        text-align: center;
+        color:#fff;
+    }
+    .wsc-back{
+        float: left;
+        background:url(../img/wsc_back.png) center no-repeat;
+    }
+    .wsc-set{
+        float: right;
+        margin-right: 15px;
+        background:url(../img/wsc_set.png) center no-repeat;
+    }
+    .wsc-back,.wsc-set{
+        display:inline-block;
+        padding:20px;
+        background-size: 40px 40px;
+    }
+}
+
+.wsc-logo{
+    width: 100px;
+    float: left;
+    overflow:hidden;
+    img{
+        width:90px;
+    }
+}
+.wsc-search-box{
+    //width: 96%; 
+    //float: left; 
+    background-color: #fff;
+    margin-left: 100px;
+}
+.search_text{
+    box-shadow:none; 
+    outline: none;
+}
+.search_btn{
+    background:url(../img/wsc_search.png) right no-repeat;
+    background-size: 30px 30px;
+    display: inline-block;
+    vertical-align: top;
+    width:19%;
+    margin-right: 1%;
+ }
+
+ /* 底部*/
+.wsc-nav{
+    bottom: 0px; 
+    position:fixed;
+    left: 0;
+    z-index: 1002;
+    width: 100%; 
+    background-color: #f1f1f1;
+    min-height: 50px;
+   .wsc-nav-bg{
+      background:url(../img/wsc_nav_bg.png); 
+      background-size:14px 14px;
+      //box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      height:14px;
+      top:-6px;
+      position:relative;
+    }
+    li{
+        width: 20%; 
+        float: left;
+        a{
+            display:block;
+            overflow:hidden;
+            text-align: center;
+        }
+        strong{
+            float: none;
+            color:#666;
+        }
+        img{
+            width: 100%;
+            margin-top: -20%;
+        }
+    }
+ }
+
+.home span{
+    background:url(../img/wsc_home.png) no-repeat;
+}
+.tpye span{
+    background:url(../img/wsc_tpye.png) no-repeat;
+}
+.car span{
+    background:url(../img/wsc_car.png) no-repeat;
+}
+.list span{
+    background:url(../img/wsc_list.png) no-repeat;
+}
+.center span{
+    background:url(../img/wsc_center.png) no-repeat;
+}
+
+.home span, .tpye span, .car span, .list span, .center span{
+    background-position: center center;
+    display:inline-block;
+    height:2.0em;
+    width:100%;
+    background-size:50px 50px; 
+}
+
+
+//类目
+.wsc-sub{
+    width: 61.8%; 
+    background: #333;
+    position: fixed;
+    top:40px;
+    bottom:60px;
+    left:-60%;
+    z-index:998;
+    display: none; 
+    overflow-y: auto !important;
+    dt{
+         h2 {
+            background-color: #212121;
+            border-bottom: 1px solid #21211f;
+            color: #fff;
+            height: 55px;
+            line-height: 55px;
+            text-align: center;
+        }
+    }
+    dd{
+        a {
+            border-bottom: 1px solid #222220;
+            border-top: 1px solid #3d3d3d;
+            color: #fff;
+            display: block;
+            padding:0 20px; 
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+        }
+    }
+ 
+}
+
+.arrow{
+    background:url(../img/wsc_arrow.png) center no-repeat;
+    background-size:60%;
+    display:inline-block;
+    padding:20px;
+    float: right;
+}
+
+
+
+//遮罩层
+.mask {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 990;
+    display:none;
+}
+
+//复选框
+.checkbox{
+    width:20px;
+    height:20px;
+    border:1px solid #c4c4c4;
+    background-color: #fff;
+    display:inline-block;
+}
+.checkbox-setion{
+    background:url(../img/wsc_setion.png) #fff center no-repeat;
+    background-size: 25px 25px;
+}
+
+//删除
+.ico-del{
+    display:inline-block;
+    padding:15px;
+    background:url(../img/wsc_del.png) center no-repeat;
+    background-size: 30px 30px;
+}
+
+//数量input
+.input_num{
+    width:36px;
+    line-height: 15px;
+    padding:3px 5px;
+    text-align: center;
+}
+
+//按钮
+.wsc-btn{
+    background-color: #f7123d; 
+    border:none; 
+    padding:6px 30px;
+    color:#fff;
+    font-size: 16px;
+    .border-radius(3px,3px,3px,3px)
+}
+
+.wsc-btn-gray{
+    background-color: #fcfcfc;
+    padding:10px 30px;
+    color:#555;
+    font-size: 16px;
+    .border-radius(3px,3px,3px,3px);
+    border:1px solid #d3d9de;
+}
+
+.page{
+    margin-top: 20px;
+}

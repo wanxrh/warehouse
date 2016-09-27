@@ -1,0 +1,1 @@
+define("checkStore",["jquery"],function(require,exports,module){var $=require("jquery");exports.init=function(){function n(){var n=$(this).data("url");window.location.href=n}function e(){return""==$.trim($("[name=check_url]").val())?(alert("请填写商品链接！"),!1):void $("#myForm").submit()}$("#J_pre").on("click",n),$("#J_next").on("click",e)},exports.init()}),seajs.use("checkStore");

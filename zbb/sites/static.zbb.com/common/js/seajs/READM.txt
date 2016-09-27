@@ -1,0 +1,28 @@
+﻿seajs.config({
+  base: 'http://static.' + window.location.href.split('.')[1] + '.com/', 
+  alias: {
+    'jquery': 'common/js/seajs/seajquery', 
+    'global': 'common/js/seajs/ybglobal',
+    'dialog':'common/js/seajs/dialog',
+    'search':'common/js/seajs/search',
+    'tools':'common/js/seajs/tools',
+    'SizeClew':'common/js/seajs/tools',
+    'cb_all':'common/js/seajs/cb_all',
+    'count_down':'common/js/seajs/count_down',
+    'mathacc':'common/js/seajs/mathacc',
+    'matchmoney':'common/js/seajs/matchmoney',
+    'ybadaptive':'common/js/seajs/yb_adaptive',
+    'topBanner':'common/js/seajs/top_banner',
+    'laydate':'common/js/seajs/laydate.dev',
+    'uploadPreview':'common/js/seajs/uploadPreview',
+    'jQform':'common/js/seajs/jquery.form',
+    'jQplaceholder':'common/js/seajs/jquery.placeholder',
+    'jQloading':'common/js/seajs/jquery.scroll.loading',
+    'jQxslider':'common/js/seajs/jquery.xslider',
+    'JQzoom':'common/js/seajs/jqueryzoom',
+    'z_dialog':'common/js/seajs/z_dialog'
+  }
+});
+
+seajs.config 配置文件 
+    文件简称-对应相对路径文件

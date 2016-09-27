@@ -1,0 +1,96 @@
+@import url("../../common/less/function.less"); 
+/*左侧导航left.html*/
+.body-leftnav{
+  background-color:#f0f9fd;
+  .font-yh();
+  font-size: 9pt;
+  height: 100%;
+}
+.g-lefttop{
+  background:url(../images/lefttop.gif) repeat-x;
+  height:40px;
+  color:#fff;
+  font-size:14px;
+  line-height:40px;
+  position: relative;
+  padding-left: 36px;
+  span{
+    display:block;
+    left:8px; 
+    top:10px;
+    position:absolute;
+    background:url(../images/leftico.png) no-repeat; 
+    width:20px; 
+    height:21px;
+  }
+}
+.g-leftmenu{
+  width:187px;
+  padding-bottom: 9999px;
+  margin-bottom: -9999px; 
+  overflow:hidden; 
+  background:url(../images/leftline.gif) repeat-y right;
+  dd{
+    background:url(../images/leftmenubg.gif) repeat-x;
+    line-height:35px;
+    font-weight:bold;
+    border-right:solid 1px #b7d5df;
+  }
+  span{
+    float:left;
+    margin:10px 8px 0 12px;
+  }
+  .u-title{
+    cursor:pointer;
+  }
+
+}
+.m-menu{
+  display:none;
+  line-height:30px; 
+  font-weight:normal;
+  li{
+    cursor:pointer;
+    cite{
+      display:block; 
+      float:left; 
+      margin-left:32px; 
+      background:url(../images/list.gif) no-repeat; 
+      width:16px; 
+      height:16px; 
+      margin-top:7px;
+    }
+    a{ 
+      display:block; 
+      *display:inline; 
+      *padding-top:5px;
+    }
+  }
+  li.active{
+    position:relative; 
+    background:url(../images/libg.png) repeat-x; 
+    line-height:30px; 
+    color:#fff;
+    cite{
+      background:url(../images/list1.gif) no-repeat;
+    }
+    i{
+      display:block; 
+      background:url(../images/sj.png) no-repeat; 
+      width:6px; 
+      height:11px; 
+      position:absolute; 
+      right:0;
+      z-index:10000; 
+      top:9px; 
+      right:-1px;
+    }
+    a{
+      color:#fff;
+    }
+  }
+
+}
+.m-menu-ctr{
+  display:block;
+}

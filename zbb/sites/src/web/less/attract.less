@@ -1,0 +1,338 @@
+//众宝贝 招商页面CSS
+@charset "utf-8";
+@import url("../../common/less/function.less");
+//@import url("../../common/less/ui.less");  
+@import url("../../common/less/global.less"); 
+body {
+    background-color: #fff; 
+}
+.g-wrap{
+    margin: auto;
+    width: 1190px;
+}
+
+//头部
+.g-hd{
+    padding:20px 0;
+    .m-logo{
+        float: left;
+        background:url('/web/img/logo.jpg') no-repeat;  
+        width: 376px;
+        height: 60px;
+    }
+    //导航
+    .m-log{
+        float: right;
+        a{
+        background-color: #fc6776;
+        .border-radius(3px,3px,3px,3px);
+        color:#fff;
+        padding:5px 15px;
+        }
+        .back-home{
+          background:none;
+          color:#000;
+          padding:5px 0px; 
+        }
+    }
+    ul{
+        padding-top: 24px;
+    }
+    li{
+        float: left;
+        line-height: 36px;
+        font-size: 14px;
+        .font-yh();
+        color:#333;
+        margin-left: 20px;
+    }
+    
+}
+
+//导航行
+.g-nav{
+    background-color: #e83228;
+    height:36px;
+    line-height: 36px;
+    .font-yh();
+    font-size: 14px;
+    a{
+        color:#fff;
+        display: inline-block;
+        padding:0 15px;
+        line-height: 36px;
+    }
+    li{
+        float: left;
+    }
+    .z-crt{
+        background-color: #cb1a10;
+    }
+}
+
+.g-ad{
+    background:url('/web/img/attract_ad_bg.jpg') center;
+    height:312px;
+}
+
+.g-mod{
+    .font-yh();
+    padding:20px 0;
+    .m-tt{
+        border-bottom: 1px solid #ebebeb;
+        height:70px;
+        text-align: center;
+        h2{
+            display:inline-block;
+            font-size: 30px;
+            height:69px;
+            border-bottom: 3px solid #ccc;
+            line-height: 70px;
+            position: relative;
+        }
+        .adv{//优势
+            border-color: #fc6776;
+            color:#fc6776;
+        }
+        .sup{//扶持
+            border-color: #fbaf37;
+            color:#fbaf37;
+        }
+        .cond{//条件
+            border-color: #fc2439;
+            color:#fc2439;
+        }
+        .tec{//流程
+            border-color: #fc5238;
+            color:#fc5238;
+        }
+        .qa{//问题
+            border-color: #fcb300;
+            color:#fcb300;
+        }
+    }
+
+    .m-ct{
+        overflow-x: hidden;
+        padding:30px 0;
+        .m-adv{
+            background:url('/web/img/phone_attr.png') right center no-repeat;
+        }
+        .adv-tt{
+            font-size: 24px;
+            color:#fff;
+            background-color: #fc6776;
+            height:56px;
+            display:inline-block;
+            height:56px;
+            padding-left: 15px;
+            span{
+                display: inline-block;
+                position: relative;
+                padding:28px 13px;
+                vertical-align: middle;
+                margin-right: -20px;
+                margin-left: 40px;
+                background:url('/web/img/adv_tt_bg.png') no-repeat;
+            }
+        }
+        .adv-ct{
+            font-size: 20px;
+            height:70px;
+            line-height: 70px;
+            padding-left: 15px;
+            color:#333;
+        }
+        .m-sup{
+            width:1400px; 
+        }
+        .sup{
+            background:url('/web/img/attr_sup_bg.jpg') center bottom #fff no-repeat;
+            margin-right: 130px;
+            width:308px;
+            float: left;
+            border:1px solid #fbaf37;
+            .border-radius(6px,6px,6px,6px);
+            margin-top: 40px;
+            text-align: center;
+            font-size: 20px;
+            height:360px;
+            h3{
+                height:70px;
+                padding:5px 10px;
+                background-color: #fbaf37;
+                .border-radius(6px,6px,6px,6px);
+                display: inline-block;
+                text-align: center;
+                text-align: center;
+                position: relative;
+                margin-top: -20px;
+                span{
+                    background-color: #fff;
+                    color:#fbaf37;
+                    width:30px;
+                    height:30px;
+                    display: inline-block;
+                    .border-radius(50%,50%,50%,50%);
+                    line-height: 30px;
+                }
+                p{
+                    color:#fff;
+                    padding:5px 10px;
+                }
+            }
+            .txt{
+                line-height: 2;
+                padding:20px;
+                text-align: left;
+                text-indent: 2em;
+                span{
+                    color:#fb7837;
+                }
+            }
+        }
+
+        table{
+            width:100%;
+            border-left: 1px solid #ebebeb;
+            border-bottom: 1px solid #ebebeb;
+            .w-120{
+                width:120px;
+            }
+            .w-160{
+                width:160px;
+            }
+            .w-200{
+                width:200px;
+            }
+            .w-260{
+                width:260px;
+            }
+            span{
+                color: #fc2439;
+            }
+        }
+        th{
+            background-color: #fc2439;
+            height:40px;
+            color:#fff;
+            font-size: 18px;
+        }
+        td{
+            border-right:  1px solid #ebebeb;
+            border-top: 1px solid #ebebeb;
+            text-align: center;
+            padding:5px;
+            font-size: 16px;
+        }
+        .tec-txtA{
+            width:245px;
+            height:245px;
+            float: left;
+            .border-radius(50%,50%,50%,50%);
+            background-color: #feedf7;
+            margin-top: 18px;
+            h3{
+                margin-top: 60px;
+            }
+        }
+        .tec-txtB{
+            width:287px;
+            height:287px;
+            float: left;
+            .border-radius(50%,50%,50%,50%);
+            background-color: #feedf7;
+            h3{
+                margin-top: 30px;
+            }
+        }
+        .tec{
+            h3{
+                font-size: 40px;
+                color:#fc5238;
+                text-align: center;
+            }
+            p{
+                font-size: 18px;
+                color:#fc5238;
+                text-align: center; 
+            }
+            li{
+                font-size: 14px;
+                color:#a2738f;
+                padding:5px 30px 0 54px;
+                list-style: inside;
+            }
+        }
+        .tec-triangle{
+            padding:17px 20px;
+            background:url('/web/img/tec_tri_bg.png') center center no-repeat; 
+            float: left;
+            margin: 115px 83px 0;
+        }
+        .qa{
+            font-size: 18px;
+            line-height: 2;
+            dt{
+                color:#fcb300;
+            }
+            dd{
+                color:#333;
+                padding:10px 0 10px 2em;
+                text-indent: -2em;
+            }
+            span{
+                 background-color: #eef1ff; 
+                 padding:1px 0;   
+            }
+        }
+        .op{
+            font-size: 24px;
+            text-align: center;
+            padding:50px 0;
+            a{
+                background-color: #e83228;
+                padding:15px 80px;
+                display: inline-block;
+                color:#fff;
+                .border-radius(3px,3px,3px,3px);
+            }
+            h5{
+                color:#333;
+                line-height: 2;
+                span{
+                    color:#e83228;
+                }
+            }
+        }
+    }
+}
+
+.s-gray{
+    background-color: #f7f8f9;
+}
+
+.m-online{
+    background:url('/web/img/kf_bg.png');
+    width:127px;
+    height:47px;
+    display:inline-block;
+    position: fixed;
+    right:50%;
+    top:200px;
+    margin-right: -730px;
+}
+
+//底部
+.g-ft{
+    background-color: #f7f8f9;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+    padding-top: 20px;
+    a{
+        margin-right: 20px;
+    }
+    .m-cprt{
+        padding:20px;
+    }
+}

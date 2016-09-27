@@ -1,0 +1,146 @@
+//登录注册弹出层样式
+@charset "utf-8";
+@import url("../../common/less/function.less");
+
+
+
+//遮罩层
+.g-remake{
+    position: fixed;
+    height:100%;
+    width:100%;
+    background-color: #000;
+    top:0;
+    left:0;
+    .opacity(80);
+    z-index: 9;
+    display:none;
+}
+
+.s-gray{
+    background-color: #f7f8f9;
+}
+
+.g-pop{
+    display:none;
+    width:518px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin:-190px 0 0 -260px;
+    background-color: #fff;
+    z-index: 10;
+    border:1px solid #eee;
+    padding:20px 0 40px;
+    .font-yh();
+    .colse{
+        background-color: #fff;
+        width:40px;
+        height:40px;
+        position: absolute;
+        .border-radius(50%,50%,50%,50%);
+        color:#666;
+        font-weight: 700;
+        right:-15px;
+        top:-15px;
+        cursor: pointer;
+        line-height: 40px;
+        text-align: center;
+        font-size: 24px;
+    }
+    .m-tt{
+        font-size: 18px;
+        padding:10px;
+        li{
+            float: left;
+            padding:10px 20px;
+            cursor: pointer;
+        }
+        .z-crt{
+            border-bottom: 1px solid #e83228;
+            color:#e83228;
+        }
+    }
+
+    .m-dld{
+        padding:30px 90px;
+        li{
+            padding:10px 0 ;
+        }
+        .m-txt{
+            height:38px;
+            border:1px solid #ccc;
+            width:100%;
+            .border-radius(3px,3px,3px,3px); 
+            padding:3px 5px 3px 40px;
+            box-sizing: border-box;
+            background:url('/web/img/r_ico.png') #fff left top no-repeat;
+        }
+        .i-pws{
+            background-position: 0 -40px;
+        }
+        .i-phone{
+             background-position: 0 -80px;
+        }
+        .m-ipt{
+            width:130px;
+            padding:3px 5px;
+            background: #fff;
+        }
+        .btn{
+            padding:10px 0px;
+            background-color: #e83228;
+            color:#fff;
+            text-align: center;
+            border:1px solid #e83228;
+            width:100%;
+            box-sizing: border-box;
+            font-size: 18px;
+            .font-yh();
+            .border-radius(3px,3px,3px,3px); 
+            cursor: pointer;
+        }
+        .m-tips{
+            color:#e83228;
+            background-color: #ffdfdd;
+            border: 1px solid #ffb3b3;
+            padding: 3px 10px;
+            height: 24px;
+            line-height: 24px;
+            display:none
+        }
+        .f-tar{
+            text-align: right;
+        }
+        .rst{
+            padding: 0px 10px;
+        }
+        .code{
+            margin-left: 10px;
+            height:40px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .p_btn{
+            background-color: #ccc;
+            border:1px solid #ccc;
+            .border-radius(3px,3px,3px,3px); 
+            width:150px;
+            height:38px;
+            cursor: pointer;
+            color:#fff;
+        }
+        .error{
+            border: 1px solid #ffb3b3;
+        }
+        .right{
+            border: 1px solid #98c138;
+        }
+        .btn-Disable{
+            cursor: not-allowed; 
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            color:#ccc;
+        }
+    }
+}

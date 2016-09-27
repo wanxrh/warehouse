@@ -1,0 +1,102 @@
+/* 重置覆盖 */
+a,a:focus{
+  text-decoration:none;
+  color:#000;
+}
+a:hover{
+  color: #00a4ac;
+}
+/*左侧导航left.html*/
+.body-leftnav {
+  background-color: #f0f9fd;
+  font-family: \5fae\8f6f\96c5\9ed1;
+  font-weight: 400;
+  font-size: 9pt;
+  height: 100%;
+}
+.g-lefttop {
+  background: url(../images/lefttop.gif) repeat-x;
+  height: 40px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 40px;
+  position: relative;
+  padding-left: 36px;
+}
+.g-lefttop span {
+  display: block;
+  left: 8px;
+  top: 10px;
+  position: absolute;
+  background: url(../images/leftico.png) no-repeat;
+  width: 20px;
+  height: 21px;
+}
+.g-leftmenu {
+  width: 187px;
+  padding-bottom: 9999px;
+  margin-bottom: -9999px;
+  overflow: hidden;
+  background: url(../images/leftline.gif) repeat-y right;
+}
+.g-leftmenu dd {
+  background: url(../images/leftmenubg.gif) repeat-x;
+  line-height: 35px;
+  font-weight: bold;
+  border-right: solid 1px #b7d5df;
+}
+.g-leftmenu span {
+  float: left;
+  margin: 10px 8px 0 12px;
+}
+.g-leftmenu .u-title {
+  cursor: pointer;
+}
+.m-menu {
+  display: none;
+  line-height: 30px;
+  font-weight: normal;
+}
+.m-menu li {
+  cursor: pointer;
+}
+.m-menu li cite {
+  display: block;
+  float: left;
+  margin-left: 32px;
+  background: url(../images/list.gif) no-repeat;
+  width: 16px;
+  height: 16px;
+  margin-top: 7px;
+}
+.m-menu li a {
+  display: block;
+  *display: inline;
+  *padding-top: 5px;
+}
+.m-menu li.active {
+  position: relative;
+  background: url(../images/libg.png) repeat-x;
+  line-height: 30px;
+  color: #fff;
+}
+.m-menu li.active cite {
+  background: url(../images/list1.gif) no-repeat;
+}
+.m-menu li.active i {
+  display: block;
+  background: url(../images/sj.png) no-repeat;
+  width: 6px;
+  height: 11px;
+  position: absolute;
+  right: 0;
+  z-index: 10000;
+  top: 9px;
+  right: -1px;
+}
+.m-menu li.active a {
+  color: #fff;
+}
+.m-menu-ctr {
+  display: block;
+}

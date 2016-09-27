@@ -1,0 +1,400 @@
+<?xml version="1.0" ?>
+<definitions name="Person" targetNamespace="urn:Person" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:Person" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+<types xmlns="http://schemas.xmlsoap.org/wsdl/" />
+<portType name="PersonPort"><operation name="check_password">
+<input message="tns:check_passwordRequest" />
+<output message="tns:check_passwordResponse" />
+</operation>
+<operation name="get_order">
+<input message="tns:get_orderRequest" />
+<output message="tns:get_orderResponse" />
+</operation>
+<operation name="get_friend">
+<input message="tns:get_friendRequest" />
+<output message="tns:get_friendResponse" />
+</operation>
+<operation name="get_id">
+<input message="tns:get_idRequest" />
+<output message="tns:get_idResponse" />
+</operation>
+<operation name="is_has_addr">
+<input message="tns:is_has_addrRequest" />
+<output message="tns:is_has_addrResponse" />
+</operation>
+<operation name="delivery">
+<input message="tns:deliveryRequest" />
+<output message="tns:deliveryResponse" />
+</operation>
+<operation name="import_taobao">
+<input message="tns:import_taobaoRequest" />
+<output message="tns:import_taobaoResponse" />
+</operation>
+<operation name="import_taobao_new">
+<input message="tns:import_taobao_newRequest" />
+<output message="tns:import_taobao_newResponse" />
+</operation>
+<operation name="import_jd">
+<input message="tns:import_jdRequest" />
+<output message="tns:import_jdResponse" />
+</operation>
+<operation name="import_ali">
+<input message="tns:import_aliRequest" />
+<output message="tns:import_aliResponse" />
+</operation>
+<operation name="get_all_cate">
+<input message="tns:get_all_cateRequest" />
+<output message="tns:get_all_cateResponse" />
+</operation>
+<operation name="get_shipping">
+<input message="tns:get_shippingRequest" />
+<output message="tns:get_shippingResponse" />
+</operation>
+<operation name="store_goods">
+<input message="tns:store_goodsRequest" />
+<output message="tns:store_goodsResponse" />
+</operation>
+<operation name="goods_spec">
+<input message="tns:goods_specRequest" />
+<output message="tns:goods_specResponse" />
+</operation>
+<operation name="update_spec">
+<input message="tns:update_specRequest" />
+<output message="tns:update_specResponse" />
+</operation>
+<operation name="goods_show">
+<input message="tns:goods_showRequest" />
+<output message="tns:goods_showResponse" />
+</operation>
+<operation name="update_show">
+<input message="tns:update_showRequest" />
+<output message="tns:update_showResponse" />
+</operation>
+<operation name="get_user">
+<input message="tns:get_userRequest" />
+<output message="tns:get_userResponse" />
+</operation>
+<operation name="select_store">
+<input message="tns:select_storeRequest" />
+<output message="tns:select_storeResponse" />
+</operation>
+<operation name="version">
+<input message="tns:versionRequest" />
+<output message="tns:versionResponse" />
+</operation>
+</portType>
+<binding name="PersonBinding" type="tns:PersonPort">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+<operation name="check_password">
+<soap:operation soapAction="urn:Person#person#check_password" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="get_order">
+<soap:operation soapAction="urn:Person#person#get_order" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="get_friend">
+<soap:operation soapAction="urn:Person#person#get_friend" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="get_id">
+<soap:operation soapAction="urn:Person#person#get_id" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="is_has_addr">
+<soap:operation soapAction="urn:Person#person#is_has_addr" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="delivery">
+<soap:operation soapAction="urn:Person#person#delivery" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="import_taobao">
+<soap:operation soapAction="urn:Person#person#import_taobao" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="import_taobao_new">
+<soap:operation soapAction="urn:Person#person#import_taobao_new" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="import_jd">
+<soap:operation soapAction="urn:Person#person#import_jd" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="import_ali">
+<soap:operation soapAction="urn:Person#person#import_ali" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="get_all_cate">
+<soap:operation soapAction="urn:Person#person#get_all_cate" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="get_shipping">
+<soap:operation soapAction="urn:Person#person#get_shipping" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="store_goods">
+<soap:operation soapAction="urn:Person#person#store_goods" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="goods_spec">
+<soap:operation soapAction="urn:Person#person#goods_spec" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="update_spec">
+<soap:operation soapAction="urn:Person#person#update_spec" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="goods_show">
+<soap:operation soapAction="urn:Person#person#goods_show" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="update_show">
+<soap:operation soapAction="urn:Person#person#update_show" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="get_user">
+<soap:operation soapAction="urn:Person#person#get_user" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="select_store">
+<soap:operation soapAction="urn:Person#person#select_store" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+<operation name="version">
+<soap:operation soapAction="urn:Person#person#version" />
+<input><soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:Person" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+</output>
+</operation>
+</binding>
+<service name="Person">
+<documentation />
+<port name="PersonPort" binding="tns:PersonBinding"><soap:address location="http://web.nzw.com:80/server.php" />
+</port>
+</service>
+<message name="check_passwordRequest">
+<part name="user_name" type="xsd:string" />
+<part name="password" type="xsd:string" />
+</message>
+<message name="check_passwordResponse">
+<part name="check_password" type="xsd:string" />
+</message>
+<message name="get_orderRequest">
+<part name="seller_id" type="xsd:string" />
+</message>
+<message name="get_orderResponse">
+<part name="get_order" type="xsd:string" />
+</message>
+<message name="get_friendRequest">
+<part name="user_id" type="xsd:string" />
+</message>
+<message name="get_friendResponse">
+<part name="get_friend" type="xsd:string" />
+</message>
+<message name="get_idRequest">
+<part name="user_name" type="xsd:string" />
+</message>
+<message name="get_idResponse">
+<part name="get_id" type="xsd:string" />
+</message>
+<message name="is_has_addrRequest">
+<part name="store_id" type="xsd:string" />
+</message>
+<message name="is_has_addrResponse">
+<part name="is_has_addr" type="xsd:string" />
+</message>
+<message name="deliveryRequest">
+<part name="order_id" type="xsd:string" />
+<part name="shipping_name" type="xsd:string" />
+<part name="invoice_no" type="xsd:string" />
+<part name="reason" type="xsd:string" />
+<part name="operator" type="xsd:string" />
+</message>
+<message name="deliveryResponse">
+<part name="delivery" type="xsd:string" />
+</message>
+<message name="import_taobaoRequest">
+<part name="arr" type="xsd:string" />
+<part name="other_img" type="xsd:string" />
+<part name="description" type="xsd:string" />
+<part name="spec" type="xsd:string" />
+<part name="sgcate_id" type="xsd:string" />
+</message>
+<message name="import_taobaoResponse">
+<part name="import_taobao" type="xsd:string" />
+</message>
+<message name="import_taobao_newRequest">
+<part name="arr" type="xsd:string" />
+<part name="other_img" type="xsd:string" />
+<part name="description" type="xsd:string" />
+<part name="sku_arr" type="xsd:string" />
+<part name="sgcate_id" type="xsd:string" />
+</message>
+<message name="import_taobao_newResponse">
+<part name="import_taobao_new" type="xsd:string" />
+</message>
+<message name="import_jdRequest">
+<part name="arr" type="xsd:string" />
+<part name="description" type="xsd:string" />
+<part name="other_img" type="xsd:string" />
+<part name="sku_arr" type="xsd:string" />
+<part name="sgcate_id" type="xsd:string" />
+</message>
+<message name="import_jdResponse">
+<part name="import_jd" type="xsd:string" />
+</message>
+<message name="import_aliRequest">
+<part name="arr" type="xsd:string" />
+<part name="description" type="xsd:string" />
+<part name="other_img" type="xsd:string" />
+<part name="sku_arr" type="xsd:string" />
+<part name="sgcate_id" type="xsd:string" />
+</message>
+<message name="import_aliResponse">
+<part name="import_ali" type="xsd:string" />
+</message>
+<message name="get_all_cateRequest">
+<part name="goods_parent_id" type="xsd:string" />
+<part name="store_parent_id" type="xsd:string" />
+<part name="store_id" type="xsd:string" />
+</message>
+<message name="get_all_cateResponse">
+<part name="get_all_cate" type="xsd:string" />
+</message>
+<message name="get_shippingRequest">
+<part name="user_id" type="xsd:string" />
+</message>
+<message name="get_shippingResponse">
+<part name="get_shipping" type="xsd:string" />
+</message>
+<message name="store_goodsRequest">
+<part name="store_id" type="xsd:string" />
+</message>
+<message name="store_goodsResponse">
+<part name="store_goods" type="xsd:string" />
+</message>
+<message name="goods_specRequest">
+<part name="goods_id" type="xsd:string" />
+</message>
+<message name="goods_specResponse">
+<part name="goods_spec" type="xsd:string" />
+</message>
+<message name="update_specRequest">
+<part name="goods_id" type="xsd:string" />
+<part name="price" type="xsd:string" />
+</message>
+<message name="update_specResponse">
+<part name="update_spec" type="xsd:string" />
+</message>
+<message name="goods_showRequest">
+<part name="user_id" type="xsd:string" />
+<part name="status" type="xsd:string" />
+</message>
+<message name="goods_showResponse">
+<part name="goods_show" type="xsd:string" />
+</message>
+<message name="update_showRequest">
+<part name="user_id" type="xsd:string" />
+<part name="goods_id" type="xsd:string" />
+<part name="if_show" type="xsd:string" />
+</message>
+<message name="update_showResponse">
+<part name="update_show" type="xsd:string" />
+</message>
+<message name="get_userRequest">
+<part name="user_id" type="xsd:string" />
+</message>
+<message name="get_userResponse">
+<part name="get_user" type="xsd:string" />
+</message>
+<message name="select_storeRequest">
+<part name="user_id" type="xsd:string" />
+</message>
+<message name="select_storeResponse">
+<part name="select_store" type="xsd:string" />
+</message>
+<message name="versionRequest">
+<part name="version" type="xsd:string" />
+</message>
+<message name="versionResponse">
+<part name="version" type="xsd:string" />
+</message>
+</definitions>

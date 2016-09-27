@@ -1,0 +1,42 @@
+//遮罩层
+.g-remake{
+    position: fixed;
+    height:100%;
+    width:100%;
+    background-color: #000;
+    top:0;
+    left:0;
+    .opacity(80);
+    z-index: 9;
+}
+//弹出层
+.g-pop{
+    min-width:518px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    background-color: #fff;
+    z-index: 10;
+    border:1px solid #eee;
+    padding:20px;
+    .font-yh();
+    .colse{
+        background-color: #ccc;
+        width:40px;
+        height:40px;
+        position: absolute;
+        .border-radius(50%,50%,50%,50%);
+        color:#fff;
+        font-weight: 700;
+        right:-15px;
+        top:-15px;
+        cursor: pointer;
+        line-height: 40px;
+        text-align: center;
+        font-size: 24px;
+        border: 1px solid #eee;
+    }
+    .cont{
+        width:100%;
+    }
+}

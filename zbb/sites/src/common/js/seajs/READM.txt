@@ -1,0 +1,50 @@
+﻿seajs.config({
+    base: 'http://static.' + window.location.href.split('.')[1] + '.com/',
+    alias: {
+        'jquery': 'common/js/seajs/seajquery',
+        'dialog': 'common/js/seajs/dialog',
+        'topBanner': 'common/js/seajs/top_banner',
+        'laydate': 'common/js/seajs/laydate.dev',
+        'jQform': 'common/js/seajs/jquery.form',
+        'ybadaptive': 'common/js/seajs/yb_adaptive',
+        'global': 'common/js/seajs/ybglobal',
+        'uploadPreview': 'common/js/seajs/uploadPreview',
+        'cb_all': 'common/js/seajs/cb_all',
+        'mathacc': 'common/js/seajs/mathacc',
+        'SizeClew': 'common/js/seajs/tools',
+        'count_down': 'common/js/seajs/count_down',
+        'Validform':'common/js/validform/Validform_v5.3.2_sea'
+    }
+});
+
+seajs.config 配置文件 
+    文件简称-对应相对路径文件
+
+
+合并规则：
+    1\按路径则合并，如："../../common/js/seajs/mathacc"
+        小文件合并：
+        'global': '../../common/js/seajs/ybglobal',
+        'search': '../../common/js/seajs/search',
+        'tools': '../../common/js/seajs/tools',
+        'SizeClew': '../../common/js/seajs/tools',
+        'cb_all': '../../common/js/seajs/cb_all',
+        'count_down': '../../common/js/seajs/count_down',
+        'mathacc': '../../common/js/seajs/mathacc',
+        'matchmoney': '../../common/js/seajs/matchmoney',
+        'uploadPreview': '../../common/js/seajs/uploadPreview',
+        'jQplaceholder': '../../common/js/seajs/jquery.placeholder',
+        'jQloading': '../../common/js/seajs/jquery.scroll.loading',
+        'jQxslider': '../../common/js/seajs/jquery.xslider',
+        'JQzoom': '../../common/js/seajs/jqueryzoom',
+
+
+    2\按别名则不合并，如："jquery"
+        大文件不合并：
+        'jquery': 'common/js/seajs/seajquery',
+        'dialog': 'common/js/seajs/dialog',
+        'topBanner': 'common/js/seajs/top_banner',
+        'laydate': 'common/js/seajs/laydate.dev',
+        'jQform': 'common/js/seajs/jquery.form',
+        'ybadaptive': '../../common/js/seajs/yb_adaptive',
+        'Validform':'common/js/validform/Validform_v5.3.2_sea'

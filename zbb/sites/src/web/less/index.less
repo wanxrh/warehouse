@@ -1,0 +1,209 @@
+@import url("../../common/less/function.less");
+//@import url("../../common/less/ui.less");  
+@import url("../../common/less/global.less");  
+body {
+    background-color: #fff;
+}
+
+//头部
+.m-hd{
+    padding:20px 0;
+    .m-logo{
+        float: left;
+        background:url('/web/img/logo.jpg') no-repeat;  
+        width: 376px;
+        height: 60px;
+    }
+    //导航
+    .m-nav{
+        float: right;
+    }
+    ul{
+        padding-top: 24px;
+    }
+    li{
+        float: left;
+        line-height: 36px;
+        font-size: 14px;
+        .font-yh();
+        color:#333;
+        margin-left: 20px;
+    }
+    .z-crt{
+        border-bottom: 1px solid #e83228;
+        position: relative;
+        span{
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            bottom: -2px;
+            left: 50%;
+            margin-left: -10px;
+            background-color: #e83228;
+        }
+        a{
+            color:#e83228;
+        }
+    }
+}
+
+.m-bd{
+    position: relative;
+    min-width: 1190px;
+    height: 700px;
+    .bg{
+        height: 424px;
+        background:url('/web/img/bg.jpg');   
+        //width:100%; 
+    }
+    .m-ct{
+        width:500px;
+        float: right;
+        height: 200px;
+        background:url('/web/img/plan.png') 0 0 no-repeat;
+        padding-left: 248px;
+        margin-top: 110px;
+    }
+    .m-code{
+        width:200px;
+        height:200px;
+        float: left;
+    }
+    .m-lst{
+        width: 230px;
+        float: left;
+        margin-left: 20px;
+    }
+
+    .m-phone{
+        position: absolute;
+        top:40px;
+        left:50%;
+        margin-left: -480px;
+        width: 288px;
+        height: 614px;
+        background:url('/web/img/phone.png');
+    }
+}
+
+.m-ft{
+    background-color: #f7f8f9;
+    border-top: 1px solid #ebebeb;
+    padding:35px 0 25px 0;
+    overflow: hidden;
+    .m-cprt{
+        a{
+            margin-right: 15px;
+            color:#999;
+        }
+        p{
+            margin-top: 20px;
+            color:#999;
+        }
+    }
+    .QQ{
+        background:url('/web/img/kf_bg.png');
+        float: right;
+        margin-top: 10px;
+        height:47px;
+        a{
+            width:127px;
+            height:47px;
+            display:inline-block;
+        }
+    }
+}
+.verify-ico{
+    padding:20px 0px 10px 0px;
+    a{
+        .fl();
+       padding-right: 10px;
+    }
+    .miibeian{
+        display:block;
+        height: 47px;
+        width: 128px; 
+        background:url('/web/img/beian.png') no-repeat;  
+    }
+    .safeguard{
+       display:block;
+        height: 47px;
+        width: 185px; 
+        background:url('/web/img/wqfw.png') no-repeat;              
+    }
+
+}
+
+.g-wrap{
+    margin: auto;
+    width: 1190px;
+}
+
+//ico 1
+.s-icoT{
+    width:480px;
+    float: right;
+    li{
+        background:url('/web/img/icoT.jpg') 0 0 no-repeat;
+        height:42px;
+        line-height: 42px;
+        padding-left: 50px;
+        font-size: 18px;
+        .font-yh();
+        float: left;
+        margin:30px 90px 0 0;
+    }
+    .ico-p{
+        background-position: 0 -42px;
+    }
+    .ico-b{
+        background-position: 0 -126px;
+    }
+    .ico-q{
+        background-position: 0 -84px;
+    }
+}
+//ico 2
+.s-icoP{
+    li{
+        font-size: 18px;
+        .font-yh();
+        background-color: #fff;
+        .border-radius(3px,3px,3px,3px);
+        padding:5px 10px;
+        margin-top: 30px;
+    }
+    a{
+       height:36px; 
+       line-height: 36px;
+       display:block;
+    }
+    span{
+        background:url('/web/img/icoP.jpg') 0 0 no-repeat;
+        height: 36px;
+        width: 36px;
+        display: inline-block; 
+        vertical-align: middle;
+        padding-right: 10px;
+    }
+    .ios{
+       background-position: 0 -38px; 
+    }
+}
+
+
+
+//响应式样式
+#adaptive {
+	.w990() {
+    
+	} 
+}
+@media (max-width: 1200px) {
+	#adaptive > .w990;
+}
+.w990 {
+	#adaptive > .w990; 
+}
+
+

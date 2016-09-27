@@ -1,0 +1,139 @@
+/*后台登录页面*/
+body {
+  background: url(../system/images/light.png) no-repeat center top #1c77ac;
+  font-family: \5fae\8f6f\96c5\9ed1;
+  font-weight: 400;
+  height: 100%;
+  overflow: hidden;
+}
+.g-mn {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+.g-mnc {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: url(../images/cloud.png) no-repeat;
+  z-index: 1;
+  opacity: 0.5;
+}
+.g-mnc-2 {
+  z-index: 2;
+}
+.g-hd {
+  height: 47px;
+  position: absolute;
+  top: 0;
+  background: url(../images/loginbg1.png) repeat-x;
+  z-index: 100;
+  width: 100%;
+}
+.g-hd h1 {
+  color: #fff;
+  line-height: 47px;
+  background: url(../images/loginsj.png) no-repeat 21px 18px;
+  text-indent: 44px;
+  color: #afc5d2;
+  float: left;
+}
+.g-hd ul {
+  float: right;
+  padding-right: 30px;
+}
+.g-hd li {
+  float: left;
+  margin-left: 20px;
+  line-height: 47px;
+}
+.g-hd a {
+  color: #afc5d2;
+}
+.g-hd a:hover {
+  color: #fff;
+}
+.g-bd {
+  background: url(../images/loginbg3.png) no-repeat center center;
+  width: 100%;
+  height: 585px;
+  overflow: hidden;
+  position: absolute;
+  top: 47px;
+}
+.u-logo {
+  background: url(../images/loginlogo.png) no-repeat center;
+  width: 100%;
+  height: 71px;
+  margin-top: 75px;
+}
+.g-bdc {
+  width: 692px;
+  height: 336px;
+  background: url(../images/logininfo.png) no-repeat;
+  margin-top: 30px;
+}
+.g-bdc ul {
+  margin-top: 88px;
+  margin-left: 285px;
+}
+.g-bdc li {
+  margin-bottom: 25px;
+}
+.g-bdc label {
+  color: #687f92;
+  padding-left: 25px;
+}
+.g-bdc a {
+  color: #687f92;
+}
+.g-bdc a:hover {
+  color: #3d96c9;
+}
+.g-bdc .u-text {
+  width: 299px;
+  border: none;
+  padding: 17px 0 17px 44px;
+  font-size: 14px;
+}
+.g-bdc .u-text-user {
+  background: url(../images/loginuser.png) no-repeat;
+  font-weight: bold;
+}
+.g-bdc .u-text-pwd {
+  background: url(../images/loginpassword.png) no-repeat;
+  color: #90a2bc;
+}
+.u-btn-login {
+  padding: 8px 23px;
+  background: url(../images/buttonbg.png) repeat-x;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  -o-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+}
+.loginbm {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: url(../images/loginbg2.png) repeat-x;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #0b3a58;
+}
+.loginbm a {
+  font-weight: bold;
+  color: #0b3a58;
+}
+.loginbm a:hover {
+  color: #fff;
+}
