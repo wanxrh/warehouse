@@ -130,10 +130,10 @@ class MallModel extends BaseModel {
 		return $this->getRow('shop_address',array('uid'=>$user_id));
 	}
 	public function confirmOrderGood($goods_id){
-		return $this->getRows('shop_goods',array('id'=>$goods_id),'id,cover,title,price,commission,reserve,reserve_time');
+		return $this->getRows('shop_goods',array('id'=>$goods_id),'id,cover,title,price,commission,reserve');
 	}
 	public function confirmOrderGoods($goods_ids){
-		return $this->db->select('id,cover,title,price,commission')->where_in('id',$goods_ids)->get('shop_goods')->result_array();
+		return $this->db->select('id,cover,title,price,commission,kill')->where_in('id',$goods_ids)->get('shop_goods')->result_array();
 	}
 	public function createOrder($data){
 		$this->insert('shop_order', $data);
@@ -144,12 +144,18 @@ class MallModel extends BaseModel {
 		return $this->db->affected_rows();
 	}
 	public function getOrderList($condition){
-	    $this->db->where('coupon',0);
+	    $this->db->where(array('delivery'=>0,'reserve'=>0));
 		$this->db->order_by('id','desc');
 		$result = $this->getRows('shop_order',$condition);
 		
 		return $result;
 	}
+	public function getLingYangList($condition){
+        $this->db->order_by('id','desc');
+        $result = $this->getRows('shop_order',$condition);
+
+        return $result;
+    }
 	public function getOrderInfo($conditon){
 		return $this->getRow('shop_order',$conditon);
 	}

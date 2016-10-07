@@ -88,9 +88,9 @@
     <div class="detail_bottom">
 		<?php if(!$goods_info['reserve']) { ?>
 			<a class="add_favorite" href = "javascript:;" onClick = "addToFavorite()" > 收藏</a >
-        	<a class="add_cart" href = "javascript:;" onClick = "addToCart()" > 加入购物车</a >
+        	<!--<a class="add_cart" href = "javascript:;" onClick = "addToCart()" > 加入购物车</a >-->
 			<a class="buy_now" href="javascript:;" onClick="buyNow()">立即购买</a>
-			<a class="my_cart" href="/mall/cart">购物车<span class="count" id="cartCount"><?php echo $cart_count?$cart_count:''; ?></span></a>
+			<!--<a class="my_cart" href="/mall/cart">购物车<span class="count" id="cartCount"><?php /*echo $cart_count?$cart_count:''; */?></span></a>-->
 		<?php }else{ ?>
 			<a class="buy_now" href="javascript:;" onClick="buyNow()">立即领养</a>
 		<?php };?>

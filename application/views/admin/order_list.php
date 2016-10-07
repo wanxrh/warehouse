@@ -38,6 +38,8 @@
 								<th width="17%">下单时间</th>
 								<th width="10%">支付类型</th>
 								<th width="10%">订单跟踪</th>
+								<th width="10%">配送方式</th>
+								<th width="10%">宰杀</th>
 								<th width="11%">操作</th>
 							</tr>
 						</thead>
@@ -59,6 +61,8 @@
 								<td><?php echo date('Y-m-d H:i',$v['cTime']); ?></td>
 								<td><?php echo $v['pay_type_name']; ?></td>
 								<td><?php echo $v['status_code_name']; ?></td>
+								<td><?php echo $v['delivery']?'自提':'配送'; ?></td>
+								<td><?php echo $v['kill']?'是':'否'; ?></td>
 								<td>
 									<a href="/admin/orderdetail/<?php echo $v['id'] ?>">详情</a>
 									<?php if($v['status_code'] == 1){ ?>

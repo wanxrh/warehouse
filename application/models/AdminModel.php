@@ -117,7 +117,7 @@ class AdminModel extends BaseModel {
 		}
 		$clone = clone($this->db);
 	
-		$this->db->select('id,goods_datas,username,order_number,total_price,pay_type,status_code,cTime');
+		$this->db->select('id,goods_datas,username,order_number,total_price,pay_type,status_code,cTime,delivery,kill');
 		$result['list'] = $this->db->limit($per_page, $offset)->order_by('cTime','desc')->get('shop_order')->result_array();
 		$this->db = $clone;
 		$result['total'] = $this->db->count_all_results('shop_order');

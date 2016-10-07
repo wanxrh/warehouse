@@ -1,7 +1,8 @@
 <?php $this->load->view('mall/mobile_head'); ?>
 <link href="<?php echo $this->config->base_url(); ?>static/mobile/common.css" rel="stylesheet" type="text/css">
 <body>
-<div class="container"> 
+<div class="container">
+  <?php if(!$reserve){ ?>
   <!-- 选择收货地址 --> 
   <a class="choose_address" href="/mall/chooseaddress"> 
   <empty name="address">
@@ -16,7 +17,8 @@
     <input type="hidden" name="address_id" id="address_id" value="<?php echo $address['id']; ?>" />
     <?php }; ?>
     
-  <em class="arrow_right">&nbsp;</em> </a> 
+  <em class="arrow_right">&nbsp;</em> </a>
+  <?php }; ?>
   <!-- 订单信息 -->
   <div class="order_info">
     <p class="t">订单信息</p>
@@ -44,6 +46,28 @@
     <p class="order_remark">
       <textarea placeholder="给卖家给留言" name="remark" id="remark"></textarea>
     </p>
+    <?php if(!$reserve){ ?>
+    <p class="t">配送方式</p>
+      <p>
+          <select id="delivery">
+              <option value="1">快递配送</option>
+              <option value="2">电子券自提</option>
+          </select>
+      </p>
+      <?php if(isset($kill) && $kill > 0){ ?>
+      <p class="t">是否宰杀</p>
+      <p>
+          <select id="kill">
+              <option value="0">否</option>
+              <option value="1">是</option>
+          </select>
+      </p>
+      <?php }; ?>
+      <?php }else{ ?>
+      <p>
+        <input type="checkbox" checked value="1" class="xieyi"><a href="#">领养协议</a>
+      </p>
+      <?php }; ?>
     <p class="total_price"> <span class="orange">共<?php echo $total_price; ?>元</span> </p>
     <a class="btn" href="javascript:void(0)" onClick="doPost()">提交订单</a> </div>
 </div>
@@ -59,6 +83,12 @@ function doPost(){
 	var remark = $('#remark').val();
 
 	var url = "/mall/addorder";
+    if($('.xieyi').val() == 1){
+        if($('.xieyi').is(':checked') == false){
+            $.Dialog.fail("请同意领养协议");
+            return false;
+        }
+    }
 	$.post(url,{'address_id':address_id,'remark':remark},function(res){
 		var orderid=parseInt(res);
 		if(orderid==0){

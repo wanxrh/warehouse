@@ -18,7 +18,7 @@ class PayModel extends BaseModel {
 			$this->db->where('id',$v['id'])->set('sale_count','sale_count+'.$v['num'],FALSE)->update('shop_goods');
 		}
 		$this->setStatusCode($order['id'],1);
-        if($order['coupon'] == 1){
+        if($order['delivery'] == 1){
             $coupon = array(
                 'owner_id'=>$order['uid'],
                 'sign'=>md5($order['id'].$order['order_number'].$order['cTime'].$order['uid'].$order['uid']),

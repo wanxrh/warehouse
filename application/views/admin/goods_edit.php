@@ -210,48 +210,13 @@
 							<input type="number" class="text" name="sort" value="<?php echo $info['sort']; ?>">
 						</div>
 					</div>
-					<div class="form-item cf toggle-is_show">
-						<label class="item-label">
-							是否为预定商品
-							<span class="check-tips"> </span>
-						</label>
-						<div class="controls">
-							<div class="check-item">
-								<!--[if !IE]><!-->
-								<input type="radio" class="regular-radio toggle-data" value="0"
-									   id="reserve_0" name="reserve" toggle-data="" <?php if($info['reserve'] ==0){ echo 'checked'; } ?>/>
-								<label for="reserve_0"></label>
-								否
-								<!--<![endif]-->
-								<!--[if IE]>
-								<input type="radio" value="0"
-									   id="reserve_0" name="reserve" class="toggle-data" toggle-data=""
-								<?php if($info['reserve'] ==0){ echo 'checked="true"'; } ?>/>
-								<label for="reserve_0"></label>否                               <![endif]-->
-							</div>
-							<div class="check-item">
-								<!--[if !IE]><!-->
-								<input type="radio" class="regular-radio toggle-data" value="1"
-									   id="reserve_1" name="reserve" toggle-data="" <?php if($info['reserve'] ==1){ echo 'checked'; } ?>/>
-								<label for="reserve_1"></label>
-								是
-								<!--<![endif]-->
-								<!--[if IE]>
-								<input type="radio" value="1"
-									   id="is_show_1" name="reserve" class="toggle-data" toggle-data=""
-								<?php if($info['reserve'] ==1){ echo 'checked="true"'; } ?>
-								/>
-								<label for="reserve_1"></label>是                               <![endif]-->
-							</div>
-						</div>
-					</div>
 					<div class="form-item cf toggle-sort">
 						<label class="item-label">
-							预定可领取日期
-							<span class="check-tips"> （格式：2016-07-29） </span>
+							宰杀价格
+							<span class="check-tips"> （0为此商品不支持宰杀） </span>
 						</label>
 						<div class="controls">
-							<input type="text" class="text" name="reserve_time" value="<?php echo $info['reserve_time']?date('Y-m-d',$info['reserve_time']):'' ;?>">
+							<input type="number" class="text" name="kill" value="<?php echo $info['kill']; ?>">
 						</div>
 					</div>
 			<div class="form-item form_bh">

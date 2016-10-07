@@ -149,10 +149,9 @@ class BaseController extends CI_Controller {
 				2 => '财付通wap',
 				3 => '财付通',
 				4 => '银行卡支付',
-				10 => '货到付款',
-                11=> '兑换券'
+				10 => '货到付款'
 		);
-		return $status_code [$code];
+		return isset($status_code [$code])?$status_code [$code]:'';
 	}
 	function _send_code_name($code) {
 		if(!$code){

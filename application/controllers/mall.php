@@ -219,13 +219,22 @@ class Mall extends BaseController {
 				$goods_id = intval( $this->input->post('goods_id',TRUE) );
 				$buycount = intval( $this->input->post('buyCount',TRUE) );
 				$data['list'] = $this->MallModel->confirmOrderGood($_POST['goods_id']);
-				
-				foreach ($data['list'] as &$v){
+				$goods = $this->MallModel->getRow('shop_goods',array('id'=>$goods_id));
+				$data['kill'] = $goods['kill'];
+
+                //$reserve = $this->MallModel->getRow('XXXX',array('goods_id'=>$goods_id));
+                $reserve = 0;
+                if($reserve){
+                    $data['reserve'] = 1;
+                    $data['reserve_time'] = $reserve['reserve_time'];
+                }else{
+                    $data['reserve'] = 0;
+                }
+
+                foreach ($data['list'] as &$v){
 					$v['num'] = $buycount;
 					$total_price += $v['price']*$buycount;
 					$wages += bcmul($total_price,($v['commission']*0.01),2);
-                    $data['reserve'] = $v['reserve'];
-                    $data['reserve_time'] = $v['reserve_time'];
 				}				
 			}
 			$data['total_price'] = $total_price;
@@ -248,14 +257,25 @@ class Mall extends BaseController {
 		$data ['uid'] = $this->_uid;
 		$data ['username'] = $_SESSION['lao337']['MALL']['nickname'];
 		$data ['address_id'] = intval($this->input->post('address_id',TRUE));
+        if($data['address_id']){
+            unset($data['address_id']);
+        }
 		$data ['remark'] = htmlspecialchars($this->input->post('remark',TRUE));
 		
 		$data ['order_number'] = $this->_gen_order_sn();
 		$data ['cTime'] = time();
 		$data ['pay_status'] = 0;
-		
+
+        //配送和宰杀
+        $data['delivery'] = intval($this->input->post('delivery',true));
+        $data['kill'] = intval($this->input->post('kill',true));
+
 		$info = $_SESSION['confirm_order'];
-		$data ['total_price'] = $info ['total_price'];
+        $data['reserve'] = $info['reserve'];
+        //暂时关闭购物车，所以获取商品数组第一位
+        $goods = $this->MallModel->getRow('shop_goods',array('id'=>$info ['list'][0]['id']));
+
+        $data ['total_price'] = $info ['total_price'] + $goods['kill']*$info ['list'][0]['num'];
 		$data ['wages'] = $info ['wages'];
 		$data ['goods_datas'] = json_encode ( $info ['list'] );
         if($info['reserve']){
@@ -576,6 +596,45 @@ class Mall extends BaseController {
         $data['gift'] = $gift;
         $this->load->view('mall/gift_view',$data);
     }
+
+    public function lingyang()
+    {
+        $user_id = $this->_uid;
+
+        $map['uid'] = $user_id;
+        $map['reserve'] = 1;
+        $data['list'] = $this->MallModel->getLingYangList($map);
+        foreach($data['list'] as &$v){
+            $v['goods_datas'] = json_decode($v['goods_datas'],TRUE);
+            $v['status_code_name'] = $this->_status_code_name($v['status_code']);
+        }
+        $this->load->view('mall/lingyang_list',$data);
+    }
+
+    public function lingyangview()
+    {
+        $user_id = $this->_uid;
+
+        $order_id = intval( $this->uri->segment ( 3 ) );
+        if( !$order_id ) return FALSE;
+
+        $data['order_info'] = $this->MallModel->getOrderInfo(array('id'=>$order_id,'uid'=>$user_id));
+        if( !$data['order_info'] ) return FALSE;
+        $data['order_info']['send_code_name'] = $this->_send_code_name($data['order_info']['send_code']);
+
+        $data['address_info'] = '';
+        if($data['order_info']['address_id']){
+            $data['address_info'] = $this->MallModel->getAddressInfo($user_id,$data['order_info']['address_id']);
+        }
+        $data['goods_datas'] = json_decode($data['order_info']['goods_datas'],TRUE);
+        $data['need_comment'] = 0;
+        if( (count($data['goods_datas']) != count(array_column($data['goods_datas'], 'evaluation'))) &&in_array($data['order_info']['status_code'], array(4,5)) ){
+            $data['need_comment'] = 1;
+        }
+        $data['order_log'] = $this->MallModel->getOrderLog($order_id);
+        $this->load->view('mall/lingyang_detail',$data);
+    }
+
     public function service(){
         $user_id = $this->_uid;
         $data['cart_count'] = $this->_getMyCart($user_id);
