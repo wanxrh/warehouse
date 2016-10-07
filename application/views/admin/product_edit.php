@@ -77,6 +77,10 @@
 			<div class="tab-content">
 				<!-- 表单 -->
 				<form id="form" action="/admin/editproduct" method="post" class="form-horizontal form-center">
+<<<<<<< HEAD
+=======
+					<input type="hidden" name="id" value="<?php echo $info['id'];?>">
+>>>>>>> 3012671f0751be5dba2079d67da388bdf860d5b5
 					<div class="form-item cf toggle-title">
 						<label class="item-label">
 							<span class="need_flag">*</span>

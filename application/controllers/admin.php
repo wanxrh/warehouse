@@ -717,9 +717,15 @@ class Admin extends BaseController {
             if(!$id){
                 ajaxError('数据不存在！');
             }
+<<<<<<< HEAD
             if(!$param['title']){
                 ajaxError('名称不能为空！');
             }
+=======
+            /*if(!$param['title']){
+                ajaxError('名称不能为空！');
+            }*/
+>>>>>>> 3012671f0751be5dba2079d67da388bdf860d5b5
             $row = $this->AdminModel->update('shop_product',array('id'=>$id),$param);
             if(!$row){
                 ajaxError('操作失败！');

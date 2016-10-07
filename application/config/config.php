@@ -17,7 +17,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
+<<<<<<< HEAD
 $config['base_url'] = 'http://lao337.zinongweb.com';//'http://lao337.nsfuu.com';
+=======
+$config['base_url'] = 'http://www.weixin2.com';//'http://lao337.nsfuu.com';
+>>>>>>> 3012671f0751be5dba2079d67da388bdf860d5b5
 
 /*
 |--------------------------------------------------------------------------
