@@ -1,0 +1,7 @@
+<IfModule authz_core_module>
+    RewriteEngine on
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
+    RewriteRule ^/(.*)$ /index\.php\?/$1
+	RewriteRule /(?:index\.php|robots\.txt|favicon\.ico|uploads|assets|css|images|style|js|static)/(.*) $0 [I,L]
+</IfModule>
