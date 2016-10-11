@@ -26,8 +26,8 @@
         </div>
         <div class="index_nav">
         	<a href="/mall/lists">全部商品</a>
-            <span class="line"></span>
-            <a href="/mall/reserve">领养圈</a>
+            <!--<span class="line"></span>
+            <a href="/mall/reserve">领养圈</a>-->
             <span class="line"></span>
             <a href="/mall/service" style="color: #1d98d6">服务点</a>
             <!--<span class="line"></span>

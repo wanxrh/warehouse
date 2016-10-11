@@ -16,7 +16,13 @@
                 	<p class="top">
                     <span class="c">兑换券状态：<span class="blue"><?php echo $value['status']; ?></span></span><br/>
                     <?php if($value['reserve']){ ?>
-                        <span class="t" style="color: red;"><?php echo '兑换时间为：'.date('Y-m-d',$value['reserve_time']); ?></span>
+                        <span class="t" style="color: red;">
+                            <?php if($value['reserve_time'] > time()){ ?>
+                            <?php echo '兑换时间为：'.date('Y-m-d',$value['reserve_time']); ?>
+                            <?php }else{ ?>
+                                可使用
+                            <?php }; ?>
+                        </span>
                     <?php }; ?>
                     </p>
                     

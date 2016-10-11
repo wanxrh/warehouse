@@ -144,7 +144,7 @@ class MallModel extends BaseModel {
 		return $this->db->affected_rows();
 	}
 	public function getOrderList($condition){
-	    $this->db->where(array('delivery'=>0,'reserve'=>0));
+	    $this->db->where(array('delivery <>'=>2,'reserve'=>0));
 		$this->db->order_by('id','desc');
 		$result = $this->getRows('shop_order',$condition);
 		
@@ -256,7 +256,7 @@ class MallModel extends BaseModel {
             $this->db->like('title',$search_key);
         }
         $this->db->order_by('sort','ASC');
-        return $this->db->select('id,title,price,cover,reserve_time')->where(array('is_show'=>1,'reserve'=>1))->get('shop_goods')->result_array();
+        return $this->db->select('id,title,price,cover')->where(array('is_show'=>1,'reserve'=>1))->get('shop_goods')->result_array();
     }
 
     public function get_gift($user_id){

@@ -16,42 +16,7 @@
                 <br/>购买数量：<?php echo $v['num']; ?>
                 <br/>价格:<?php echo $v['price']; ?>元
             </p>
-            <?php if($order_info['status_code'] == 4 || $order_info['status_code'] == 5){ ?>
-            <?php if(!isset($v['evaluation'])){ ?>
-            <p>
-            评价：
-            </p>
-            <p>
-            <input type="radio" name="evaluation[<?php echo $v['id']; ?>]" value="2">好评&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="radio" name="evaluation[<?php echo $v['id']; ?>]" value="1">中评&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="radio" name="evaluation[<?php echo $v['id']; ?>]" value="0">差评&nbsp;&nbsp;&nbsp;&nbsp;
-            </p>
-            <p>
-            <textarea name="evaluation_msg[<?php echo $v['id']; ?>]" style="width: 100%; height: 20px;"></textarea>
-            </p>
-            <?php }else{ ?>
-            <p>已评价：<?php switch ($v['evaluation']['status']) {
-            	case 0:
-            		echo '差评';
-            	break;
-            	case 1:
-            		echo '中评';
-            	break;
-            	case 2:
-            		echo '好评';
-            	break;
-            	default:
-            	break;
-            } ?></p>
-            <p><?php echo $v['evaluation']['msg']; ?></p>
             <?php }; ?>
-            <?php }; ?>
-            <br />
-            <?php }; ?>
-        </div>
-        <?php if($need_comment){ ?>
-        <button class="btn" type="submit">确认评价</button>
-        <?php }; ?>
         </form>
 
         <?php if($address_info){ ?>
@@ -78,8 +43,9 @@
                             <form id="form" action="/mall/submit_lingyang" method="post" onSubmit="return lySubmit()">
 
                                 <!-- 选择收货地址 -->
-                                <a class="choose_address" href="/mall/chooseaddress">
+                                <a class="choose_address" href="/mall/chooseaddress?source=1&id=<?php echo $order_info['id']; ?>">
                                 <empty name="address">
+                                    <input type="hidden" name="oid" value="<?php echo $order_info['id']; ?>" />
                                     <?php if(!$address){ ?>
                                         <!-- 没有 -->
                                         <span class="write"><em class="write_icon">&nbsp;</em>请选择收货地址</span>
@@ -93,9 +59,16 @@
                                 <em class="arrow_right">&nbsp;</em> </a>
                                 <p class="t">配送方式</p>
                                 <p>
-                                    <select id="delivery">
+                                    <select name="delivery">
                                         <option value="1">快递配送</option>
                                         <option value="2">电子券自提</option>
+                                    </select>
+                                </p>
+                                <p class="t">是否宰杀</p>
+                                <p>
+                                    <select name="kill">
+                                        <option value="0">否</option>
+                                        <option value="1">是</option>
                                     </select>
                                 </p>
                                 <button class="btn" type="submit">确认领养</button>
@@ -168,6 +141,13 @@ function tgSubmit() {
 	}
 	init = 1;
 	return true;
+}
+function lySubmit() {
+    if(init != 0){
+        return false;
+    }
+    init = 1;
+    return true;
 }
 </script>
 </block>

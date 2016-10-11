@@ -39,7 +39,7 @@
         }
     });
 </script>
-<style>
+<!--<style>
     #shareit {
         -webkit-user-select: none;
         position: absolute;
@@ -59,11 +59,11 @@
         right: 10%;
         top: 5%;
     }
-</style>
+</style>-->
 <body class="withFoot">
-<div id="shareit" >
-    <img class="arrow" src="http://dev.vxtong.com/cases/nuannan/imgs/share-it.png">
-</div>
+<!--<div id="shareit" >-->
+<!--    <img class="arrow" src="http://dev.vxtong.com/cases/nuannan/imgs/share-it.png">-->
+<!--</div>-->
 
 <div class="container">
     <div class="order_detail">

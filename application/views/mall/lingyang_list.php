@@ -5,7 +5,7 @@
     <div class="container">
 
         <?php if(!$list){ ?>
-       		 <div class="empty_container"><p>暂无订单</p></div>
+       		 <div class="empty_container"><p>暂无领养</p></div>
         <?php }else{ ?>
         <!-- 订单信息 -->
         <div class="order_list">
@@ -14,14 +14,14 @@
                 <li>
                 	<a style="display:block" href="/mall/lingyangview/<?php echo $value['id']; ?>">
                 	<p class="top">
-                        <span class="t">订单编号：<?php echo $value['order_number']; ?></span><br/>
+                        <span class="t">领养编号：<?php echo $value['order_number']; ?></span><br/>
                     <?php if($value['status_code'] == 0){ ?>
-                        <span class="c">订单状态：<span class="blue"><?php echo $value['status_code_name']; ?></span></span><br/>
+                        <span class="c">状态：<span class="blue"><?php echo $value['status_code_name']; ?></span></span><br/>
                     <?php }else{ ?>
                         <?php if($value['reserve_time'] > time()){ ?>
                             <span class="t" style="color: red;"><?php echo date('y-m-d H:i:s').'后可认领'; ?></span>
                         <?php }else{ ?>
-                            <span class="c">订单状态：<span class="blue"><?php echo $value['status_code_name']; ?></span></span><br/>
+                            <span class="c">状态：<span class="blue"><?php echo $value['status_code_name']; ?></span></span><br/>
                         <?php }; ?>
                     <?php }; ?>
                     </p>
@@ -36,7 +36,7 @@
                                 <span class="orange">￥<?php echo $goods['price']; ?>元</span>                              
                             </p>
                             <p class="property">
-                                <span class="colorless">数量</span>
+                                <span class="colorless">领养数</span>
                                 <span><?php echo $goods['num']; ?></span>
                             </p>
                         </div>

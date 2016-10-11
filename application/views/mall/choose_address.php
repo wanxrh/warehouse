@@ -6,7 +6,7 @@
         	<ul>
              <?php foreach ($address as $v){ ?>
             	<li>
-                	<a class="address_item" href="/mall/confirmorder?address_id=<?php echo $v['id']; ?>" title="选择">
+                	<a class="address_item" href="/mall/<?php echo isset($_GET['source'])?'lingyangview/'.$_GET['id']:'confirmorder'  ?>?address_id=<?php echo $v['id'] ?>" title="选择">
                     	<em class="radio_icon">&nbsp;</em>
                     	<p><?php echo $v['region_name']; ?></p>
                     	<p><?php echo $v['address']; ?></p>
