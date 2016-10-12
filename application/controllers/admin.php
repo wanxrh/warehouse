@@ -972,4 +972,44 @@ class Admin extends BaseController {
         }
         ajaxSuccess('删除成功！',array('url'=>'/admin/agentplace'));
     }
+    //养殖日志列表
+    public function breeding(){
+        $data = $this->AdminModel->shop_breeding($this->per_page, $this->offset);
+        $url_format = "/admin/breeding/%d?" . str_replace('%', '%%', urldecode($_SERVER['QUERY_STRING']));
+        $data['page'] = page($this->cur_page, ceil($data['total'] / $this->per_page), $url_format, 5, TRUE, TRUE,$data['total']);
+        $data['cur_page'] = $this->cur_page;
+        $this->load->view('admin/breeding_list',$data);
+    }
+    public function addbreeding(){
+        if(IS_POST){
+            $post = $this->input->post();
+            $breeding['goods_id'] = $post['goods_id'];
+            $breeding['picture'] = $post['picture'];
+            $breeding['instructions'] = $post['instructions'];
+            $breeding['video'] = $post['video']?$post['video']:'';
+            $breeding['outtime'] = $post['outtime']?$post['outtime']:'';
+            if(!$post['goods_id']){
+                ajaxError('商品ID不能为空！');
+            }
+            if(!$post['picture']){
+                ajaxError('请上传图片！');
+            }
+            if(!$post['outtime']){
+                ajaxError('倒计时不能为空！');
+            }
+            if(!$post['instructions']){
+                ajaxError('文字说明不能为空！');
+            }
+            //去查有没有这个商品
+            $row = $this->AdminModel->getRow('shop_goods',array('id'=>$post['goods_id']));
+            if(!$row){
+                ajaxError('该商品ID不存在');
+            }
+            $row = $this->AdminModel->insert('wp_shop_breeding',$post);
+            if($row){
+                ajaxSuccess('添加成功！',array('url'=>'/admin/breeding'));
+            }
+        }
+        $this->load->view('admin/breeding_add');
+    }
 }

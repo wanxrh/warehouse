@@ -259,6 +259,14 @@ class AdminModel extends BaseModel {
         $result['total'] = $this->db->count_all_results('shop_daili_store');
         return $result;
     }
+    public function shop_breeding($per_page,$offset){
+
+        $clone = clone($this->db);
+        $result['list'] = $this->db->select('*')->order_by('id','DESC')->limit($per_page, $offset)->get('shop_breeding')->result_array();
+        $this->db = $clone;
+        $result['total'] = $this->db->count_all_results('shop_breeding');
+        return $result;
+    }
     public function addStore($data){
         $this->insert('shop_daili_store', $data);
         $goods_id = $this->db->insert_id();

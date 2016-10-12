@@ -69,6 +69,7 @@
                 <li ><a href="/admin/product"> 产品溯源 </a><b class="active_arrow"></b></li>
                 <li ><a href="/admin/voucher"> 礼品卷 </a><b class="active_arrow"></b></li>
                 <li ><a href="/admin/agentplace"> 代理地点信息 </a><b class="active_arrow"></b></li>
+                <li ><a href="/admin/breeding"> 养殖日志 </a><b class="active_arrow"></b></li>
                 <li><a href="/admin/slideshow"> 首页幻灯片 </a><b class="active_arrow"></b></li>
                 <li><a href="/admin/qrcode"> 代理管理 </a><b class="active_arrow"></b></li>
 				<li><a href="/admin/cash"> 提现管理 </a><b class="active_arrow"></b></li>
