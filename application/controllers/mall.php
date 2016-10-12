@@ -246,11 +246,11 @@ class Mall extends BaseController
                 $goods = $this->MallModel->getRow('shop_goods', array('id' => $goods_id));
                 $data['kill'] = $goods['kill'];
 
-                //$reserve = $this->MallModel->getRow('shop_breeding',array('goods_id'=>$goods_id));
-                $reserve = 1;
+                $reserve = $this->MallModel->getRow('shop_breeding',array('goods_id'=>$goods_id));
+
                 if ($reserve) {
                     $data['reserve'] = 1;
-                    $data['reserve_time'] = $reserve['reserve_time'];
+                    $data['reserve_time'] = $reserve['outtime'];
                 } else {
                     $data['reserve'] = 0;
                 }
@@ -576,7 +576,7 @@ class Mall extends BaseController
         $data['now'] = time();
         if ($coupon['status'] == 0) {
             $time = time();
-            $data['confirm_coupon_url'] = 'http://pan.baidu.com/share/qrcode?w=150&h=150&url=' . $this->config->base_url() . 'coupon/exchange?id=' . $coupon['coupon_id'] . '%26time=' . $time . '%26sign=' . md5($coupon['sign'] . $time);
+            $data['confirm_coupon_url'] = 'http://pan.baidu.com/share/qrcode?w=300&h=300&url=' . $this->config->base_url() . 'coupon/exchange?id=' . $coupon['coupon_id'] . '%26time=' . $time . '%26sign=' . md5($coupon['sign'] . $time);
         }
         $order_id = $coupon['order_id'];
         $data['order_info'] = $this->MallModel->getOrderInfo(array('id' => $order_id, 'uid' => $user_id));
@@ -655,7 +655,7 @@ class Mall extends BaseController
         $data['now'] = time();
         if ($gift['status'] == 1) {
             $time = time();
-            $data['confirm_gift_url'] = 'http://pan.baidu.com/share/qrcode?url=' . $this->config->base_url() . 'coupon/present?id=' . $gift['id'] . '%26time=' . $time . '%26sign=' . md5($gift['sign'] . $time);
+            $data['confirm_gift_url'] = 'http://pan.baidu.com/share/qrcode?w=300&h=300&url=' . $this->config->base_url() . 'coupon/present?id=' . $gift['id'] . '%26time=' . $time . '%26sign=' . md5($gift['sign'] . $time);
         }
 
         $data['gift'] = $gift;
