@@ -980,6 +980,7 @@ class Admin extends BaseController {
         $data['cur_page'] = $this->cur_page;
         $this->load->view('admin/breeding_list',$data);
     }
+    //养殖日志增加
     public function addbreeding(){
         if(IS_POST){
             $post = $this->input->post();
@@ -987,7 +988,7 @@ class Admin extends BaseController {
             $breeding['picture'] = $post['picture'];
             $breeding['instructions'] = $post['instructions'];
             $breeding['video'] = $post['video']?$post['video']:'';
-            $breeding['outtime'] = $post['outtime']?$post['outtime']:'';
+            $breeding['outtime'] = $post['outtime']?strtotime($post['outtime']):'';
             if(!$post['goods_id']){
                 ajaxError('商品ID不能为空！');
             }
@@ -1005,11 +1006,65 @@ class Admin extends BaseController {
             if(!$row){
                 ajaxError('该商品ID不存在');
             }
-            $row = $this->AdminModel->insert('wp_shop_breeding',$post);
+            $breeding['addtime'] = time();
+            $row = $this->AdminModel->insert('wp_shop_breeding',$breeding);
             if($row){
                 ajaxSuccess('添加成功！',array('url'=>'/admin/breeding'));
             }
         }
         $this->load->view('admin/breeding_add');
+    }
+    public function editbreeding(){
+        $id = intval($this->uri->segment(3));
+        if(IS_POST){
+            $param = $this->input->post(NULL,TRUE);
+            $id = $param['id'];
+            unset($param['id']);
+            if(!$id){
+                ajaxError('数据不存在！');
+            }
+            if(!$param['goods_id']){
+                ajaxError('商品ID不能为空！');
+            }
+            if(!$param['picture']){
+                ajaxError('请上传图片！');
+            }
+            if(!$param['outtime']){
+                ajaxError('倒计时不能为空！');
+            }
+            if(!$param['instructions']){
+                ajaxError('文字说明不能为空！');
+            }
+            //去查有没有这个商品
+            $row = $this->AdminModel->getRow('shop_goods',array('id'=>$param['goods_id']));
+            if(!$row){
+                ajaxError('该商品ID不存在');
+            }
+
+            $row = $this->AdminModel->update('shop_breeding',array('id'=>$id),$param);
+            if(!$row){
+                ajaxError('操作失败！');
+            }
+            ajaxSuccess('操作成功',array('url'=>'/admin/breeding'));
+        }
+        if(!$id){
+            $this->errorJump('非法请求','/admin/breeding');
+            return;
+        }
+        $data['info'] = $this->AdminModel->getRow('shop_breeding',array('id'=>$id));
+        $this->load->view('admin/breeding_edit',$data);
+    }
+    public function delbreeding(){
+        $id = intval($this->uri->segment(3));
+        if(!$id){
+            $this->errorJump('非法操作');
+            return;
+        }
+        $result = $this->AdminModel->delete('shop_breeding',array('id'=>$id));
+        if(!$result){
+            $this->errorJump('非法操作');
+            return;
+        }
+        $this->successJump('操作成功','/admin/breeding');
     }
 }

@@ -33,6 +33,7 @@
 								<th>说明</th>
 								<th>商品ID</th>
 								<th>倒计时</th>
+								<th>添加时间</th>
 								<th>操作</th>
 							</tr>
 						</thead>
@@ -47,10 +48,14 @@
 									<label for="check_<?php echo $v['id']; ?>"></label>
 								</td>
 								<td><?php echo $v['id']; ?></td>
-
+								<td><?php echo $v['picture']; ?></td>
+								<td><?php echo $v['instructions']; ?></td>
+								<td><?php echo $v['goods_id']; ?></td>
+								<td><?php echo date("Y-m-d",$v['outtime']); ?></td>
+								<td><?php echo date("Y-m-d",$v['addtime']); ?></td>
 								<td>
-                                    <a target="_self" href="/admin/editplace/<?php echo $v['id']; ?>">编辑</a>
-									<a class="confirm" href="/admin/delPlace/<?php echo $v['id']; ?>">删除</a>
+                                    <a target="_self" href="/admin/editbreeding/<?php echo $v['id']; ?>">编辑</a>
+									<a class="confirm" href="/admin/delbreeding/<?php echo $v['id']; ?>">删除</a>
 								</td>
 							</tr>
 							<?php }; ?>
