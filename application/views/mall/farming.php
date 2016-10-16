@@ -4,8 +4,8 @@
 <style>
     .list-far{background-color: #FFFFFF}
     .list-far ul{width: 80%;margin: auto;}
-    .start{position: absolute;margin-top: 60%;float: left;}
-    .end{margin-top: 60%;float: right;}
+    .start{position: absolute;top: 100px;}
+    .end{position: absolute;top: 100px;}
     .buy_now{ display:block; margin:0 5px; text-align:center;background-color:#e4393c; color:#fff; border-radius:5px; height:40px; line-height:40px; -webkit-box-flex:1}
 
 </style>
@@ -17,8 +17,6 @@
         <?php }else{ ?>
         <!-- 信息 -->
         <div class="list-far">
-            <div class="start"><a href="/mall/farming/<?php echo $start;?>"><img src="/static/images/bg17.png"></a> </div>
-            <div class="end"><a href="/mall/farming/<?php echo $end;?>"><img src="/static/images/bg18.png"></a> </div>
             <ul id="productContainer" class="navContent">
                 <?php foreach ($list as $v){ ?>
                     <li class="">
@@ -29,15 +27,20 @@
                         <?php echo $v['instructions']; ?>
                     </li>
                     <br/>
+                    <?php if($v['video']):?>
                     <li>
                         <video width="340" height="380" controls="controls">
                             <source src="<?php echo '/'.$v['video'];?>" type="video/mp4">
                         </video>
                     </li>
-                    <a class="buy_now" href="javascript:;">我要领养</a>
+                    <?php endif;?>
+                    <a class="buy_now" href="/mall/detail/<?php echo $v['goods_id'];?>">我要领养</a>
                 <?php }; ?>
             </ul>
          </div>
+        <div class="start"><a href="/mall/farming/<?php echo $start;?>"><img src="/static/images/bg17.png"></a> </div>
+        <div class="end"><a href="/mall/farming/<?php echo $end;?>"><img src="/static/images/bg18.png"></a> </div>
+
         <?php }; ?>
          
         
