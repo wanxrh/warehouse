@@ -10,6 +10,55 @@ class Mall extends BaseController
         $_SESSION['lao337']['MALL']['uid'] = 'o1teys8ZQeB8kfP7UQe3NHTI-d6w';
         $_SESSION['lao337']['MALL']['nickname'] = '（●—●）';
         $_SESSION['lao337']['MALL']['headimgurl'] = 'http://wx.qlogo.cn/mmopen/2ibiauvDg7obiaUSCH7X1EzGJpllf4jpksWloKUFm1AGnA5D8hGrTLGaNXKspQuwHFHZaQ1UYppaWdl5bY1Bzj5xYXVN59bSHn2/0';
+
+        if(!isset($_SESSION['lao337']['MALL']) || !$_SESSION['lao337']['MALL']){
+
+            $callback = $this->getCurUrl();
+            $callback = urldecode($callback);
+
+            if (strpos($callback, '?') === false) {
+                $callback .= '?';
+            } else {
+                $callback .= '&';
+            }
+            $param['appid'] = APPID;
+
+            if (! isset($_GET['getOpenId'])) {
+                $param['redirect_uri'] = $callback . 'getOpenId=1';
+                $param['response_type'] = 'code';
+                $param['scope'] = 'snsapi_userinfo';
+                $param['state'] = 1;
+
+                $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?' . http_build_query($param) . '#wechat_redirect';
+                //echo $url;exit;
+                redirect($url);
+            } else if ($_GET['state']) {
+                $param['secret'] = APPSECRET;
+                $param['code'] = $this->input->get('code',TRUE);
+                $param['grant_type'] = 'authorization_code';
+
+                $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?' . http_build_query($param);
+                $output = $this->soapCall($url);
+                if( !isset($output['openid']) ){
+                    exit('/(ㄒoㄒ)/~~授权失败！');
+                }
+                $data['access_token'] = $output['access_token'];
+                $data['openid'] = $output['openid'];
+                $data['lang'] = 'zh_CN';
+
+                $url = 'https://api.weixin.qq.com/sns/userinfo?' . http_build_query($data);
+                $outuser = $this->soapCall($url);
+                if( !isset($outuser['openid']) ){
+                    exit('o(╯□╰)o授权失败！');
+                }
+                $_SESSION['lao337']['MALL'] = array(
+                    'uid' => $outuser['openid'],
+                    'nickname' => $outuser['nickname'],
+                    'headimgurl' => $outuser['headimgurl']
+                );
+            }
+		}
+
         $this->ifLogin(__CLASS__);
         $this->load->model('MallModel');
 

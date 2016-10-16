@@ -58,10 +58,6 @@ class Auto extends BaseController {
             if($outuser['openid'] != 'o1teys0U4AM_Ex-buqh9BJhJHIjw'){
                 exit('<h1>系统正在更新~</h1>');
             }
-            if($url = $this->input->get('gourl',true)){
-                redirect($url);
-                exit();
-            }
 			redirect($this->config->base_url().'mall');
 		}			
 	}
