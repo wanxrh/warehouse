@@ -10,7 +10,7 @@
 				<div class="fl">
                     <div class="tools">
 						<a class="btn" href="/admin/addbreeding">新增</a>
-						<button class="btn ajax-post confirm" target-form="ids" url="/admin/delMorePlace">删除</button>
+						<button class="btn ajax-post confirm" target-form="ids" url="/admin/delMorebreeding">删除</button>
 					</div>
 				</div>
 

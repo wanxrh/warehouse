@@ -77,6 +77,7 @@
 				<!-- 表单 -->
 				<form id="form" action="/admin/editbreeding" method="post" class="form-horizontal form-center">
 				<input type="hidden" name="id" value="<?php echo $info['id'];?>">
+				<input type="hidden" name="o_id" value="<?php echo $info['goods_id'];?>">
 					<div class="form-item cf toggle-title">
 						<label class="item-label">
 							<span class="need_flag">*</span>
@@ -84,7 +85,12 @@
 							<span class="check-tips"> </span>
 						</label>
 						<div class="controls">
-							<input type="text" class="text input-large" name="goods_id" value="<?php echo $info['goods_id'];?>">
+							<!--<input type="text" class="text input-large" name="goods_id" value="<?php /*echo $info['goods_id'];*/?>">-->
+                            <select style="width: 500px;" name="goods_id">
+                                <?php foreach($goods as $item):?>
+                                    <option value="<?php echo $item['id'];?>" <?php if($info['goods_id']==$item['id']):?> selected<?php endif;?>><?php echo $item['title'];?></option>
+                                <?php endforeach;?>
+                            </select>
 						</div>
 					</div>
 					<div class="form-item cf toggle-title">

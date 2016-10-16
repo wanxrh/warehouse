@@ -79,11 +79,16 @@
 					<div class="form-item cf toggle-title">
 						<label class="item-label">
 							<span class="need_flag">*</span>
-							商品ID
+							商品
 							<span class="check-tips"> </span>
 						</label>
 						<div class="controls">
-							<input type="text" class="text input-large" name="goods_id" value="">
+                            <select style="width: 500px;" name="goods_id">
+                                <?php foreach($goods as $item):?>
+                                    <option value="<?php echo $item['id'];?>"><?php echo $item['title'];?></option>
+                                <?php endforeach;?>
+                            </select>
+							<!--<input type="text" class="text input-large" name="goods_id" value="">-->
 						</div>
 					</div>
 					<div class="form-item cf toggle-title">

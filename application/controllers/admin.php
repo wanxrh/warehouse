@@ -1008,11 +1008,13 @@ class Admin extends BaseController {
             }
             $breeding['addtime'] = time();
             $row = $this->AdminModel->insert('wp_shop_breeding',$breeding);
+            $this->AdminModel->update('shop_goods',array('id'=>$post['goods_id']),array('reserve'=>1,'reserve_time'=>$breeding['addtime']));
             if($row){
                 ajaxSuccess('添加成功！',array('url'=>'/admin/breeding'));
             }
         }
-        $this->load->view('admin/breeding_add');
+        $data['goods'] = $this->AdminModel->getRows('shop_goods',array('reserve'=>0));
+        $this->load->view('admin/breeding_add',$data);
     }
     public function editbreeding(){
         $id = intval($this->uri->segment(3));
@@ -1020,6 +1022,8 @@ class Admin extends BaseController {
             $param = $this->input->post(NULL,TRUE);
             $id = $param['id'];
             unset($param['id']);
+            $o_id = $param['o_id'];
+            unset($param['o_id']);
             if(!$id){
                 ajaxError('数据不存在！');
             }
@@ -1040,8 +1044,15 @@ class Admin extends BaseController {
             if(!$row){
                 ajaxError('该商品ID不存在');
             }
+            if($row['reserve']==1 &&$row['id']!=$param['goods_id']){
+                ajaxError('该商品已经被选择');
+            }
+            $param['outtime'] = strtotime($param['outtime']);
 
+            $this->AdminModel->update('shop_goods',array('id'=>$o_id),array('reserve'=>0,'reserve_time'=>null));
             $row = $this->AdminModel->update('shop_breeding',array('id'=>$id),$param);
+
+            $this->AdminModel->update('shop_goods',array('id'=>$param['goods_id']),array('reserve'=>1,'reserve_time'=>$param['outtime']));
             if(!$row){
                 ajaxError('操作失败！');
             }
@@ -1052,6 +1063,7 @@ class Admin extends BaseController {
             return;
         }
         $data['info'] = $this->AdminModel->getRow('shop_breeding',array('id'=>$id));
+        $data['goods'] = $this->AdminModel->getRows('shop_goods');
         $this->load->view('admin/breeding_edit',$data);
     }
     public function delbreeding(){
@@ -1060,11 +1072,32 @@ class Admin extends BaseController {
             $this->errorJump('非法操作');
             return;
         }
+        $goods = $this->AdminModel->getRow('shop_breeding',array('id'=>$id));
         $result = $this->AdminModel->delete('shop_breeding',array('id'=>$id));
+        $this->AdminModel->update('shop_goods',array('id'=>$goods['goods_id']),array('reserve'=>0,'reserve_time'=>null));
         if(!$result){
             $this->errorJump('非法操作');
             return;
         }
         $this->successJump('操作成功','/admin/breeding');
+    }
+    public function delMorebreeding(){
+        if(!IS_POST){
+            return FALSE;
+        }
+        $ids = $this->input->post('ids',TRUE);
+        if( empty($ids) ){
+            ajaxError('请选择操作数据');
+        }
+        $goods = $this->AdminModel->arrbreeding($ids);
+        foreach ($goods as $item){
+            $this->AdminModel->update('shop_goods',array('id'=>$item['goods_id']),array('reserve'=>0,'reserve_time'=>null));
+        }
+        $result = $this->AdminModel->delbreeding($ids);
+
+        if(!$result){
+            ajaxError('请选择操作数据');
+        }
+        ajaxSuccess('删除成功！',array('url'=>'/admin/breeding'));
     }
 }

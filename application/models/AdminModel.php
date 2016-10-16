@@ -281,5 +281,12 @@ class AdminModel extends BaseModel {
         $this->db->where_in('daili_id',$ids)->delete('shop_daili_store_goods');
         return $this->db->affected_rows();
     }
-
+    public function delbreeding($ids){
+        $this->db->where_in('id',$ids)->delete('shop_breeding');
+        return $this->db->affected_rows();
+    }
+    public function arrbreeding($ids){
+        $res = $this->db->where_in('id',$ids)->get('shop_breeding')->result_array();
+        return $res;
+    }
 }
