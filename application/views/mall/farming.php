@@ -2,10 +2,10 @@
 <link href="<?php echo $this->config->base_url(); ?>static/mobile/common.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/mobile/shop.js"></script>
 <style>
-    .list-far{background-color: #FFFFFF}
-    .list-far ul{width: 80%;margin: auto;}
-    .start{position: absolute;top: 100px;}
-    .end{position: absolute;top: 100px;}
+    .list-far{width: 100%;background-color: #FFFFFF}
+    .list-far ul{width: 100%;margin: auto;}
+    .container .start{position:fixed;top: 200px;left:1px;}
+    .container .end{float: right;position:fixed;top: 200px;right:1px;}
     .buy_now{ display:block; margin:0 5px; text-align:center;background-color:#e4393c; color:#fff; border-radius:5px; height:40px; line-height:40px; -webkit-box-flex:1}
 
 </style>
@@ -44,10 +44,11 @@
                     <a class="buy_now" href="/mall/detail/<?php echo $v['goods_id'];?>">我要领养</a>
                 <?php }; ?>
             </ul>
+
+
          </div>
         <div class="start"><a href="/mall/farming/<?php echo $start;?>"><img src="/static/images/bg17.png"></a> </div>
         <div class="end"><a href="/mall/farming/<?php echo $end;?>"><img src="/static/images/bg18.png"></a> </div>
-
         <?php }; ?>
          
         
