@@ -30,6 +30,8 @@
             <a href="/mall/reserve">领养圈</a>-->
             <span class="line"></span>
             <a href="/mall/service" style="color: #1d98d6">服务点</a>
+            <span class="line"></span>
+            <a href="/mall/farming" style="color: #1d98d6">养殖日志</a>
             <!--<span class="line"></span>
             <a href="">店铺简介</a>
             <span class="line"></span>

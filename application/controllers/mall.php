@@ -767,4 +767,24 @@ class Mall extends BaseController
         $data['store_goods'] = $this->MallModel->get_store_goods($data['list']['id']);
         $this->load->view('mall/service_point_info', $data);
     }
+    public function farming(){
+        $this->per_page = 1;
+        $this->cur_page = intval($this->uri->segment(3));
+        if ($this->cur_page < 1) {
+            $this->cur_page = 1;
+        }
+        $this->offset = ($this->cur_page - 1) * $this->per_page;
+        $data = $this->MallModel->shop_breeding($this->per_page, $this->offset);
+        $url_format = "/admin/breeding/%d?" . str_replace('%', '%%', urldecode($_SERVER['QUERY_STRING']));
+        $data['page'] = page($this->cur_page, ceil($data['total'] / $this->per_page), $url_format, 5, TRUE, TRUE,$data['total']);
+        $data['cur_page'] = $this->cur_page;
+        //计算分页
+        $start = $this->cur_page-1;
+        if($start==0)$start=1;
+        $data['start'] = $start;
+        $end = $this->cur_page+1;
+        if($end>$data['total'])$end =$data['total'];
+        $data['end'] = $end;
+        $this->load->view('mall/farming',$data);
+    }
 }

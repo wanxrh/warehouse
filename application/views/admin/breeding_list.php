@@ -48,7 +48,7 @@
 									<label for="check_<?php echo $v['id']; ?>"></label>
 								</td>
 								<td><?php echo $v['id']; ?></td>
-								<td><?php echo $v['picture']; ?></td>
+								<td><img class="list_img" src="<?php echo imgUrl($v['picture']); ?>"></td>
 								<td><?php echo $v['instructions']; ?></td>
 								<td><?php echo $v['goods_id']; ?></td>
 								<td><?php echo date("Y-m-d",$v['outtime']); ?></td>

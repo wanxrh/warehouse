@@ -284,4 +284,12 @@ class MallModel extends BaseModel {
         $this->db->select('shop_daili_store_goods.*,shop_goods.title')->join('shop_goods','shop_goods.id = shop_daili_store_goods.goods_id','inner');
         return $this->db->get('shop_daili_store_goods')->result_array();
     }
+    public function shop_breeding($per_page,$offset){
+
+        $clone = clone($this->db);
+        $result['list'] = $this->db->select('*')->order_by('id','DESC')->limit($per_page, $offset)->get('shop_breeding')->result_array();
+        $this->db = $clone;
+        $result['total'] = $this->db->count_all_results('shop_breeding');
+        return $result;
+    }
 }

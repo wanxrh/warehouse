@@ -281,4 +281,5 @@ class AdminModel extends BaseModel {
         $this->db->where_in('daili_id',$ids)->delete('shop_daili_store_goods');
         return $this->db->affected_rows();
     }
+
 }
