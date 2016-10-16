@@ -19,7 +19,7 @@
                         <span class="c">状态：<span class="blue"><?php echo $value['status_code_name']; ?></span></span><br/>
                     <?php }else{ ?>
                         <?php if($value['reserve_time'] > time()){ ?>
-                            <span class="t" style="color: red;"><?php echo date('y-m-d H:i:s').'后可认领'; ?></span>
+                            <span class="t" style="color: red;"><?php echo date('Y-m-d H:i:s',$value['reserve_time']).'后可认领'; ?></span>
                         <?php }else{ ?>
                             <span class="c">状态：<span class="blue"><?php echo $value['status_code_name']; ?></span></span><br/>
                         <?php }; ?>

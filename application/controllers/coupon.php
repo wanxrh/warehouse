@@ -28,7 +28,7 @@ class Coupon extends BaseController
             if (!isset($_GET['getOpenId'])) {
                 $param['redirect_uri'] = $callback . 'getOpenId=1';
                 $param['response_type'] = 'code';
-                $param['scope'] = 'snsapi_userinfo';
+                $param['scope'] = 'snsapi_base';//'snsapi_userinfo';
                 $param['state'] = 1;
 
                 $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?' . http_build_query($param) . '#wechat_redirect';
@@ -54,10 +54,8 @@ class Coupon extends BaseController
                     exit('o(╯□╰)o授权失败！');
                 }
                 $this->_openid = $outuser['openid'];
-                $_SESSION['lao337']['AGENT'] = array(
-                    'uid' => $outuser['openid'],
-                    'nickname' => $outuser['nickname'],
-                    'headimgurl' => $outuser['headimgurl']
+                $_SESSION['lao337']['COUPON'] = array(
+                    'uid' => $outuser['openid']
                 );
             }
         }
