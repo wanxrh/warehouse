@@ -1013,7 +1013,7 @@ class Admin extends BaseController {
                 ajaxSuccess('添加成功！',array('url'=>'/admin/breeding'));
             }
         }
-        $data['goods'] = $this->AdminModel->getRows('shop_goods',array('reserve'=>0));
+        $data['goods'] = $this->AdminModel->getRows('shop_goods',array('reserve'=>0,'is_show'=>1));
         $this->load->view('admin/breeding_add',$data);
     }
     public function editbreeding(){
@@ -1063,7 +1063,7 @@ class Admin extends BaseController {
             return;
         }
         $data['info'] = $this->AdminModel->getRow('shop_breeding',array('id'=>$id));
-        $data['goods'] = $this->AdminModel->getRows('shop_goods');
+        $data['goods'] = $this->AdminModel->getRows('shop_goods',array('is_show'=>1));
         $this->load->view('admin/breeding_edit',$data);
     }
     public function delbreeding(){

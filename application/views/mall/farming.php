@@ -19,8 +19,8 @@
         <div class="list-far">
             <ul id="productContainer" class="navContent">
                 <?php foreach ($list as $v){ ?>
-                    <li class="">
-                        <img src="<?php echo imgUrl($v['picture']) ?>" height="300" style="clear: both;display: block;margin:auto; "/>
+                    <li>
+                        <img src="<?php echo imgUrl($v['picture']) ?>" height="300" style="clear: both;display: block;margin:auto;"/>
                     </li>
                     <br/>
                     <li class="">
