@@ -48,8 +48,8 @@
 									<label for="check_<?php echo $v['id']; ?>"></label>
 								</td>
 								<td><?php echo $v['id']; ?></td>
-								<td><img class="list_img" src="<?php echo imgUrl($v['picture']); ?>"></td>
-								<td><?php echo $v['instructions']; ?></td>
+								<td><img class="list_img" src="<?php echo imgUrl(explode(',',$v['picture'])[0]); ?>"></td>
+								<td><?php echo mb_substr($v['instructions'],0,50,'utf-8'); ?></td>
 								<td><?php echo $v['goods_id']; ?></td>
 								<td><?php echo date("Y-m-d",$v['outtime']); ?></td>
 								<td><?php echo date("Y-m-d",$v['addtime']); ?></td>

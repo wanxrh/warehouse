@@ -1,11 +1,12 @@
 <?php $this->load->view('mall/mobile_head'); ?>
+<link href="<?php echo $this->config->base_url(); ?>static/css/mall/public/shop.css" rel="stylesheet" type="text/css">
 <link href="<?php echo $this->config->base_url(); ?>static/mobile/common.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>static/mobile/shop.js"></script>
 <style>
-    .list-far{width: 100%;background-color: #FFFFFF}
+    .list-far{width: 100%;background-color: #FFFFFF;}
     .list-far ul{width: 100%;margin: auto;}
-    .container .start{position:fixed;top: 200px;left:1px;}
-    .container .end{float: right;position:fixed;top: 200px;right:1px;}
+    .container .start{position:fixed;top: 200px;left:1px;z-index: 99;}
+    .container .end{float: right;position:fixed;top: 200px;right:1px;z-index: 99;}
     .buy_now{ display:block; margin:0 5px; text-align:center;background-color:#e4393c; color:#fff; border-radius:5px; height:40px; line-height:40px; -webkit-box-flex:1}
 
 </style>
@@ -15,21 +16,37 @@
         <?php if(!$list){ ?>
        		 <div class="empty_container"><p>暂无内容</p></div>
         <?php }else{ ?>
+
         <!-- 信息 -->
         <div class="list-far">
+
             <ul id="productContainer" class="navContent">
                 <?php foreach ($list as $v){ ?>
                     <li>
-                        <img src="<?php echo imgUrl($v['picture']) ?>" height="300" style="clear: both;display: block;margin:auto;"/>
+                        <!-- 相册 -->
+                        <section class="photoList">
+                            <ul>
+                                <?php foreach (explode(',',$v['picture']) as $t){ ?>
+                                    <li>
+                                        <img src="<?php echo imgUrl( $t ); ?>"/>
+                                    </li>
+                                <?php }; ?>
+                            </ul>
+                <span class="identify">
+                <?php foreach (explode(',',$v['picture']) as $t){ ?>
+                    <em></em>
+                <?php }; ?>
+                </span>
+                        </section>
                     </li>
                     <br/>
-                    <li class="">
+                    <li style="text-indent: 30px;">
                         <?php echo $v['instructions']; ?>
                     </li>
                     <br/>
                     <?php if($v['video']):?>
                     <li>
-                        <video width="340" height="380" controls="controls">
+                        <video width="340" height="380" controls="controls"  style="clear: both;display: block;margin:auto;">
                             <source src="<?php echo '/'.$v['video'];?>" type="video/mp4">
                         </video>
                     </li>
@@ -72,6 +89,29 @@
         var cc = document.getElementById(divname);
         cc.innerHTML = day1+"天"+hour+"小时"+minute+"分"+second+"秒";
     }
+
+    $(function(){
+        $.WeiPHP.gallery('.photoList','.photoList ul');
+        $('.sku_item').click(function(){
+            $('#price').text($(this).data('price'));
+            $(this).addClass('select').siblings().removeClass('select');
+            $(this).find('input').prop("checked",true);
+            $(this).siblings().find('input').prop("checked",false);
+        })
+        //图片预览
+        var picList = [];
+        $('.photoList li img').each(function(index, element) {
+            var picUrl = $(this).attr("src");
+            picList[index] = picUrl;
+            $(this).click(function(){
+                wx.previewImage({
+                    current: picUrl, // 当前显示的图片链接
+                    urls: picList // 需要预览的图片链接列表
+                });
+            })
+        });
+
+    })
 
 </script>
 </html>
