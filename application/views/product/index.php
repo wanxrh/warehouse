@@ -16,6 +16,7 @@
     .navContent{display: none;border-bottom:solid 1px #e5e3da;}
     .navContent li a{display:block;heighr:28px;text-align:center;font-size:14px;line-height:28px;color:#333}
     .navContent li a:hover{color:#fff;background-color:#277fc2}
+    .img-p img{ width: 150px;}
 </style>
 <script type="text/javascript" src="js/jquery-1.3.2.js"></script>
 <script type="text/javascript">
@@ -115,6 +116,14 @@
         <li>
             <p class="top">
                 <img src="<?php echo '/'.$list['report'] ;?>">
+            </p>
+        </li>
+    </ul>
+    <div class="subNav">图文推荐吃法:</div>
+    <ul class="navContent">
+        <li>
+            <p class="top img-p">
+                <?php echo $list['cook'];?>
             </p>
         </li>
     </ul>
